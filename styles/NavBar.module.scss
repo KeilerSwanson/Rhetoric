@@ -1,0 +1,62 @@
+.navBar {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	padding: 2.5%;
+}
+
+.menu {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	list-style: none;
+}
+
+.item {
+	font-size: 20px;
+	font-weight: 900;
+	color: var(--blue);
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	transition: .2s;
+}
+
+.item > svg {
+	color: var(--blue);
+	font-size: 20px;
+	transition: .2s;
+}
+
+.item:hover {
+	color: var(--hover);
+}
+
+.readingList {
+	composes: item;
+}
+
+.readingList:hover > svg {
+	transform: translate(-2.5px, 0);
+}
+
+.filter {
+	composes: item;
+}
+
+.filter:hover > svg {
+	transform: translate(2.5px, 0);
+
+}
+
+@media screen and (max-width: 1440px) {
+	.item {
+		font-size: 16px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.navBar {
+		// padding: 25px;
+	}
+}

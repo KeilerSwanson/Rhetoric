@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { Landing } from '../components/Landing'
+import { NavBar } from '../components/NavBar'
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
         <meta name='author' content='Keiler Swanson' />
         <meta name='description' content='Find reporting on the topics you care about from the outlets you trust.' />
       </Head>
+      <NavBar />
       <Landing />
     </main> 
   )
