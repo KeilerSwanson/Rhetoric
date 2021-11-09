@@ -1,6 +1,7 @@
 .landing {
 	height: 100vh;
 	width: 100vw;
+	// padding: 0 10%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -8,6 +9,7 @@
 }
 
 .header {
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -18,22 +20,86 @@
 	font-size: 100px;
 	font-weight: 900;
 	color: var(--blue);
+	text-align: center;
 }
 
 .text {
+	// width: 50%;
 	font-size: 24px;
 	font-weight: 500;
 	color: var(--dark);
+	margin: 20px 0 40px;
+	text-align: center;
+	line-height: 1.5;
 }
 
 .form {
-
+	width: 25%;
+	display: flex;
+	height: 50px;
 }
 
 .topic {
+	font-size: 16px;
+	font-weight: 500;
+	color: var(--dark);
+	padding: 20px;
+	border-radius: 50px 0 0 50px;
+	box-shadow: 0 0 7.5px -2.5px #333 inset;
+	// height: 100%;
+	width: 85%;
+}
 
+.topic:focus  {
+	outline: none;
+}
+
+.topic::placeholder {
+	color: var(--dark);
+	opacity: .5;
 }
 
 .submit {
+	background-color: var(--blue);
+	border-radius: 0 50px 50px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	// height: 100%;
+	width: 15%;
+	transition: .2s;
+}
 
+.submit > svg {
+	color: white;
+	font-size: 30px;
+}
+
+.submit:hover {
+	cursor: pointer;
+	background-color: var(--hover);
+}
+
+@media screen and (max-width: 1440px) {
+	.form {
+		width: 33%;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.form {
+		width: 45%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.title {
+		font-size: 80px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.form {
+		width: 75%;
+	}
 }

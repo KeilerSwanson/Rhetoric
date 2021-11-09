@@ -2,9 +2,10 @@
 
 :root {
   /* COLORS */
-  --blue: #4472CA;
   --dark: #333333;
   --slate: #778899;
+  --blue: #4472CA;
+  --hover: #4b80e2;
   /* FONT SIZES */
 
 }
@@ -32,4 +33,8 @@ body::-webkit-scrollbar-thumb {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+input, button {
+  border: none;
 }
