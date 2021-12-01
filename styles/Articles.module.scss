@@ -1,0 +1,32 @@
+.articles {
+	width: 50%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 25px;
+	padding: 0 2.5%;
+}
+
+@media screen and (max-width: 1440px) {
+	.articles {
+		width: 60%;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.articles {
+		width: 80%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.articles {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.articles {
+		grid-template-columns: 1fr;
+		// width: 100%;
+	}
+}

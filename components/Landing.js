@@ -2,12 +2,12 @@ import styles from '../styles/Landing.module.scss'
 import { Arrow } from '../components/arrow'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 
-function Landing() {
+function Landing({ getNews }) {
 
 	function handler(e) {
-		const query = document.querySelector('#query').value
-		console.log(`Search for ${query}`)
 		e.preventDefault()
+		const query = document.querySelector('#query').value
+		getNews(query)
 	}
 
 	return (

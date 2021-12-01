@@ -1,6 +1,6 @@
 .navBar {
 	width: 100%;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	padding: 2.5%;
 }
@@ -24,7 +24,7 @@
 
 .item > svg {
 	color: var(--blue);
-	font-size: 20px;
+	font-size: 28px;
 	transition: .2s;
 }
 
@@ -53,10 +53,29 @@
 	.item {
 		font-size: 16px;
 	}
+	.item > svg {
+		font-size: 24px;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.navBar {
+		background: white;
+		z-index: 2;
+		border-bottom: solid 2px var(--blue);
+		box-shadow: 0 5px 10px -5px var(--dark);
+	}
 }
 
 @media screen and (max-width: 768px) {
+	// .navBar {
+	// 	border-bottom: solid 2px var(--blue);
+	// 	box-shadow: 0 5px 10px -5px var(--dark);
+	// }
+}
+
+@media screen and (max-width: 480px) {
 	.navBar {
-		// padding: 25px;
+		padding: 5% 2.5%;
 	}
 }

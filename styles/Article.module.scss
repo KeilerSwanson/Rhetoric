@@ -1,0 +1,49 @@
+.article {
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 5px 10px -5px var(--dark);
+	border-radius: 5px;
+	padding: 25px;
+	// background-color: #f8f8f8;
+	cursor: default;
+	transition: .2s;
+	will-change: transform;
+	list-style: none;
+	min-width: 0;
+	border: solid 2px transparent;
+	height: min-content;
+}
+
+.article:hover {
+	border: solid 2px var(--blue);
+	// border: solid 2px var(--dark);
+}
+
+.title {
+	color: var(--blue);
+	font-size: 28px;
+	font-weight: 900;
+}
+
+.meta {
+	color: var(--slate);
+	font-size: 20px;
+	font-weight: 700;
+	margin: 25px 0;
+}
+
+.description {
+	color: var(--dark);
+	font-size: 20px;
+	font-weight: 500;
+	margin-bottom: 25px;
+}
+
+@media screen and (max-width: 1440px) {
+	.title {
+		font-size: 24px;
+	}
+	.meta, .description {
+		font-size: 16px;
+	}
+}
