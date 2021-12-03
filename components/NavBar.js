@@ -1,23 +1,31 @@
 import styles from '../styles/NavBar.module.scss'
-import { ReadingList } from './ReadingList'
-import { Filter } from './Filter'
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
+// import { GrFormClose } from 'react-icons/gr'
+// import { IoChevronForward, IoChevronBack, IoClose } from 'react-icons/io5'
+import { GoChevronLeft, GoChevronRight, GoX } from 'react-icons/go'
 
-function NavBar() {
+function NavBar({ toggleFilter, filterOpen, readingOpen }) {
+
+	const readingIcon = readingOpen ? <GoX /> : <GoChevronLeft />
+	const filterIcon = filterOpen ? <GoX /> : <GoChevronRight />
+	const filterClass = filterOpen ? styles.open : styles.filter
+
 	return (
 		<nav className={styles.navBar}>
 			<menu className={styles.menu}>
 				<li 
 					className={styles.readingList}
 				>
-					<MdKeyboardArrowLeft /> 
+					{readingIcon}
+					{/* <MdArrowBackIos />  */}
 					Reading List
 				</li>
 				<li
-					className={styles.filter}
+					className={filterClass}
+					onClick={toggleFilter}
 				>
-					Filter 
-					<MdKeyboardArrowRight />
+					Filter
+					{/* <MdArrowForwardIos /> */}
+					{filterIcon}
 				</li>
 			</menu>
 		</nav>

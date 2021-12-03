@@ -1,12 +1,15 @@
 import styles from '../styles/Arrow.module.scss'
 
-function Arrow({handler}) {
+function Arrow({ handler, left }) {
+
+	const arrowClass = left ? styles.arrowLeft : styles.arrow
+
 	return (
-		<div
+		<span
 			onClick={() => handler()}
-			className={styles.arrow}
+			className={arrowClass}
 		>
-		</div>
+		</span>
 	)
 }
 

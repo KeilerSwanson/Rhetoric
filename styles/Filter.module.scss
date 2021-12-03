@@ -2,7 +2,65 @@
 	background-color: var(--blue);
 	height: 100vh;
 	width: 50vw;
-	position: absolute;
+	position: fixed;
 	top: 0;
-	left: 0;
+	right: 0;
+	transition: .2s;
+	transform: translate(100%, 0);
+	will-change: transform;
+	z-index: 2;
+	padding: 10% 2.5%;
+}
+
+.filterOpen {
+	composes: filter;
+	transform: translate(0, 0);
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	// justify-content: space-around;
+}
+
+
+.publishers {
+	// height: 66%;
+	overflow-y: scroll;
+	margin-bottom: 5%;
+}
+
+.publishers::-webkit-scrollbar {
+	background-color: transparent;
+	width: 20px;
+}
+
+.publishers::-webkit-scrollbar-thumb {
+	background-color: var(--dark);
+	border-left: solid 15px var(--blue);
+}
+
+.submit {
+	background-color: white;
+	color: var(--blue);
+	font-size: 20px;
+	font-weight: 900;
+	padding: 10px 0;
+	width: 100%;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+
+@media screen and (max-width: 1440px) {
+	.submit {
+		font-size: 16px;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.filter {
+		width: 100vw;
+	}
 }

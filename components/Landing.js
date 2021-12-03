@@ -1,13 +1,15 @@
 import styles from '../styles/Landing.module.scss'
-import { Arrow } from '../components/arrow'
-import { MdKeyboardArrowDown } from 'react-icons/md'
+// import { MdKeyboardArrowDown } from 'react-icons/md'
+// import { IoChevronDown } from 'react-icons/io5'
+import { GoChevronDown } from 'react-icons/go'
 
-function Landing({ getNews }) {
+function Landing({ getNews, filters, setQuery }) {
 
 	function handler(e) {
 		e.preventDefault()
 		const query = document.querySelector('#query').value
-		getNews(query)
+		setQuery(query)
+		getNews(query, filters.sources)
 	}
 
 	return (
@@ -30,7 +32,7 @@ function Landing({ getNews }) {
 						onClick={handler}
 						className={styles.submit} 
 					>
-						<MdKeyboardArrowDown />
+						<GoChevronDown />
 					</button>
 				</form>
 			</header>
