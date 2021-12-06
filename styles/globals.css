@@ -6,20 +6,22 @@
   --slate: #778899;
   --blue: #4472CA;
   --hover: #528cf8;
+  --purple: #7d17d9;
   /* FONT SIZES */
 
 }
 
 * {
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+  /* padding: 0; */
+  /* margin: 0; */
   font-family: 'Montserrat', sans-serif;
 }
 
 body {
   scrollbar-color: var(--blue) white;
   scrollbar-width: thin;
+  margin: 0;
 }
 
 body::-webkit-scrollbar {
@@ -37,4 +39,9 @@ a {
 
 input, button {
   border: none;
+}
+
+ul, ol, menu {
+  padding: 0;
+  margin: 0;
 }

@@ -11,28 +11,35 @@
 	display: flex;
 	justify-content: space-between;
 	list-style: none;
+	// padding: 0;
 }
 
 .item {
 	font-size: 20px;
-	font-weight: 900;
-	color: var(--blue);
+	font-weight: 800;
+	// color: var(--blue);
+	color: white;
 	display: flex;
 	align-items: center;
 	cursor: pointer;
 	transition: .2s;
-	// z-index: 3;
+	// background-color: var(--blue);
+	background-color: var(--dark);
+	padding: 10px;
+	border-radius: 5px;
 }
 
 .item > svg {
 	color: var(--blue);
+	// color: var(--dark);
 	font-size: 28px;
 	transition: .2s;
 	// position: relative;
 }
 
 .item:hover {
-	color: var(--hover);
+	// color: var(--hover);
+	background-color: var(--hover);
 }
 
 .item:hover > svg {
@@ -53,7 +60,8 @@
 
 .open {
 	composes: item;
-	color: white;
+	// color: white;
+	background-color: var(--hover);
 }
 
 .open > svg {
@@ -61,17 +69,17 @@
 }
 
 .open:hover, .open:hover > svg {
-	color: white;
-	// color: #DDE2E6;
+	// color: white;
+	color: #DDE2E6;
 }
 
 @media screen and (max-width: 1440px) {
-	.item {
-		font-size: 16px;
-	}
-	.item > svg {
-		font-size: 24px;
-	}
+	// .item {
+	// 	font-size: 16px;
+	// }
+	// .item > svg {
+	// 	font-size: 24px;
+	// }
 }
 
 @media screen and (max-width: 1024px) {
@@ -92,6 +100,6 @@
 
 @media screen and (max-width: 480px) {
 	.navBar {
-		padding: 5% 2.5%;
+		padding: 2.5% 5%;
 	}
 }

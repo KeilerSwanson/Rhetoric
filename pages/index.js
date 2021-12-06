@@ -25,9 +25,10 @@ export default function Home() {
   // ADD ERROR HANDLING
 
   async function getNews(searchQuery = query, sources = filters.sources) {
-    const resp = await fetch(`https://newsapi.org/v2/everything?q=${searchQuery}&sources=${sources}&language=en&pageSize=100&sortBy=publishedAt&apiKey=fbae51867b8e4c86b6f175aa0afa9982`)
+    const resp = await fetch(`https://newsapi.org/v2/everything?qInTitle=${searchQuery}&sources=${sources}&language=en&pageSize=100&sortBy=publishedAt&apiKey=fbae51867b8e4c86b6f175aa0afa9982`)
     const parsedResp = await resp.json()
     setNews(parsedResp)
+    console.log(parsedResp)
   }
 
   return (

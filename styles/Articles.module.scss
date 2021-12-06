@@ -1,32 +1,33 @@
 .articles {
-	width: 50%;
+	width: 100%;
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	// grid-template-columns: 1fr 1fr;
+	grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
 	grid-gap: 25px;
-	padding: 0 2.5%;
+	padding: 2.5%;
 }
 
 @media screen and (max-width: 1440px) {
 	.articles {
-		width: 60%;
+		// width: 60%;
 	}
 }
 
 @media screen and (max-width: 1024px) {
 	.articles {
-		width: 80%;
+		// width: 80%;
 	}
 }
 
 @media screen and (max-width: 768px) {
 	.articles {
-		width: 100%;
+		// width: 100%;
 	}
 }
 
 @media screen and (max-width: 480px) {
 	.articles {
-		grid-template-columns: 1fr;
+		// grid-template-columns: 1fr;
 		// width: 100%;
 	}
 }

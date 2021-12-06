@@ -15,7 +15,7 @@ function NavBar({ toggleFilter, filterOpen, readingOpen }) {
 				<li 
 					className={styles.readingList}
 				>
-					{readingIcon}
+					{/* {readingIcon} */}
 					{/* <MdArrowBackIos />  */}
 					Reading List
 				</li>
@@ -25,7 +25,7 @@ function NavBar({ toggleFilter, filterOpen, readingOpen }) {
 				>
 					Filter
 					{/* <MdArrowForwardIos /> */}
-					{filterIcon}
+					{/* {filterIcon} */}
 				</li>
 			</menu>
 		</nav>

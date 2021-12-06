@@ -2,6 +2,7 @@ import styles from '../styles/Landing.module.scss'
 // import { MdKeyboardArrowDown } from 'react-icons/md'
 // import { IoChevronDown } from 'react-icons/io5'
 import { GoChevronDown } from 'react-icons/go'
+import { BsArrowRight } from 'react-icons/bs'
 
 function Landing({ getNews, filters, setQuery }) {
 
@@ -10,6 +11,11 @@ function Landing({ getNews, filters, setQuery }) {
 		const query = document.querySelector('#query').value
 		setQuery(query)
 		getNews(query, filters.sources)
+		window.scrollTo({
+			top: document.querySelector('#articles'),		
+			left: 0,
+			behavior: 'smooth'
+		})
 	}
 
 	return (
@@ -25,14 +31,15 @@ function Landing({ getNews, filters, setQuery }) {
 						id='query'
 						name='search' 
 						type='text' 
-						placeholder='Search'
+						placeholder='e.g. Bitcoin'
 						className={styles.topic}	
 					/>
 					<button 
 						onClick={handler}
 						className={styles.submit} 
 					>
-						<GoChevronDown />
+						{/* <GoChevronDown /> */}
+						<BsArrowRight />
 					</button>
 				</form>
 			</header>
