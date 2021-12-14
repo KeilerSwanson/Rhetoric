@@ -22,7 +22,13 @@ function Landing({ getNews, filters, setQuery }) {
 		<div className={styles.landing}>
 			<header className={styles.header}>
 				<h1 className={styles.title}>News Screen</h1>
-				<p className={styles.text}>Find reporting on the topics <br /> you care about from the <br /> outlets you trust.</p>
+				{/* <p className={styles.text}>
+					Find reporting on the topics 
+					<br /> 
+					you care about from the 
+					<br /> 
+					outlets you trust.
+				</p> */}
 				<form 
 					name='search'
 					className={styles.form}	
@@ -32,7 +38,7 @@ function Landing({ getNews, filters, setQuery }) {
 						name='search' 
 						type='text' 
 						placeholder='e.g. Bitcoin'
-						className={styles.topic}	
+						className={styles.topic}
 					/>
 					<button 
 						onClick={handler}

@@ -22,6 +22,7 @@ function Filter({ query, filterOpen, getNews, setFilters, toggleFilter }) {
 				sources += `${publisher.children.label.dataset.source},`
 			}
 		})
+		//ADD LOGIC TO AVOID getNews() CALL WHEN FILTERS ARE UNCHANGED
 		setFilters({
 			query: query,
 			sources: sources.slice(0, -1),

@@ -3,7 +3,8 @@ import { Buttons } from './Buttons'
 
 function Article({title, publisher, date, description, content, url}) {
 
-	const formattedDate = new Date(date).toDateString().slice(4)
+	const formattedDate = new Date(date).toDateString().split('')
+	formattedDate.splice(-5, 0, ',').splice(0, 4).join('')
 	// const formattedDescription = description.length > 150 ? description.substring(0, 150) + '...' : description
 	const formattedDescription = description ? `${description.substring(0, 150)}...` : `${content.substring(0, 150)}...`
 

@@ -1,4 +1,5 @@
 import * as styles from '../styles/Publisher.module.scss'
+import { BsCheck2 } from 'react-icons/bs'
 
 function Publisher({ title }) {
 
@@ -28,6 +29,9 @@ function Publisher({ title }) {
 				type='checkbox' 
 				name='checkbox'
 				defaultChecked={true}
+			/>
+			<BsCheck2 
+				className={styles.check}
 			/>
 		</li>
 	)

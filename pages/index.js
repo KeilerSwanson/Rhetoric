@@ -13,12 +13,22 @@ export default function Home() {
   const [query, setQuery] = useState('')
   const [news, setNews] = useState(false)
   const [filterOpen, setFilterOpen] = useState(false)
+  const [readingOpen, setReadingOpen] = useState(false)
 
   function toggleFilter() {
     if (filterOpen) {
       setFilterOpen(false)
     } else {
       setFilterOpen(true)
+    }
+  }
+
+  function toggleReading() {
+    console.log('inside toggle reading')
+    if (readingOpen) {
+      setReadingOpen(false)
+    } else {
+      setReadingOpen(true)
     }
   }
 
@@ -42,7 +52,9 @@ export default function Home() {
       </Head>
       <NavBar 
         filterOpen={filterOpen}
+        readingOpen={readingOpen}
         toggleFilter={toggleFilter}
+        toggleReading={toggleReading}
       />
       <Landing 
         filters={filters}

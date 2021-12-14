@@ -6,10 +6,10 @@
 }
 
 .button {
-	background-color: var(--blue);
+	background-color: var(--dark);
 	// border-radius: 5px;
 	width: 50%;
-	padding: 5px;
+	padding: 7.5px;
 	cursor: pointer;
 	transition: .2s;
 	display: flex;
@@ -23,7 +23,8 @@
 }
 
 .button:hover {
-	background-color: var(--hover);
+	// background-color: var(--hover);
+	background-color: #444;
 }
 
 .add {

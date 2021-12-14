@@ -1,7 +1,6 @@
 .landing {
 	height: 100vh;
 	width: 100%;
-	// padding: 0 10%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -9,7 +8,7 @@
 }
 
 .header {
-	width: 100%;
+	// width: 50%;
 	padding: 0 2.5%;
 	display: flex;
 	flex-direction: column;
@@ -18,38 +17,34 @@
 }
 
 .title {
-	font-size: 100px;
+	font-size: 85px;
 	font-weight: 900;
-	// color: var(--blue);
 	text-align: center;
 	margin: 0;
-	// --webkit-background-clip: text;
-  // -webkit-text-fill-color: transparent;
-	// background: linear-gradient(to right, var(--blue), #7d17d9);
 	background-image: linear-gradient(to right, var(--blue), #7d17d9);
   background-clip: text;
   color: transparent;
-	// padding: 10px;
 }
 
 .text {
-	// width: 50%;
 	font-size: 28px;
 	font-weight: 400;
 	color: var(--dark);
-	margin: 20px 0 50px;
+	// margin: 20px 0 40px;
+	margin: 20px 0;
 	text-align: center;
 	line-height: 1.4;
+	// display: none;
 }
 
 .form {
 	display: flex;
-	height: 50px;
-	width: 33%;
-	// justify-content: space-between;
-	// border-bottom: solid 2px var;
+	// height: 50px;
+	// width: 33%;
+	width: 100%;
 	position: relative;
-	// padding: 10px;
+	// padding: 5px 10px;
+	padding: 50px 10px 5px;
 }
 
 .form::after {
@@ -58,24 +53,15 @@
 	position: absolute;
 	bottom: 0;
 	height: 2px;
-	background: linear-gradient(to right, var(--blue), #7d17d9);
-	// box-shadow: 0 3px 7px var(--blue);
-	// 0 10px 15px -10px var(--blue);
+	background: linear-gradient(135deg, var(--blue), #7d17d9);
 	left: 0;
 }
 
 .topic {
-	font-size: 20px;
-	font-weight: 400;
-	padding: 10px;
+	font-size: 24px;
+	font-weight: 800;
+	// padding: 10px;
 	width: 100%;
-	// color: var(--dark);
-	// padding: 20px;
-	// border-radius: 50px 0 0 50px;
-	// box-shadow: 0 0 7.5px -2.5px #333 inset;
-	// height: 100%;
-	// width: 85%;
-	// width: 75px;
 	color: var(--blue);
 }
 
@@ -85,7 +71,7 @@
 
 .topic::placeholder {
 	color: var(--blue);
-	// opacity: .5;
+	opacity: .5;
 }
 
 .topic:valid {
@@ -93,22 +79,15 @@
 }
 
 .submit {
-	// background-color: var(--blue);
-	// border-radius: 0 50px 50px 0;
-	// display: flex;
 	justify-content: center;
 	align-items: center;
-	// height: 100%;
-	// width: 15%;
-	// width: 75px;
 	background: transparent;
 	transition: .2s;
 	cursor: pointer;
-	padding: 10px;
+	// padding: 10px;
 }
 
 .submit > svg {
-	// color: white;
 	color: var(--purple);
 	font-size: 28px;
 	transition: .2s;
@@ -116,50 +95,66 @@
 }
 
 .submit:hover > svg {
-	// cursor: pointer;
-	// color: var(--purple);
 	transform: translate(5px, 0);
 }
 
 @media screen and (max-width: 1440px) {
 	.form {
-		width: 40%;
+		// width: 40%;
 	}
-}
-
-@media screen and (max-width: 1024px) {
-	.form {
-		width: 66%;
-	}
-}
-
-@media screen and (max-width: 768px) {
 	.title {
-		font-size: 85px;
+		font-size: 70px;
 	}
 	.text {
 		font-size: 24px; 
 	}
 	.topic {
-		font-size: 18px;
+		font-size: 20px;
+	}
+	.submit > svg {
+		font-size: 24px;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.form {
+		// width: 66%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.title {
+		// font-size: 85px;
+	}
+	.text {
+		// font-size: 24px; 
+	}
+	.topic {
+		// font-size: 18px;
 	}
 	.form { 
-		width: 75%;
+		// width: 75%;
 	}
 }
 
 @media screen and (max-width: 480px) {
+	.header {
+		width: 100%;
+	}
 	.title {
 		font-size: 60px;
 	}
 	.text {
-		font-size: 20px;
+		// font-size: 20px;
 	}
 	.topic {
-		font-size: 16px;
+		// font-size: 16px;
+	}
+	.submit > svg {
+		// font-size: 24px;
 	}
 	.form {
-		width: 100%;
+		// width: 100%;
 	}
 }
 
@@ -171,7 +166,7 @@
 		font-size: 20px;
 	}
 	.topic {
-		font-size: 16px;
+		// font-size: 16px;
 	}
 }
 

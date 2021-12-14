@@ -1,7 +1,7 @@
 .filter {
-	background-color: var(--blue);
+	background-color: var(--dark);
 	height: 100vh;
-	width: 33%;
+	width: 35%;
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -9,7 +9,10 @@
 	transform: translate(105%, 0);
 	will-change: transform;
 	z-index: 2;
-	padding: 10% 2.5%;
+	padding: 2.5%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
 }
 
 .filterOpen {
@@ -20,46 +23,49 @@
 .form {
 	display: flex;
 	flex-direction: column;
-	height: 100%;
-	// justify-content: space-around;
+	height: 85%;
 }
 
 
 .publishers {
-	// height: 66%;
 	overflow-y: scroll;
 	margin-bottom: 5%;
 }
 
 .publishers::-webkit-scrollbar {
 	background-color: transparent;
-	width: 20px;
+	width: 2px;
 }
 
 .publishers::-webkit-scrollbar-thumb {
-	background-color: var(--dark);
-	border-left: solid 15px var(--blue);
+	background-color: white;
 }
 
 .submit {
-	background-color: white;
-	color: var(--blue);
+	color: white;
 	font-size: 20px;
-	font-weight: 800;
-	padding: 10px 0;
+	font-weight: 600;
+	padding: 15px 0;
 	width: 100%;
 	border-radius: 5px;
 	cursor: pointer;
+	background: linear-gradient(135deg, var(--blue), var(--purple));
+
 }
 
-
 @media screen and (max-width: 1440px) {
-	// .submit {
-	// 	font-size: 16px;
-	// }
+	.submit {
+		font-size: 16px;
+	}
 }
 
 @media screen and (max-width: 1024px) {
+	.filter {
+		width: 50vw;
+	}
+}
+
+@media screen and (max-width: 768px) {
 	.filter {
 		width: 100vw;
 	}
