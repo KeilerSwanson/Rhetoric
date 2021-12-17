@@ -10,18 +10,17 @@ function Landing({ getNews, filters, setQuery }) {
 		e.preventDefault()
 		const query = document.querySelector('#query').value
 		setQuery(query)
-		getNews(query, filters.sources)
-		window.scrollTo({
-			top: document.querySelector('#articles'),		
-			left: 0,
-			behavior: 'smooth'
-		})
+		// window.scrollTo({
+		// 	top: document.querySelector('#articles'),		
+		// 	left: 0,
+		// 	behavior: 'smooth'
+		// })
 	}
 
 	return (
 		<div className={styles.landing}>
 			<header className={styles.header}>
-				<h1 className={styles.title}>News Screen</h1>
+				<h1 className={styles.title}>News Sort</h1>
 				{/* <p className={styles.text}>
 					Find reporting on the topics 
 					<br /> 

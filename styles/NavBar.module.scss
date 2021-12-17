@@ -2,16 +2,30 @@
 	width: 100%;
 	position: fixed;
 	top: 0;
-	padding: 2.5%;
 	z-index: 3;
+	display: flex;
+	background-color: var(--dark);
 }
+
+// .logo {
+// 	font-weight: 800;
+// 	font-size: 28px;
+// 	background-image: linear-gradient(to right, var(--blue), #7d17d9);
+//   -webkit-background-clip: text;
+//   background-clip: text;
+//   color: transparent;
+// 	padding: 10px 2.5%;
+// 	width: 50%;
+// }
 
 .menu {
 	width: 100%;
 	display: flex;
-	justify-content: space-between;
-	// justify-content: flex-end;
+	justify-content: flex-end;
+	align-items: center;
 	list-style: none;
+	// padding: 0 5%;
+	padding: 10px 20px;
 }
 
 .item {
@@ -24,13 +38,15 @@
 	background-color: var(--dark);
 	// padding: 15px;
 	padding: 10px;
+	// padding: 20px;
 	border-radius: 5px;
 	will-change: transform;
 	// margin: 0 5px;
 }
 
 .item:hover {
-	background-color: #444;
+	background-color: #555;
+	box-shadow: 0 0 15px -5px #222 inset;
 }
 
 .item > svg {
@@ -39,37 +55,32 @@
 	transition: .2s;
 }
 
+.top {
+	composes: item;
+	position: absolute;
+	left: 20px;
+}
+
 .filter {
 	composes: item;
 }
 
 .readingList {
 	composes: item;
+	margin-right: 10px;
 }
 
 .readingOpen {
 	composes: readingList;
-	// padding: 20px;
-	transform: scale(1.15);
-	// box-shadow: 0 0 10px var(--dark) inset;
 	box-shadow: 0 0 15px -5px #222 inset;
-	background-color: #444;
+	background-color: #555;
 }
 
 .filterOpen {
 	composes: filter;
-	background-color: #444;
-	// box-shadow: 0 0 10px var(--dark) inset;
+	background-color: #555;
 	box-shadow: 0 0 15px -5px #222 inset;
-	// padding: 20px;
-	// transform: scale(1.15);
 }
-
-
-// .filterOpen > svg {
-// 	color: white;
-// }
-
 
 @media screen and (max-width: 1440px) {
 	.item > svg {
@@ -82,19 +93,14 @@
 }
 
 @media screen and (max-width: 768px) {
-	.navBar {
-		// padding: 5% 2.5%;
-	}
-	.menu {
-		// justify-content: center;
-	}
+
 }
 
 @media screen and (max-width: 480px) {
-	.navBar {
-		// padding: 2.5% 5%;
-	}
-	.item {
-		// font-size: 16px;
-	}
+	// .menu {
+	// 	padding: 0 2.5%;
+	// }
+	// .top {
+	// 	left: 2.5%;
+	// }
 }

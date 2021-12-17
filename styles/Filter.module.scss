@@ -1,7 +1,7 @@
 .filter {
 	background-color: var(--dark);
 	height: 100vh;
-	width: 35%;
+	width: 25vw;
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -9,7 +9,7 @@
 	transform: translate(105%, 0);
 	will-change: transform;
 	z-index: 2;
-	padding: 2.5%;
+	padding: 20px;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
@@ -23,13 +23,15 @@
 .form {
 	display: flex;
 	flex-direction: column;
-	height: 85%;
+	height: calc(100% - 64px);
 }
 
 
 .publishers {
 	overflow-y: scroll;
 	margin-bottom: 5%;
+	scrollbar-width: thin;
+	scrollbar-color: white;
 }
 
 .publishers::-webkit-scrollbar {
@@ -45,15 +47,25 @@
 	color: white;
 	font-size: 20px;
 	font-weight: 600;
-	padding: 15px 0;
+	padding: 10px 0;
 	width: 100%;
 	border-radius: 5px;
 	cursor: pointer;
 	background: linear-gradient(135deg, var(--blue), var(--purple));
+	transition: .2s;
+}
+
+.submit:hover {
 
 }
 
 @media screen and (max-width: 1440px) {
+	.filter {
+		width: 33vw;
+	}
+	.form {
+		height: calc(100% - 60px);
+	}
 	.submit {
 		font-size: 16px;
 	}
@@ -66,6 +78,13 @@
 }
 
 @media screen and (max-width: 768px) {
+	.filter {
+		// width: 100vw;
+	}
+}
+
+
+@media screen and (max-width: 480px) {
 	.filter {
 		width: 100vw;
 	}

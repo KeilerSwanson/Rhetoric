@@ -10,9 +10,11 @@ function Article({title, publisher, date, description, content, url}) {
 
 	return (
 		<li className={styles.article}>
-			<h2 className={styles.title}>{title}</h2>
-			<h3 className={styles.meta}>{publisher} / {formattedDate}</h3>
-			<p className={styles.description}>{formattedDescription}</p>
+			<span className={styles.info}>
+				<h2 className={styles.title}>{title}</h2>
+				<h3 className={styles.meta}>{publisher} / {formattedDate}</h3>
+				<p className={styles.description}>{formattedDescription}</p>
+			</span>
 			<Buttons 
 				url={url}
 			/>
