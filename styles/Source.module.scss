@@ -1,17 +1,15 @@
-.publisher {
+.source {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding: 10px;
-	// padding: 10px 0;
 	list-style: none;
-	// transition: .2s;
 	border-radius: 5px;
 	cursor: pointer;
 	position: relative;
 }
 
-.publisher:hover {
+.source:hover {
 	background-color: #555;
 	box-shadow: 0 0 10px var(--dark) inset;
 }
@@ -41,24 +39,13 @@
 }
 
 .checkbox {
-	// background-image: url('/images/check.svg');
 	appearance: none;
-	// height: 15px;
-	// width: 15px;
-	// cursor: pointer;
-	// border-radius: 2.5px;
-	// background-color: white;
 }
 
 .checkbox + .check {
 	font-size: 28px;
 	color: white;
 	visibility: hidden;
-	// position: absolute;
-}
-
-.checkbox:checked {
-	// background-color: var(--purple);
 }
 
 .checkbox:checked + .check {
@@ -69,8 +56,4 @@
 	.label {
 		font-size: 20px;
 	}
-	.checkbox + .check {
-		// font-size: 24px;
-	}
-
 }

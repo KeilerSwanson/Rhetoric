@@ -4,7 +4,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: white;
+	// background: white;
 }
 
 .header {
@@ -23,7 +23,7 @@
 	font-weight: 900;
 	text-align: center;
 	margin: 0;
-	background-image: linear-gradient(to right, var(--blue), #7d17d9);
+	background-image: linear-gradient(to right, var(--blue), var(--purple));
   background-clip: text;
   color: transparent;
 }
@@ -41,12 +41,10 @@
 
 .form {
 	display: flex;
-	// height: 50px;
-	// width: 33%;
+	align-items: flex-end;
 	width: 100%;
 	position: relative;
-	// padding: 5px 10px;
-	padding: 50px 10px 5px;
+	padding: 5px 10px;
 }
 
 .form::after {
@@ -62,9 +60,10 @@
 .topic {
 	font-size: 24px;
 	font-weight: 800;
-	// padding: 10px;
+	padding-top: 50px;
 	width: 100%;
 	color: var(--blue);
+	background: transparent;
 }
 
 .topic:focus  {
@@ -73,7 +72,7 @@
 
 .topic::placeholder {
 	color: var(--blue);
-	opacity: .5;
+	// opacity: .5;
 }
 
 .topic:valid {

@@ -8,6 +8,7 @@ function Buttons({url}) {
 				className={styles.add}
 			>
 				<MdAdd />
+				{/* Add To List */}
 			</button>
 			<a 
 				className={styles.read}
@@ -16,6 +17,7 @@ function Buttons({url}) {
 				target='_blank'
 			>
 				<MdKeyboardArrowRight />
+				{/* Read */}
 			</a>
 		</span>
 	)

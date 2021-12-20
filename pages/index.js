@@ -8,15 +8,20 @@ import { Filter } from '../components/Filter'
 
 export default function Home() {
   const initRender = useRef(true)
-  const [filters, setFilters] = useState({
-    sources: 'abc-news,associated-press,axios,bbc-news,bloomberg,breitbart-news,business-insider,buzzfeed,cbs-news,cnn,financial-post,fortune,fox-news,independent,msnbc,national-review,nbc-news,new-york-magazine,politico,reuters,the-hill,the-wall-street-journal,the-washington-post,time,usa-today,vice-news,wired'
+  const resultsRef = useRef()
+  const [queryParams, setQueryParams] = useState({
+    query: '',
+    sources: 'abc-news,associated-press,axios,bbc-news,bloomberg,breitbart-news,business-insider,buzzfeed,cbs-news,cnn,financial-post,fortune,fox-news,independent,msnbc,national-review,nbc-news,new-york-magazine,politico,reuters,the-hill,the-wall-street-journal,the-washington-post,time,usa-today,vice-news,wired',
+    page: 1
   })
-  const [query, setQuery] = useState('')
-  const [news, setNews] = useState(false)
+  const [news, setNews] = useState({
+    count: 0,
+    articles: null,
+    start: 0,
+    end: 0
+  })
   const [filterOpen, setFilterOpen] = useState(false)
   const [readingOpen, setReadingOpen] = useState(false)
-  const [page, setPage] = useState(1)
-  // const [numPages, setNumPages] = useState(0)
 
   useEffect(() => {
     if (initRender.current) {
@@ -26,8 +31,8 @@ export default function Home() {
       getNews()
     }
     // Adding getNews to the dependency array causes an infinite loop for some reason? 
-    // filters, query, and page are the only true dependencies anyway. *shrugs*
-  }, [filters, query, page])
+    // Filters, query, and page are the only true dependencies anyway. *shrugs*
+  }, [queryParams])
 
   function toggleFilter() {
     if (filterOpen) setFilterOpen(false)
@@ -39,25 +44,37 @@ export default function Home() {
     if (!readingOpen) setReadingOpen(true)
   }
 
-  // HANDLE NEXT/PREV PAGE CALLS ON FIRST AND LAST PAGES
-
   function nextPage() {
-    if (news.totalResults - (page * 20) < 20) return
-    setPage(page + 1)
+    if (news.end === news.count) return
+    setQueryParams({
+      query: queryParams.query,
+      sources: queryParams.sources,
+      page: queryParams.page + 1
+    })
   }
 
   function prevPage() {
-    if (page === 1) return
-    setPage(page - 1)
+    if (queryParams.page === 1) return
+    setQueryParams({
+      query: queryParams.query,
+      sources: queryParams.sources,
+      page: queryParams.page - 1
+    })
   }
 
-  // ADD ERROR HANDLING
+  // ADD ERROR HANDLING 
 
   async function getNews() {
-    const resp = await fetch(`https://newsapi.org/v2/everything?qInTitle=${query}&sources=${filters.sources}&language=en&pageSize=20&page=${page}&sortBy=publishedAt&apiKey=fbae51867b8e4c86b6f175aa0afa9982`)
-    const parsedResp = await resp.json()
-    console.log(parsedResp)
-    setNews(parsedResp)
+    if (!queryParams.query) return
+    const jsonResp = await fetch(`https://newsapi.org/v2/everything?qInTitle=${queryParams.query}&sources=${queryParams.sources}&language=en&pageSize=50&page=${queryParams.page}&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`)
+    const resp = await jsonResp.json()
+    console.log(resp)
+    setNews({
+      count: resp.totalResults,
+      articles: resp.articles,
+      start: queryParams.page * 50 - 49,
+      end: (queryParams.page * 50 > resp.totalResults) ? resp.totalResults : queryParams.page * 50
+    })
   }
 
   return (
@@ -71,27 +88,26 @@ export default function Home() {
       </Head>
       <NavBar 
         filterOpen={filterOpen}
-        readingOpen={readingOpen}
         toggleFilter={toggleFilter}
+        readingOpen={readingOpen}
         toggleReading={toggleReading}
       />
       <Landing 
-        // filters={filters}
-        // getNews={getNews}
-        setQuery={setQuery}
+        queryParams={queryParams}
+        setQueryParams={setQueryParams}
+        resultsRef={resultsRef}
       />
       <Articles 
         news={news}
-        page={page}
         nextPage={nextPage}
         prevPage={prevPage}
+        resultsRef={resultsRef}
       />
       <Filter 
-        // query={query}
         filterOpen={filterOpen}
-        // getNews={getNews}
-        setFilters={setFilters}
         toggleFilter={toggleFilter}
+        queryParams={queryParams}
+        setQueryParams={setQueryParams}
       />
     </main> 
   )

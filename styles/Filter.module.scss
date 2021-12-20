@@ -27,20 +27,20 @@
 }
 
 
-.publishers {
+.sources {
 	overflow-y: scroll;
 	margin-bottom: 5%;
 	scrollbar-width: thin;
 	scrollbar-color: white;
 }
 
-.publishers::-webkit-scrollbar {
+.sources::-webkit-scrollbar {
 	background-color: transparent;
 	width: 2px;
 }
 
-.publishers::-webkit-scrollbar-thumb {
-	background-color: white;
+.sources::-webkit-scrollbar-thumb {
+	background-color: #555;
 }
 
 .submit {

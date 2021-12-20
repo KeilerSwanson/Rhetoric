@@ -1,19 +1,18 @@
-import * as styles from '../styles/Publisher.module.scss'
+import * as styles from '../styles/Source.module.scss'
 import { BsCheck2 } from 'react-icons/bs'
 
-function Publisher({ title }) {
+function Source({ title }) {
 
 	function formatTitle(title) {
 		return title.split(' ').map(word => {
 			return word.toLowerCase()
 		}).join('-')
 	}
-
 	const formattedTitle = formatTitle(title)
 
 	return (	
 		<li 
-			className={`${styles.publisher} publisher`}
+			className={styles.source}
 		>
 			<label 
 				className={styles.label} 
@@ -37,4 +36,4 @@ function Publisher({ title }) {
 	)
 }
 
-export { Publisher }
+export { Source }

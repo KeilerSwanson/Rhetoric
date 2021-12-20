@@ -8,7 +8,7 @@ function NavBar({ toggleFilter, toggleReading, filterOpen, readingOpen }) {
 	return (
 		<nav className={styles.navBar}>
 			<menu className={styles.menu}>
-				{/* <li 
+				<li 
 					className={styles.top}
 					onClick={() => window.scrollTo({
 						top: 0,
@@ -17,7 +17,7 @@ function NavBar({ toggleFilter, toggleReading, filterOpen, readingOpen }) {
 					})}
 				>
 					<BsArrowUp />
-				</li> */}
+				</li>
 				<li 
 					className={readingClass}
 					onClick={toggleReading}

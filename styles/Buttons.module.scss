@@ -3,13 +3,16 @@
 	// height: 25px;
 	cursor: pointer;
 	display: flex;
+	border-radius: 5px;
+	background: var(--dark);
 }
 
 .button {
-	background-color: var(--dark);
+	// background-color: var(--dark);
+	background: transparent;
 	// border-radius: 5px;
 	width: 50%;
-	padding: 5px;
+	padding: 10px;
 	cursor: pointer;
 	transition: .2s;
 	display: flex;
@@ -24,7 +27,7 @@
 
 .button:hover {
 	// background-color: var(--hover);
-	background-color: #555;
+	// background-color: #555;
 	box-shadow: 0 0 15px -5px #222 inset;
 }
 
