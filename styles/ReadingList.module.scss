@@ -1,0 +1,95 @@
+.reading {
+	background-color: var(--dark);
+	height: 100vh;
+	width: 25vw;
+	position: fixed;
+	top: 0;
+	right: 0;
+	transition: .2s;
+	transform: translate(105%, 0);
+	will-change: transform;
+	z-index: 2;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	list-style: none;
+}
+
+.readingOpen {
+	composes: reading;
+	transform: translate(0, 0);
+}
+
+.articles {
+	display: flex;
+	flex-direction: column;
+	height: calc(100% - 64px);
+	overflow-y: scroll;
+	// margin-bottom: 5%;
+	scrollbar-width: thin;
+	scrollbar-color: white;
+}
+
+.articles::-webkit-scrollbar {
+	background-color: transparent;
+	width: 2px;
+}
+
+.articles::-webkit-scrollbar-thumb {
+	background-color: #555;
+}
+
+.article {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	// list-style: none;
+	border-radius: 5px;
+	cursor: pointer;
+	position: relative;
+}
+
+.title {
+	font-size: 24px;
+	font-weight: 800;
+	color: white;
+	width: 100%;
+	cursor: pointer;
+	user-select: none;
+}
+
+.title:hover {
+	color: #999;
+}
+
+.article > svg {
+	font-size: 34px;
+	color: white;
+}
+
+.article > svg:hover {
+	color: #999;
+}
+
+@media screen and (max-width: 1440px) {
+	.reading {
+		width: 33vw;
+	}
+	.title {
+		font-size: 20px;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.reading {
+		width: 50vw;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.reading {
+		width: 100vw;
+	}
+}

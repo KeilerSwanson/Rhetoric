@@ -4,10 +4,14 @@ import { useEffect, useState, useRef } from 'react'
 import { NavBar } from '../components/NavBar'
 import { Landing } from '../components/Landing'
 import { Articles } from '../components/Articles'
+import { ReadingList } from '../components/ReadingList'
 import { Filter } from '../components/Filter'
 
 export default function Home() {
-  const initRender = useRef(true)
+  const initRender = useRef({
+    sources: true,
+    readingList: true
+  })
   const resultsRef = useRef()
   const [queryParams, setQueryParams] = useState({
     query: '',
@@ -24,14 +28,15 @@ export default function Home() {
     start: 0,
     end: 0
   })
+  // INITIALIZE TO NULL
+  const [readingList, setReadingList] = useState(null)
   const [filterOpen, setFilterOpen] = useState(false)
   const [readingOpen, setReadingOpen] = useState(false)
 
   useEffect(() => {
-    if (initRender.current) {
-      initRender.current = false
+    if (initRender.current.sources) {
+      initRender.current.sources = false
       if (window.localStorage.getItem('sources')) {
-        console.log('localStorage sources on initial load: ', window.localStorage.getItem('sources'))
         setQueryParams({
           query: queryParams.query,
           sources: JSON.parse(window.localStorage.getItem('sources')),
@@ -39,19 +44,32 @@ export default function Home() {
         })
       }
       return
-    } 
+    }
     
     getNews()
     // Adding getNews to the dependency array causes an infinite loop for some reason? 
     // Filters, query, and page are the only true dependencies anyway. *shrugs*
   }, [queryParams])
 
+  useEffect(() => {
+    if (initRender.current.readingList) {
+      initRender.current.readingList = false
+      if (window.localStorage.getItem('readingList')) {
+        console.log('is localStorage readingList')
+        setReadingList(JSON.parse(window.localStorage.getItem('readingList')))
+      }
+    }
+    return
+  }, [readingList])
+
   function toggleFilter() {
+    setReadingOpen(false)
     if (filterOpen) setFilterOpen(false)
     if (!filterOpen) setFilterOpen(true)
   }
 
   function toggleReading() {
+    setFilterOpen(false)
     if (readingOpen) setReadingOpen(false)
     if (!readingOpen) setReadingOpen(true)
   }
@@ -77,11 +95,9 @@ export default function Home() {
   // ADD ERROR HANDLING 
 
   async function getNews() {
-    console.log('queryParams in getNews: ', queryParams)
     if (!queryParams.query) return
     const jsonResp = await fetch(`https://newsapi.org/v2/everything?qInTitle=${queryParams.query}&sources=${queryParams.sources.join(',')}&language=en&pageSize=50&page=${queryParams.page}&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`)
     const resp = await jsonResp.json()
-    console.log('getNews response: ', resp)
     setNews({
       count: resp.totalResults,
       articles: resp.articles,
@@ -115,6 +131,13 @@ export default function Home() {
         nextPage={nextPage}
         prevPage={prevPage}
         resultsRef={resultsRef}
+        readingList={readingList}
+        setReadingList={setReadingList}
+      />
+      <ReadingList 
+        readingOpen={readingOpen}
+        readingList={readingList}
+        setReadingList={setReadingList}
       />
       <Filter 
         filterOpen={filterOpen}

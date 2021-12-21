@@ -1,6 +1,6 @@
 import * as styles from '../styles/Filter.module.scss'
 import { Source } from './Source'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 
 function Filter({ filterOpen, queryParams, setQueryParams, toggleFilter }) {
 	const filterClass = filterOpen ? styles.filterOpen : styles.filter
@@ -45,17 +45,17 @@ function Filter({ filterOpen, queryParams, setQueryParams, toggleFilter }) {
 	}
 
 	return (
-		<menu 
+		<nav 
 			id='filter'
 			className={filterClass}
 		>
 			<form className={styles.form}>
-				<ul 
+				<menu 
 					ref={sourcesRef}
 					className={styles.sources}
 				>
 					{sources}
-				</ul>
+				</menu>
 				<button 
 					className={styles.submit}
 					onClick={formHandler}
@@ -63,7 +63,7 @@ function Filter({ filterOpen, queryParams, setQueryParams, toggleFilter }) {
 					Done
 				</button>
 			</form>
-		</menu>
+		</nav>
 	)
 }
 

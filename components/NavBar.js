@@ -19,11 +19,11 @@ function NavBar({ toggleFilter, toggleReading, filterOpen, readingOpen }) {
 				>
 					<BsArrowUp />
 				</li>
-				<li
+				{/* <li
 					className={infoClass}
 				>
 					<BsInfoCircle />
-				</li>
+				</li> */}
 				<li 
 					className={readingClass}
 					onClick={toggleReading}

@@ -84,22 +84,17 @@
 
 .readingOpen {
 	composes: readingList;
-	// box-shadow: 0 0 15px -5px #222 inset;
-	// background-color: #999;
-	// color: var(--blue);
+}
+
+.readingOpen > svg {
 	color: #999;
 }
 
 .filterOpen {
 	composes: filter;
-	// background-color: #999;
-	// box-shadow: 0 0 15px -5px #222 inset;
-	// color: var(--blue);
-	color: #999;
 }
 
 .filterOpen > svg {
-	// color: var(--blue);
 	color: #999;
 }
 

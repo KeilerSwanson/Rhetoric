@@ -1,7 +1,7 @@
 import * as styles from '../styles/Article.module.scss'
 import { Buttons } from './Buttons'
 
-function Article({title, source, date, description, content, url}) {
+function Article({ title, source, date, description, content, url, readingList, setReadingList }) {
 	const formattedDescription = description ? `${description.substring(0, 200)}..` : `${content.substring(0, 200)}..`
 
 	function formatDate(date) {
@@ -18,9 +18,12 @@ function Article({title, source, date, description, content, url}) {
 				<h3 className={styles.meta}>{source} | {formatDate(date)}</h3>
 				<p className={styles.description}>{formattedDescription}</p>
 			</span>
-			{/* <Buttons 
+			<Buttons 
 				url={url}
-			/> */}
+				title={title}
+				readingList={readingList}
+				setReadingList={setReadingList}
+			/>
 		</li>
 	)
 }

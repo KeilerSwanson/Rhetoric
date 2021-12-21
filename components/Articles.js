@@ -2,7 +2,7 @@ import * as styles from '../styles/Articles.module.scss'
 import { Article } from './article'
 import { BsArrowRight, BsArrowLeft } from 'react-icons/bs'
 
-function Articles({ news, nextPage, prevPage, resultsRef }) {
+function Articles({ news, nextPage, prevPage, resultsRef, readingList, setReadingList }) {
 	const resultsClass = news.articles ? styles.results : styles.preResults
 	const articles = news.articles ? news.articles.map((article, i) => {
 		return (
@@ -14,6 +14,8 @@ function Articles({ news, nextPage, prevPage, resultsRef }) {
 				description={article.description}
 				content={article.content}
 				url={article.url}
+				readingList={readingList}
+				setReadingList={setReadingList}
 			/>
 		)
 	}) : null
