@@ -9,7 +9,7 @@ function Articles({ news, nextPage, prevPage, resultsRef }) {
 			<Article 
 				key={i}
 				title={article.title}
-				publisher={article.source.name}
+				source={article.source.name}
 				date={article.publishedAt}
 				description={article.description}
 				content={article.content}
@@ -32,7 +32,7 @@ function Articles({ news, nextPage, prevPage, resultsRef }) {
 					className={styles.button}
 					onClick={prevPage}
 				>
-					Previous
+					Prev
 				</button>
 				<h3 className={styles.count}>{`${news.start} - ${news.end} of ${news.count}`}</h3>
 				{/* <span className={styles.buttons}> */}
@@ -51,7 +51,10 @@ function Articles({ news, nextPage, prevPage, resultsRef }) {
 				/> */}
 				{/* </span> */}
 			</nav>
-			<ul id='articles' className={styles.articles}>
+			<ul 
+				// id='articles' 
+				className={styles.articles}
+			>
 				{articles}
 			</ul>
 		</div>

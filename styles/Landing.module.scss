@@ -23,14 +23,15 @@
 	font-weight: 900;
 	text-align: center;
 	margin: 0;
-	background-image: linear-gradient(to right, var(--blue), var(--purple));
-  background-clip: text;
-  color: transparent;
+	// background-image: linear-gradient(to right, var(--blue), var(--purple));
+  // background-clip: text;
+  // color: transparent;
+	color: var(--dark);
 }
 
 .text {
-	font-size: 28px;
-	font-weight: 400;
+	font-size: 24px;
+	font-weight: 500;
 	color: var(--dark);
 	// margin: 20px 0 40px;
 	margin: 20px 0;
@@ -45,24 +46,26 @@
 	width: 100%;
 	position: relative;
 	padding: 5px 10px;
+	border-bottom: solid 2px var(--dark);
 }
 
-.form::after {
-	content: '';
-	width: 100%;
-	position: absolute;
-	bottom: 0;
-	height: 2px;
-	background: linear-gradient(135deg, var(--blue), #7d17d9);
-	left: 0;
-}
+// .form::after {
+// 	content: '';
+// 	width: 100%;
+// 	position: absolute;
+// 	bottom: 0;
+// 	left: 0;
+// 	height: 2px;
+// 	background: linear-gradient(to right, var(--blue), var(--purple));
+// }
 
 .topic {
 	font-size: 24px;
 	font-weight: 800;
 	padding-top: 50px;
 	width: 100%;
-	color: var(--blue);
+	// color: var(--blue);
+	color: var(--dark);
 	background: transparent;
 }
 
@@ -71,8 +74,9 @@
 }
 
 .topic::placeholder {
-	color: var(--blue);
-	// opacity: .5;
+	// color: var(--blue);
+	// color: var(--dark);
+	color: #999;
 }
 
 .topic:valid {
@@ -89,7 +93,8 @@
 }
 
 .submit > svg {
-	color: var(--purple);
+	// color: var(--purple);
+	color: var(--dark);
 	font-size: 28px;
 	transition: .2s;
 	will-change: transform;
@@ -107,7 +112,7 @@
 		font-size: 70px;
 	}
 	.text {
-		font-size: 24px; 
+		font-size: 20px; 
 	}
 	.topic {
 		font-size: 20px;

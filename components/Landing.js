@@ -23,14 +23,14 @@ function Landing({ queryParams, setQueryParams, resultsRef }) {
 	return (
 		<div className={styles.landing}>
 			<header className={styles.header}>
-				<h1 className={styles.title}>News Sort</h1>
-				{/* <p className={styles.text}>
+				<h1 className={styles.title}>Rhetoric</h1>
+				<p className={styles.text}>
 					Find reporting on the topics 
 					<br /> 
 					you care about from the 
 					<br /> 
 					outlets you trust.
-				</p> */}
+				</p>
 				<form 
 					name='search'
 					className={styles.form}	

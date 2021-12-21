@@ -1,7 +1,8 @@
 import styles from '../styles/NavBar.module.scss'
-import { BsBookmarks, BsSliders, BsArrowUp } from 'react-icons/bs'
+import { BsBookmarks, BsSliders, BsArrowUp, BsInfoCircle } from 'react-icons/bs'
 
 function NavBar({ toggleFilter, toggleReading, filterOpen, readingOpen }) {
+	const infoClass = styles.info
 	const filterClass = filterOpen ? styles.filterOpen : styles.filter
 	const readingClass = readingOpen ? styles.readingOpen : styles.readingList
 
@@ -17,6 +18,11 @@ function NavBar({ toggleFilter, toggleReading, filterOpen, readingOpen }) {
 					})}
 				>
 					<BsArrowUp />
+				</li>
+				<li
+					className={infoClass}
+				>
+					<BsInfoCircle />
 				</li>
 				<li 
 					className={readingClass}

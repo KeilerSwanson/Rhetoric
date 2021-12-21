@@ -10,8 +10,8 @@
 }
 
 .source:hover {
-	background-color: #555;
-	box-shadow: 0 0 10px var(--dark) inset;
+	// background-color: #999;
+	// box-shadow: 0 0 10px var(--dark) inset;
 }
 
 // .publisher:hover::after {
@@ -28,6 +28,11 @@
 // 	background: transparent;
 // 	transition: .2s;
 // }
+
+.source:hover > .label, .source:hover > .check {
+	// color: var(--blue);
+	color: #999;
+}
 
 .label {
 	font-size: 24px;

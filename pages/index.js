@@ -11,7 +11,11 @@ export default function Home() {
   const resultsRef = useRef()
   const [queryParams, setQueryParams] = useState({
     query: '',
-    sources: 'abc-news,associated-press,axios,bbc-news,bloomberg,breitbart-news,business-insider,buzzfeed,cbs-news,cnn,financial-post,fortune,fox-news,independent,msnbc,national-review,nbc-news,new-york-magazine,politico,reuters,the-hill,the-wall-street-journal,the-washington-post,time,usa-today,vice-news,wired',
+    sources: ['abc-news', 'associated-press', 'axios', 'bbc-news', 'bloomberg', 'breitbart-news', 
+            'business-insider', 'buzzfeed', 'cbs-news', 'cnn', 'financial-post', 'fortune', 'fox-news', 
+            'independent', 'msnbc', 'national-review', 'nbc-news', 'new-york-magazine', 'politico', 
+            'reuters', 'the-hill', 'the-wall-street-journal', 'the-washington-post', 'time', 'usa-today', 
+            'vice-news', 'wired'],
     page: 1
   })
   const [news, setNews] = useState({
@@ -26,10 +30,18 @@ export default function Home() {
   useEffect(() => {
     if (initRender.current) {
       initRender.current = false
+      if (window.localStorage.getItem('sources')) {
+        console.log('localStorage sources on initial load: ', window.localStorage.getItem('sources'))
+        setQueryParams({
+          query: queryParams.query,
+          sources: window.localStorage.getItem('sources'),
+          page: queryParams.page
+        })
+      }
       return
-    } else {
-      getNews()
-    }
+    } 
+    
+    getNews()
     // Adding getNews to the dependency array causes an infinite loop for some reason? 
     // Filters, query, and page are the only true dependencies anyway. *shrugs*
   }, [queryParams])
@@ -65,10 +77,11 @@ export default function Home() {
   // ADD ERROR HANDLING 
 
   async function getNews() {
+    console.log('queryParams in getNews: ', queryParams)
     if (!queryParams.query) return
-    const jsonResp = await fetch(`https://newsapi.org/v2/everything?qInTitle=${queryParams.query}&sources=${queryParams.sources}&language=en&pageSize=50&page=${queryParams.page}&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`)
+    const jsonResp = await fetch(`https://newsapi.org/v2/everything?qInTitle=${queryParams.query}&sources=${queryParams.sources.join(',')}&language=en&pageSize=50&page=${queryParams.page}&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`)
     const resp = await jsonResp.json()
-    console.log(resp)
+    console.log('getNews response: ', resp)
     setNews({
       count: resp.totalResults,
       articles: resp.articles,

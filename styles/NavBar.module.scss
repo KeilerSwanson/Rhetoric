@@ -4,19 +4,21 @@
 	top: 0;
 	z-index: 3;
 	display: flex;
-	background-color: var(--dark);
+	background: #333;
+	padding: 0 2.5%;
+	// background: linear-gradient(to right, var(--blue), var(--purple));
 }
 
-// .logo {
-// 	font-weight: 800;
-// 	font-size: 28px;
-// 	background-image: linear-gradient(to right, var(--blue), #7d17d9);
-//   -webkit-background-clip: text;
-//   background-clip: text;
-//   color: transparent;
-// 	padding: 10px 2.5%;
-// 	width: 50%;
+// .navBar::after {
+// 	content: '';
+// 	width: 100%;
+// 	position: absolute;
+// 	bottom: 0;
+// 	left: 0;
+// 	height: 2px;
+// 	background: linear-gradient(to right, var(--blue), var(--purple));
 // }
+
 
 .menu {
 	width: 100%;
@@ -24,8 +26,7 @@
 	justify-content: flex-end;
 	align-items: center;
 	list-style: none;
-	// padding: 0 5%;
-	padding: 10px 20px;
+	// padding: 20px;
 }
 
 .item {
@@ -35,22 +36,24 @@
 	align-items: center;
 	cursor: pointer;
 	transition: .2s;
-	background-color: var(--dark);
-	// padding: 15px;
-	padding: 10px;
-	// padding: 20px;
-	border-radius: 5px;
 	will-change: transform;
-	// margin: 0 5px;
+	height: 100%;
+	padding: 20px;
 }
 
-.item:hover {
-	background-color: #555;
-	box-shadow: 0 0 15px -5px #222 inset;
+// .item:hover {
+// 	background-color: #555;
+// 	box-shadow: 0 0 15px -5px #222 inset;
+// }
+
+.item:hover > svg {
+	// color: var(--blue);
+	color: #999;
 }
 
 .item > svg {
 	color: white;
+	// color: var(--dark);
 	font-size: 24px;
 	transition: .2s;
 }
@@ -58,7 +61,16 @@
 .top {
 	composes: item;
 	position: absolute;
-	left: 20px;
+	left: 2.5%;
+}
+
+.top:hover > svg {
+	// color: var(--blue);
+	color: #999;
+}
+
+.info {
+	composes: item;
 }
 
 .filter {
@@ -67,19 +79,28 @@
 
 .readingList {
 	composes: item;
-	margin-right: 10px;
+	// margin-right: 20px;
 }
 
 .readingOpen {
 	composes: readingList;
-	box-shadow: 0 0 15px -5px #222 inset;
-	background-color: #555;
+	// box-shadow: 0 0 15px -5px #222 inset;
+	// background-color: #999;
+	// color: var(--blue);
+	color: #999;
 }
 
 .filterOpen {
 	composes: filter;
-	background-color: #555;
-	box-shadow: 0 0 15px -5px #222 inset;
+	// background-color: #999;
+	// box-shadow: 0 0 15px -5px #222 inset;
+	// color: var(--blue);
+	color: #999;
+}
+
+.filterOpen > svg {
+	// color: var(--blue);
+	color: #999;
 }
 
 @media screen and (max-width: 1440px) {

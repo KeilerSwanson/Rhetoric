@@ -1,21 +1,23 @@
 import * as styles from '../styles/Filter.module.scss'
 import { Source } from './Source'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 function Filter({ filterOpen, queryParams, setQueryParams, toggleFilter }) {
 	const filterClass = filterOpen ? styles.filterOpen : styles.filter
-	const sourceTitles = [
+	const formattedSources = [
 		'ABC News', 'Associated Press', 'Axios', 'BBC News', 'Bloomberg', 'Breitbart News', 
 		'Business Insider', 'Buzzfeed', 'CBS News', 'CNN', 'Financial Post', 'Fortune', 'Fox News', 
 		'Independent', 'MSNBC', 'National Review', 'NBC News', 'New York Magazine', 'Politico',
 		'Reuters', 'The Hill', 'The Wall Street Journal', 'The Washington Post', 'Time', 'USA Today', 
 		'Vice News', 'Wired'
 	]
-	const sources = sourceTitles.map((source, i) => {
+	const sources = formattedSources.map((source, i) => {
+		const checked = queryParams.sources.includes(source.toLowerCase().split(' ').join('-')) ? true : false
 		return (
 			<Source 
 				key={i}
 				title={source}
+				checked={checked}
 			/>
 		)
 	})
@@ -23,15 +25,15 @@ function Filter({ filterOpen, queryParams, setQueryParams, toggleFilter }) {
 
 	function formHandler(e) {
 		e.preventDefault()
-		let sources = ''
-		for (let source of sourcesRef.current.children) {
-			if (source.children.checkbox.checked) {
-				sources += `${source.children.label.dataset.source},`
-			}
-		}	
+		const activeSources = Array.from(sourcesRef.current.children).map(source => {
+			// EXTRA COMMA CONCATENATED WHEN USING NULL. IS THIS SAFE?
+			return source.children.checkbox.checked ? source.dataset.source : null
+		})
+		console.log('activeSources: ', activeSources)
+		window.localStorage.setItem('sources', activeSources)
 		setQueryParams({
       query: queryParams.query,
-      sources: sources.slice(0, -1),
+			sources: activeSources,
       page: 1
     })
 		toggleFilter()
