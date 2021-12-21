@@ -17,11 +17,16 @@ function Filter({ filterOpen, queryParams, setQueryParams, toggleFilter }) {
 			<Source 
 				key={i}
 				title={source}
+				formattedTitle={formatTitle(source)}
 				checked={checked}
 			/>
 		)
 	})
 	const sourcesRef = useRef()
+
+	function formatTitle(title) {
+		return title.toLowerCase().split(' ').join('-')
+	}
 
 	function formHandler(e) {
 		e.preventDefault()
@@ -30,7 +35,7 @@ function Filter({ filterOpen, queryParams, setQueryParams, toggleFilter }) {
 			return source.children.checkbox.checked ? source.dataset.source : null
 		})
 		console.log('activeSources: ', activeSources)
-		window.localStorage.setItem('sources', activeSources)
+		window.localStorage.setItem('sources', JSON.stringify(activeSources))
 		setQueryParams({
       query: queryParams.query,
 			sources: activeSources,

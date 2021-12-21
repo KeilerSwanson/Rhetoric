@@ -34,7 +34,7 @@ export default function Home() {
         console.log('localStorage sources on initial load: ', window.localStorage.getItem('sources'))
         setQueryParams({
           query: queryParams.query,
-          sources: window.localStorage.getItem('sources'),
+          sources: JSON.parse(window.localStorage.getItem('sources')),
           page: queryParams.page
         })
       }
