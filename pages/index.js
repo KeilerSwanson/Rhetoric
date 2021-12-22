@@ -32,6 +32,7 @@ export default function Home() {
   const [readingList, setReadingList] = useState(null)
   const [filterOpen, setFilterOpen] = useState(false)
   const [readingOpen, setReadingOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (initRender.current.sources) {
@@ -55,7 +56,6 @@ export default function Home() {
     if (initRender.current.readingList) {
       initRender.current.readingList = false
       if (window.localStorage.getItem('readingList')) {
-        console.log('is localStorage readingList')
         setReadingList(JSON.parse(window.localStorage.getItem('readingList')))
       }
     }
@@ -96,8 +96,10 @@ export default function Home() {
 
   async function getNews() {
     if (!queryParams.query) return
+    setLoading(true)
     const jsonResp = await fetch(`https://newsapi.org/v2/everything?qInTitle=${queryParams.query}&sources=${queryParams.sources.join(',')}&language=en&pageSize=50&page=${queryParams.page}&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`)
     const resp = await jsonResp.json()
+    setLoading(false)
     setNews({
       count: resp.totalResults,
       articles: resp.articles,
@@ -125,6 +127,7 @@ export default function Home() {
         queryParams={queryParams}
         setQueryParams={setQueryParams}
         resultsRef={resultsRef}
+        loading={loading}
       />
       <Articles 
         news={news}

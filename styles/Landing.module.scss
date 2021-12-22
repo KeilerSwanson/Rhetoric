@@ -46,18 +46,24 @@
 	width: 100%;
 	position: relative;
 	padding: 5px 10px;
-	border-bottom: solid 2px var(--dark);
+	// border-bottom: solid 2px var(--dark);
 }
 
-// .form::after {
-// 	content: '';
-// 	width: 100%;
-// 	position: absolute;
-// 	bottom: 0;
-// 	left: 0;
-// 	height: 2px;
-// 	background: linear-gradient(to right, var(--blue), var(--purple));
-// }
+.formLoading {
+	composes: form;
+	// border-bottom: solid 2px var(--blue);
+}
+
+.form::after {
+	content: '';
+	width: 100%;
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	height: 2px;
+	// background: linear-gradient(to right, var(--blue), var(--purple));
+	background: var(--dark);
+}
 
 .topic {
 	font-size: 24px;

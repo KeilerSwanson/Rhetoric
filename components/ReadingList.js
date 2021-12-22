@@ -17,7 +17,7 @@ function ReadingList({ readingOpen, readingList, setReadingList }) {
 						target='_blank'
 						rel='noopener noreferrer'
 					>
-						{`${title.substring(0, 30)}..`}
+						{`${title.substring(0, 25)}..`}
 					</a>
 					<BsX 
 						onClick={() => removeArticle(title)}

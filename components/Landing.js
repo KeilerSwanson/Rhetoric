@@ -3,7 +3,8 @@ import styles from '../styles/Landing.module.scss'
 import { BsArrowRight } from 'react-icons/bs'
 import { useRef } from 'react'
 
-function Landing({ queryParams, setQueryParams, resultsRef }) {
+function Landing({ queryParams, setQueryParams, resultsRef, loading }) {
+	const formClass = loading ? styles.formLoading : styles.form
 	const queryRef = useRef()
 	function formHandler(e) {
 		e.preventDefault()
@@ -33,7 +34,7 @@ function Landing({ queryParams, setQueryParams, resultsRef }) {
 				</p>
 				<form 
 					name='search'
-					className={styles.form}	
+					className={formClass}	
 				>
 					<input 
 						ref={queryRef}
