@@ -1,9 +1,9 @@
 .reading {
 	background-color: var(--dark);
-	height: 100vh;
+	height: calc(100vh - var(--navHeight));
 	width: 25vw;
 	position: fixed;
-	top: 0;
+	bottom: 0;
 	right: 0;
 	transition: .2s;
 	transform: translate(105%, 0);
@@ -21,38 +21,53 @@
 	transform: translate(0, 0);
 }
 
+.articlesLabel {
+	font-size: var(--meta);
+	font-weight: 600;
+	color: var(--mg);
+}
+
 .articles {
 	display: flex;
 	flex-direction: column;
-	height: calc(100% - 64px);
+	height: 100%;
 	overflow-y: scroll;
-	// margin-bottom: 5%;
 	scrollbar-width: thin;
 	scrollbar-color: white;
+	margin: 20px 0;
 }
 
 .articles::-webkit-scrollbar {
 	background-color: transparent;
-	width: 2px;
+	width: 0;
 }
 
 .articles::-webkit-scrollbar-thumb {
-	background-color: #555;
+	// background-color: #555;
 }
 
 .article {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px;
+	padding: 10px 0;
 	// list-style: none;
-	border-radius: 5px;
+	// border-radius: 5px;
 	cursor: pointer;
-	position: relative;
+	// position: relative;
+	
+}
+
+.article:first-child {
+	padding: 0 0 10px 0;
+}
+
+.article:last-child {
+	padding: 10px 0 0 0;
 }
 
 .title {
-	font-size: 24px;
+	font-size: var(--title);
 	font-weight: 800;
 	color: white;
 	width: 100%;
@@ -61,21 +76,26 @@
 }
 
 .title:hover {
-	color: #999;
+	color: var(--mg);
 }
 
 .article > svg {
-	font-size: 34px;
+	font-size: 32px;
 	color: white;
+	position: relative;
+	left: 5px;
 }
 
 .article > svg:hover {
-	color: #999;
+	color: var(--mg);
 }
 
 @media screen and (max-width: 1440px) {
 	.reading {
 		width: 33vw;
+	}
+	.article > svg {
+		font-size: 28px;
 	}
 	.title {
 		font-size: 20px;

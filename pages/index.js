@@ -92,6 +92,14 @@ export default function Home() {
     })
   }
 
+  // function scrollToResults() {
+  //   window.scrollTo({
+	// 		top: resultsRef.current.getBoundingClientRect().top + window.pageYOffset - 70,
+	// 		left: 0,
+	// 		behavior: 'smooth'
+	// 	})
+  // }
+
   // ADD ERROR HANDLING 
 
   async function getNews() {

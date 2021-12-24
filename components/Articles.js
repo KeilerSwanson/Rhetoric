@@ -1,6 +1,5 @@
 import * as styles from '../styles/Articles.module.scss'
 import { Article } from './article'
-import { BsArrowRight, BsArrowLeft } from 'react-icons/bs'
 
 function Articles({ news, nextPage, prevPage, resultsRef, readingList, setReadingList }) {
 	const resultsClass = news.articles ? styles.results : styles.preResults
@@ -25,11 +24,8 @@ function Articles({ news, nextPage, prevPage, resultsRef, readingList, setReadin
 			ref={resultsRef}
 			className={resultsClass}
 		>
+			{/* MAKE NAV COMPONENT? */}
 			<nav className={styles.nav}>
-				{/* <BsArrowLeft 
-					className={styles.prev}
-					onClick={prevPage}
-				/> */}
 				<button
 					className={styles.button}
 					onClick={prevPage}
@@ -37,28 +33,33 @@ function Articles({ news, nextPage, prevPage, resultsRef, readingList, setReadin
 					Prev
 				</button>
 				<h3 className={styles.count}>{`${news.start} - ${news.end} of ${news.count}`}</h3>
-				{/* <span className={styles.buttons}> */}
-					{/* <BsArrowLeft 
-						onClick={prevPage}
-					/> */}
 				<button
 					className={styles.button}
 					onClick={nextPage}
 				>
 					Next
 				</button>
-				{/* <BsArrowRight 
-					className={styles.next}
-					onClick={nextPage}
-				/> */}
-				{/* </span> */}
 			</nav>
 			<ul 
-				// id='articles' 
 				className={styles.articles}
 			>
 				{articles}
 			</ul>
+			<nav className={styles.nav}>
+				<button
+					className={styles.button}
+					onClick={prevPage}
+				>
+					Prev
+				</button>
+				<h3 className={styles.count}>{`${news.start} - ${news.end} of ${news.count}`}</h3>
+				<button
+					className={styles.button}
+					onClick={nextPage}
+				>
+					Next
+				</button>
+			</nav>
 		</div>
 	) : null
 }

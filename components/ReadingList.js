@@ -17,7 +17,7 @@ function ReadingList({ readingOpen, readingList, setReadingList }) {
 						target='_blank'
 						rel='noopener noreferrer'
 					>
-						{`${title.substring(0, 25)}..`}
+						{`${title.substring(0, 20)}..`}
 					</a>
 					<BsX 
 						onClick={() => removeArticle(title)}
@@ -34,11 +34,12 @@ function ReadingList({ readingOpen, readingList, setReadingList }) {
 	}
 
 	return (
-		<nav className={readingClass}>
+		<menu className={readingClass}>
+			<h2 className={styles.articlesLabel}>Reading List</h2>
 			<menu className={styles.articles}>
 				{articles}
 			</menu>
-		</nav>
+		</menu>
 	)
 }
 

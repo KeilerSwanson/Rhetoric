@@ -3,7 +3,7 @@
 }
 
 .results {
-	padding: 0 2.5%;
+	padding: 0 2.5% 64px;
 	// overflow-x: hidden;
 	// position: relative;
 }
@@ -34,7 +34,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 20px 0;
+	// padding: 20px 0;
 }
 
 .count {
@@ -70,6 +70,7 @@
 	// padding: 50px 20px;
 	// padding: 0 2.5%;
 	position: relative;
+	padding: 20px 0;
 }
 
 @media screen and (max-width: 1440px) {

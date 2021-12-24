@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  /* COLORS */
+  --lg: #ccc;
+  --mg: #999;
+  --hg: #555;
+  --dark: #333333;
+  --blue: #4472CA;
+  --purple: #7d17d9;
+  --gold: #FFB30F;
+  --golder: #ff9900;
+  /* FONT SIZES */
+  --navHeight: 63px;
+  --title: 24px;
+  --meta: 20px;
+}
+
+// @mixin titles {
+//   font-size: 24px;
+//   font-weight: 800;
+// }
+
+// @mixin meta {
+//   font-size: 20px;
+//   font-weight: 600;
+// }
+
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  scrollbar-color: white var(--dark);
+  scrollbar-width: thin;
+  margin: 0;
+}
+
+body::-webkit-scrollbar {
+  /* background: var(--dark); */
+  background: transparent;
+  /* width: 2px; */
+  width: 0;
+}
+
+body::-webkit-scrollbar-thumb {
+  /* background-color: var(--gold); */
+  /* background: var(--gold); */
+}
+
+/* .sources::-webkit-scrollbar {
+background-color: transparent;
+width: 2px;
+}
+
+.sources::-webkit-scrollbar-thumb {
+background-color: #555;
+} */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input, button {
+  border: none;
+}
+
+ul, ol, menu, h1, h2, h3, h4, h5, h6, p {
+  padding: 0;
+  margin: 0;
+}
+
+@media screen and (max-width: 1440px) {
+  :root {
+    --navHeight: 59px;
+    --title: 20px;
+    --meta: 16px;
+  }
+}

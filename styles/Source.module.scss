@@ -2,40 +2,32 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px;
+	padding: 10px 0;
 	list-style: none;
-	border-radius: 5px;
+	// border-radius: 5px;
 	cursor: pointer;
 	position: relative;
+	// border-bottom: solid 1px transparent;
+}
+
+.source:first-child {
+	padding: 0 0 10px 0;
+}
+
+.source:last-child {
+	padding: 10px 0 0 0;
 }
 
 .source:hover {
-	// background-color: #999;
-	// box-shadow: 0 0 10px var(--dark) inset;
+	// border-bottom: solid 1px var(--mg);
 }
 
-// .publisher:hover::after {
-// 	background: linear-gradient(to right, var(--blue), var(--purple));
-// }
-
-// .publisher::after {
-// 	content: '';
-// 	width: calc(100% - 10px);
-// 	height: 2px;
-// 	position: absolute;
-// 	bottom: 0;
-// 	left: 0;
-// 	background: transparent;
-// 	transition: .2s;
-// }
-
 .source:hover > .label, .source:hover > .check {
-	// color: var(--blue);
-	color: #999;
+	color: var(--mg);
 }
 
 .label {
-	font-size: 24px;
+	font-size: var(--title);
 	font-weight: 800;
 	color: white;
 	width: 100%;
@@ -48,7 +40,7 @@
 }
 
 .checkbox + .check {
-	font-size: 28px;
+	font-size: var(--title);
 	color: white;
 	visibility: hidden;
 }
@@ -58,7 +50,7 @@
 }
 
 @media screen and (max-width: 1440px) {
-	.label {
-		font-size: 20px;
-	}
+	// .label {
+	// 	font-size: 20px;
+	// }
 }

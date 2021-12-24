@@ -45,25 +45,28 @@ function Filter({ filterOpen, queryParams, setQueryParams, toggleFilter }) {
 	}
 
 	return (
-		<nav 
+		<menu 
 			id='filter'
 			className={filterClass}
 		>
 			<form className={styles.form}>
+				<h2 className={styles.sourcesLabel}>Sources</h2>
 				<menu 
 					ref={sourcesRef}
 					className={styles.sources}
 				>
 					{sources}
 				</menu>
-				<button 
-					className={styles.submit}
-					onClick={formHandler}
-				>
-					Done
-				</button>
+				{/* <span className={styles.submitWrap}> */}
+					<button 
+						className={styles.submit}
+						onClick={formHandler}
+					>
+						Done
+					</button>
+				{/* </span> */}
 			</form>
-		</nav>
+		</menu>
 	)
 }
 

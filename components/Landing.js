@@ -13,12 +13,12 @@ function Landing({ queryParams, setQueryParams, resultsRef, loading }) {
       sources: queryParams.sources,
       page: 1
     })
-		// resultsRef is null until first fetch response 
-		window.scrollTo({
-			top: resultsRef.current.getBoundingClientRect().top + window.pageYOffset - 70,
-			left: 0,
-			behavior: 'smooth'
-		})
+		// REFACTOR TO SCROLL TO RESULTS ONLY AFTER THEY UPDATE
+		// window.scrollTo({
+		// 	top: resultsRef.current.getBoundingClientRect().top + window.pageYOffset - 70,
+		// 	left: 0,
+		// 	behavior: 'smooth'
+		// })
 	}
 
 	return (
@@ -26,11 +26,14 @@ function Landing({ queryParams, setQueryParams, resultsRef, loading }) {
 			<header className={styles.header}>
 				<h1 className={styles.title}>Rhetoric</h1>
 				<p className={styles.text}>
-					Find reporting on the topics 
+					{/* Find reporting on the topics 
 					<br /> 
 					you care about from the 
 					<br /> 
-					outlets you trust.
+					outlets you trust. */}
+					Find the stories you care about
+					<br />
+					from the sources you trust.
 				</p>
 				<form 
 					name='search'
