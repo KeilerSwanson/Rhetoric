@@ -52,15 +52,16 @@
 	cursor: pointer;
 	padding: 0;
 	background: transparent;
+	transition: .2s;
 }
 
 .prev, .next {
 	composes: button;
 }
 
-// .button:hover {
-// 	cursor: pointer;
-// }
+.button:hover {
+	color: var(--mg);
+}
 
 .articles {
 	width: 100%;

@@ -20,6 +20,7 @@ function ReadingList({ readingOpen, readingList, setReadingList }) {
 						{`${title.substring(0, 20)}..`}
 					</a>
 					<BsX 
+						className={styles.remove}
 						onClick={() => removeArticle(title)}
 					/>
 				</li>

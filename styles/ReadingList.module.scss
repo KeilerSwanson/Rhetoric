@@ -66,6 +66,10 @@
 	padding: 10px 0 0 0;
 }
 
+.article:hover > .title {
+	color: var(--mg);
+}
+
 .title {
 	font-size: var(--title);
 	font-weight: 800;
@@ -75,18 +79,18 @@
 	user-select: none;
 }
 
-.title:hover {
-	color: var(--mg);
-}
+// .title:hover {
+// 	color: var(--mg);
+// }
 
-.article > svg {
+.remove {
 	font-size: 32px;
 	color: white;
 	position: relative;
 	left: 5px;
 }
 
-.article > svg:hover {
+.remove:hover {
 	color: var(--mg);
 }
 
@@ -94,7 +98,7 @@
 	.reading {
 		width: 33vw;
 	}
-	.article > svg {
+	.remove {
 		font-size: 28px;
 	}
 	.title {

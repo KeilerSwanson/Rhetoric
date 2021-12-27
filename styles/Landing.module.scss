@@ -23,14 +23,14 @@
 	font-weight: 900;
 	text-align: center;
 	margin: 0;
-	// background-image: linear-gradient(to right, var(--blue), var(--purple));
+	// background-image: linear-gradient(to right, var(--gold), var(--golder));
   // background-clip: text;
   // color: transparent;
 	color: var(--dark);
 }
 
 .text {
-	font-size: 24px;
+	font-size: 28px;
 	font-weight: 500;
 	color: var(--dark);
 	// margin: 20px 0 40px;
@@ -89,7 +89,7 @@
 // }
 
 .topic {
-	font-size: 24px;
+	font-size: var(--title);
 	font-weight: 800;
 	padding-top: 50px;
 	width: 100%;
@@ -124,7 +124,7 @@
 .submit > svg {
 	// color: var(--purple);
 	color: var(--dark);
-	font-size: 28px;
+	font-size: var(--title);
 	transition: .2s;
 	will-change: transform;
 }
@@ -141,13 +141,13 @@
 		font-size: 70px;
 	}
 	.text {
-		font-size: 20px; 
+		font-size: 24px; 
 	}
 	.topic {
-		font-size: 20px;
+		// font-size: 20px;
 	}
 	.submit > svg {
-		font-size: 24px;
+		// font-size: 24px;
 	}
 }
 
