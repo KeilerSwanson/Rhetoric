@@ -16,16 +16,6 @@
   --meta: 20px;
 }
 
-// @mixin titles {
-//   font-size: 24px;
-//   font-weight: 800;
-// }
-
-// @mixin meta {
-//   font-size: 20px;
-//   font-weight: 600;
-// }
-
 * {
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
