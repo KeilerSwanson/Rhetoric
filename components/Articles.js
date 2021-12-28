@@ -1,5 +1,5 @@
 import * as styles from '../styles/Articles.module.scss'
-import { Article } from './article'
+import { Article } from './Article'
 
 function Articles({ news, nextPage, prevPage, resultsRef, readingList, setReadingList }) {
 	const resultsClass = news.articles ? styles.results : styles.preResults
