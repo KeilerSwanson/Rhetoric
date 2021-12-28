@@ -1,6 +1,7 @@
 import * as styles from '../styles/Filter.module.scss'
 import { Source } from './Source'
 import { useRef } from 'react'
+import { disableBodyScroll, enableBodyScroll, formatTitle } from '../lib/utils'
 
 function Filter({ filterOpen, queryParams, setQueryParams, toggleFilter }) {
 	const filterClass = filterOpen ? styles.filterOpen : styles.filter
@@ -11,11 +12,11 @@ function Filter({ filterOpen, queryParams, setQueryParams, toggleFilter }) {
 		'Reuters', 'The Hill', 'The Wall Street Journal', 'The Washington Post', 'Time', 'USA Today', 
 		'Vice News', 'Wired'
 	]
-	const sources = formattedSources.map((source, i) => {
+	const sources = formattedSources.map(source => {
 		const checked = queryParams.sources.includes(source.toLowerCase().split(' ').join('-')) ? true : false
 		return (
 			<Source 
-				key={i}
+				key={source}
 				title={source}
 				formattedTitle={formatTitle(source)}
 				checked={checked}
@@ -24,17 +25,12 @@ function Filter({ filterOpen, queryParams, setQueryParams, toggleFilter }) {
 	})
 	const sourcesRef = useRef()
 
-	function formatTitle(title) {
-		return title.toLowerCase().split(' ').join('-')
-	}
-
 	function formHandler(e) {
 		e.preventDefault()
 		const activeSources = Array.from(sourcesRef.current.children).map(source => {
 			// EXTRA COMMA CONCATENATED WHEN USING NULL. IS THIS SAFE?
 			return source.children.checkbox.checked ? source.dataset.source : null
 		})
-		console.log('activeSources: ', activeSources)
 		window.localStorage.setItem('sources', JSON.stringify(activeSources))
 		setQueryParams({
       query: queryParams.query,
@@ -48,6 +44,8 @@ function Filter({ filterOpen, queryParams, setQueryParams, toggleFilter }) {
 		<menu 
 			id='filter'
 			className={filterClass}
+			onMouseOver={disableBodyScroll}
+			onMouseOut={enableBodyScroll}
 		>
 			<form className={styles.form}>
 				<h2 className={styles.sourcesLabel}>Sources</h2>

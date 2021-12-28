@@ -1,8 +1,29 @@
+import { useEffect } from 'react'
 import * as styles from '../styles/Articles.module.scss'
 import { Article } from './Article'
 
 function Articles({ news, nextPage, prevPage, resultsRef, readingList, setReadingList }) {
 	const resultsClass = news.articles ? styles.results : styles.preResults
+
+	useEffect(() => {
+		if (news.articles) {
+			window.scrollTo({
+				top: resultsRef.current.getBoundingClientRect().top + window.pageYOffset - 120,
+				left: 0,
+				behavior: 'smooth'
+			})
+		}
+	}, [news, resultsRef])
+
+	function addArticle(e) {
+		const articleData = e.target.dataset
+		const listCopy = {...readingList}
+		listCopy[articleData.title] = articleData.url
+		window.localStorage.setItem('readingList', JSON.stringify(listCopy))
+		setReadingList(listCopy)
+	}
+
+	// This is the only list using indexes for keys
 	const articles = news.articles ? news.articles.map((article, i) => {
 		return (
 			<Article 
@@ -13,8 +34,6 @@ function Articles({ news, nextPage, prevPage, resultsRef, readingList, setReadin
 				description={article.description}
 				content={article.content}
 				url={article.url}
-				readingList={readingList}
-				setReadingList={setReadingList}
 			/>
 		)
 	}) : null
@@ -41,6 +60,7 @@ function Articles({ news, nextPage, prevPage, resultsRef, readingList, setReadin
 				</button>
 			</nav>
 			<ul 
+				onClick={(e) => addArticle(e)}
 				className={styles.articles}
 			>
 				{articles}

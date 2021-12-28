@@ -1,24 +1,19 @@
 import styles from '../styles/Landing.module.scss'
-// import { GoChevronDown } from 'react-icons/go'
 import { BsArrowRight } from 'react-icons/bs'
 import { useRef } from 'react'
 
 function Landing({ queryParams, setQueryParams, resultsRef, loading }) {
 	const formClass = loading ? styles.formLoading : styles.form
 	const queryRef = useRef()
+
 	function formHandler(e) {
 		e.preventDefault()
+		if (queryRef.current.value === queryParams.query) return
 		setQueryParams({
       query: queryRef.current.value,
       sources: queryParams.sources,
       page: 1
     })
-		// REFACTOR TO SCROLL TO RESULTS ONLY AFTER THEY UPDATE
-		// window.scrollTo({
-		// 	top: resultsRef.current.getBoundingClientRect().top + window.pageYOffset - 70,
-		// 	left: 0,
-		// 	behavior: 'smooth'
-		// })
 	}
 
 	return (
@@ -26,11 +21,6 @@ function Landing({ queryParams, setQueryParams, resultsRef, loading }) {
 			<header className={styles.header}>
 				<h1 className={styles.title}>Rhetoric</h1>
 				<p className={styles.text}>
-					{/* Find reporting on the topics 
-					<br /> 
-					you care about from the 
-					<br /> 
-					outlets you trust. */}
 					Find the stories you care about
 					<br />
 					from the sources you trust.

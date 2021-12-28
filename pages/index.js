@@ -8,6 +8,7 @@ import { ReadingList } from '../components/ReadingList'
 import { Filter } from '../components/Filter'
 
 export default function Home() {
+
   const initRender = useRef({
     sources: true,
     readingList: true
@@ -46,6 +47,8 @@ export default function Home() {
       }
       return
     }
+
+    if (queryParams.query === '') return
     
     getNews()
     // Adding getNews to the dependency array causes an infinite loop for some reason? 
@@ -103,9 +106,10 @@ export default function Home() {
   // ADD ERROR HANDLING 
 
   async function getNews() {
-    if (!queryParams.query) return
+    // console.log('inside getNews')
+    // if (!queryParams.query) return
     setLoading(true)
-    const jsonResp = await fetch(`https://newsapi.org/v2/everything?qInTitle=${queryParams.query}&sources=${queryParams.sources.join(',')}&language=en&pageSize=50&page=${queryParams.page}&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`)
+    const jsonResp = await fetch(`https://newsapi.org/v2/everything?qInTitle=${queryParams.query}&sources=${queryParams.sources.join(',')}&language=en&pageSize=50&page=${queryParams.page}&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWSAPI_KEY}`)
     const resp = await jsonResp.json()
     setLoading(false)
     setNews({
@@ -119,11 +123,11 @@ export default function Home() {
   return (
     <main className={styles.home}>
       <Head>
-        <title>News Screen</title>
+        <title>Rhetoric</title>
         <meta charSet='utf-8' />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name='author' content='Keiler Swanson' />
-        <meta name='description' content='Find reporting on the topics you care about from the outlets you trust.' />
+        <meta name='description' content='Find the stories you care about from the sources you trust.' />
       </Head>
       <NavBar 
         filterOpen={filterOpen}
