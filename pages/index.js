@@ -1,14 +1,13 @@
 import * as styles from '../styles/Home.module.scss'
 import Head from 'next/head'
-import { useEffect, useState, useRef } from 'react'
-import { NavBar } from '../components/NavBar'
-import { Landing } from '../components/Landing'
-import { Articles } from '../components/Articles'
-import { ReadingList } from '../components/ReadingList'
-import { Filter } from '../components/Filter'
+import { useEffect, useState, useRef, useCallback } from 'react'
+import NavBar from '../components/NavBar'
+import Landing from '../components/Landing'
+import Articles from '../components/Articles'
+import ReadingList from '../components/ReadingList'
+import Filter from '../components/Filter'
 
 export default function Home() {
-
   const initRender = useRef({
     sources: true,
     readingList: true
@@ -29,8 +28,7 @@ export default function Home() {
     start: 0,
     end: 0
   })
-  // INITIALIZE TO NULL
-  const [readingList, setReadingList] = useState(null)
+  const [readingList, setReadingList] = useState({})
   const [filterOpen, setFilterOpen] = useState(false)
   const [readingOpen, setReadingOpen] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -71,11 +69,15 @@ export default function Home() {
     if (!filterOpen) setFilterOpen(true)
   }
 
+  const memoToggleFilter = useCallback(toggleFilter, [filterOpen])
+
   function toggleReading() {
     setFilterOpen(false)
     if (readingOpen) setReadingOpen(false)
     if (!readingOpen) setReadingOpen(true)
   }
+
+  const memoToggleReading = useCallback(toggleReading, [readingOpen])
 
   function nextPage() {
     if (news.end === news.count) return
@@ -86,6 +88,8 @@ export default function Home() {
     })
   }
 
+  const memoNextPage = useCallback(nextPage, [news, queryParams])
+
   function prevPage() {
     if (queryParams.page === 1) return
     setQueryParams({
@@ -95,19 +99,11 @@ export default function Home() {
     })
   }
 
-  // function scrollToResults() {
-  //   window.scrollTo({
-	// 		top: resultsRef.current.getBoundingClientRect().top + window.pageYOffset - 70,
-	// 		left: 0,
-	// 		behavior: 'smooth'
-	// 	})
-  // }
+  const memoPrevPage = useCallback(prevPage, [queryParams])
 
   // ADD ERROR HANDLING 
 
   async function getNews() {
-    // console.log('inside getNews')
-    // if (!queryParams.query) return
     setLoading(true)
     const jsonResp = await fetch(`https://newsapi.org/v2/everything?qInTitle=${queryParams.query}&sources=${queryParams.sources.join(',')}&language=en&pageSize=50&page=${queryParams.page}&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWSAPI_KEY}`)
     const resp = await jsonResp.json()
@@ -131,20 +127,19 @@ export default function Home() {
       </Head>
       <NavBar 
         filterOpen={filterOpen}
-        toggleFilter={toggleFilter}
+        toggleFilter={memoToggleFilter}
         readingOpen={readingOpen}
-        toggleReading={toggleReading}
+        toggleReading={memoToggleReading}
       />
       <Landing 
         queryParams={queryParams}
         setQueryParams={setQueryParams}
-        resultsRef={resultsRef}
         loading={loading}
       />
       <Articles 
         news={news}
-        nextPage={nextPage}
-        prevPage={prevPage}
+        nextPage={memoNextPage}
+        prevPage={memoPrevPage}
         resultsRef={resultsRef}
         readingList={readingList}
         setReadingList={setReadingList}
@@ -156,7 +151,7 @@ export default function Home() {
       />
       <Filter 
         filterOpen={filterOpen}
-        toggleFilter={toggleFilter}
+        toggleFilter={memoToggleFilter}
         queryParams={queryParams}
         setQueryParams={setQueryParams}
       />

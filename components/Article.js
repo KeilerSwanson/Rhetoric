@@ -1,6 +1,7 @@
 import * as styles from '../styles/Article.module.scss'
 import { BsPlus, BsArrowRightShort } from 'react-icons/bs'
 import { formatDate } from '../lib/utils'
+import { memo } from 'react'
 
 function Article({ title, source, date, description, content, url }) {
 	const formattedDescription = description ? `${description.substring(0, 200)}..` : `${content.substring(0, 200)}..`
@@ -35,4 +36,4 @@ function Article({ title, source, date, description, content, url }) {
 	)
 }
 
-export { Article }
+export default memo(Article)

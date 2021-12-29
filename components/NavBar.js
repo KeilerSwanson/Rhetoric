@@ -1,8 +1,9 @@
 import styles from '../styles/NavBar.module.scss'
 import { BsBookmarks, BsSliders, BsArrowUp, BsInfoCircle } from 'react-icons/bs'
+import { memo } from 'react'
 
 function NavBar({ toggleFilter, toggleReading, filterOpen, readingOpen }) {
-	const infoClass = styles.info
+	// const infoClass = styles.info
 	const filterClass = filterOpen ? styles.filterOpen : styles.filter
 	const readingClass = readingOpen ? styles.readingOpen : styles.readingList
 
@@ -21,6 +22,7 @@ function NavBar({ toggleFilter, toggleReading, filterOpen, readingOpen }) {
 				</li>
 				{/* <li
 					className={infoClass}
+					onClick={toggleInfo}
 				>
 					<BsInfoCircle />
 				</li> */}
@@ -41,4 +43,5 @@ function NavBar({ toggleFilter, toggleReading, filterOpen, readingOpen }) {
 	)
 }
 
-export { NavBar }
+export default memo(NavBar)
+

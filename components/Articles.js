@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import * as styles from '../styles/Articles.module.scss'
-import { Article } from './Article'
+import Article from './Article'
+import { memo } from 'react'
 
 function Articles({ news, nextPage, prevPage, resultsRef, readingList, setReadingList }) {
 	const resultsClass = news.articles ? styles.results : styles.preResults
@@ -84,4 +85,4 @@ function Articles({ news, nextPage, prevPage, resultsRef, readingList, setReadin
 	) : null
 }
 
-export { Articles }
+export default memo(Articles)

@@ -1,10 +1,11 @@
 import * as styles from '../styles/Filter.module.scss'
-import { Source } from './Source'
-import { useRef } from 'react'
+import Source from './Source'
+import { useRef, memo } from 'react'
 import { disableBodyScroll, enableBodyScroll, formatTitle } from '../lib/utils'
 
 function Filter({ filterOpen, queryParams, setQueryParams, toggleFilter }) {
 	const filterClass = filterOpen ? styles.filterOpen : styles.filter
+	const sourcesRef = useRef()
 	const formattedSources = [
 		'ABC News', 'Associated Press', 'Axios', 'BBC News', 'Bloomberg', 'Breitbart News', 
 		'Business Insider', 'Buzzfeed', 'CBS News', 'CNN', 'Financial Post', 'Fortune', 'Fox News', 
@@ -23,7 +24,6 @@ function Filter({ filterOpen, queryParams, setQueryParams, toggleFilter }) {
 			/>
 		)
 	})
-	const sourcesRef = useRef()
 
 	function formHandler(e) {
 		e.preventDefault()
@@ -55,17 +55,15 @@ function Filter({ filterOpen, queryParams, setQueryParams, toggleFilter }) {
 				>
 					{sources}
 				</menu>
-				{/* <span className={styles.submitWrap}> */}
 					<button 
 						className={styles.submit}
 						onClick={formHandler}
 					>
 						Done
 					</button>
-				{/* </span> */}
 			</form>
 		</menu>
 	)
 }
 
-export { Filter }
+export default memo(Filter)

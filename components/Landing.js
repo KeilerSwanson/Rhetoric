@@ -1,8 +1,8 @@
 import styles from '../styles/Landing.module.scss'
 import { BsArrowRight } from 'react-icons/bs'
-import { useRef } from 'react'
+import { useRef, memo } from 'react'
 
-function Landing({ queryParams, setQueryParams, resultsRef, loading }) {
+function Landing({ queryParams, setQueryParams, loading }) {
 	const formClass = loading ? styles.formLoading : styles.form
 	const queryRef = useRef()
 
@@ -40,7 +40,6 @@ function Landing({ queryParams, setQueryParams, resultsRef, loading }) {
 						onClick={formHandler}
 						className={styles.submit} 
 					>
-						{/* <GoChevronDown /> */}
 						<BsArrowRight />
 					</button>
 				</form>
@@ -49,4 +48,4 @@ function Landing({ queryParams, setQueryParams, resultsRef, loading }) {
 	)
 }
 
-export { Landing }
+export default memo(Landing)

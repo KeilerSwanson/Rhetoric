@@ -1,5 +1,6 @@
 import * as styles from '../styles/Source.module.scss'
 import { BsCheck2 } from 'react-icons/bs'
+import { memo } from 'react'
 
 function Source({ title, formattedTitle, checked }) {
 
@@ -29,4 +30,4 @@ function Source({ title, formattedTitle, checked }) {
 	)
 }
 
-export { Source }
+export default memo(Source)
