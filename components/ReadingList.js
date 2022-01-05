@@ -19,6 +19,7 @@ function ReadingList({ readingOpen, readingList, setReadingList }) {
 			<li
 				key={readingList[title]}
 				className={styles.article}
+				title={title}
 			>
 				<a 
 					className={styles.title}

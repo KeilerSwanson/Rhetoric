@@ -59,12 +59,12 @@
 	
 }
 
-.article:first-child {
-	padding: 0 0 10px 0;
-}
-
 .article:last-child {
 	padding: 10px 0 0 0;
+}
+
+.article:first-child {
+	padding: 0 0 10px 0;
 }
 
 .article:hover > .title {
@@ -100,7 +100,7 @@
 }
 
 .noArticles {
-	color: var(--mg);
+	color: white;
 	font-size: var(--title);
 	font-weight: 800;
 

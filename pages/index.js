@@ -33,6 +33,8 @@ export default function Home() {
   const [readingOpen, setReadingOpen] = useState(false)
   const [loading, setLoading] = useState(false)
 
+  const memoGetNews = useCallback(getNews, [queryParams])
+
   useEffect(() => {
     if (initRender.current.sources) {
       initRender.current.sources = false
@@ -45,13 +47,10 @@ export default function Home() {
       }
       return
     }
-
     if (queryParams.query === '') return
     
-    getNews()
-    // Adding getNews to the dependency array causes an infinite loop for some reason? 
-    // Filters, query, and page are the only true dependencies anyway. *shrugs*
-  }, [queryParams])
+    memoGetNews()
+  }, [queryParams, memoGetNews])
 
   useEffect(() => {
     if (initRender.current.readingList) {
@@ -62,6 +61,21 @@ export default function Home() {
     }
     return
   }, [readingList])
+
+  // Add error handling
+
+  async function getNews() {
+    setLoading(true)
+    const jsonResp = await fetch(`https://newsapi.org/v2/everything?qInTitle=${queryParams.query}&sources=${queryParams.sources.join(',')}&language=en&pageSize=50&page=${queryParams.page}&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWSAPI_KEY}`)
+    const resp = await jsonResp.json()
+    setLoading(false)
+    setNews({
+      count: resp.totalResults,
+      articles: resp.articles,
+      start: queryParams.page * 50 - 49,
+      end: (queryParams.page * 50 > resp.totalResults) ? resp.totalResults : queryParams.page * 50
+    })
+  }
 
   function toggleFilter() {
     setReadingOpen(false)
@@ -100,21 +114,6 @@ export default function Home() {
   }
 
   const memoPrevPage = useCallback(prevPage, [queryParams])
-
-  // ADD ERROR HANDLING 
-
-  async function getNews() {
-    setLoading(true)
-    const jsonResp = await fetch(`https://newsapi.org/v2/everything?qInTitle=${queryParams.query}&sources=${queryParams.sources.join(',')}&language=en&pageSize=50&page=${queryParams.page}&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWSAPI_KEY}`)
-    const resp = await jsonResp.json()
-    setLoading(false)
-    setNews({
-      count: resp.totalResults,
-      articles: resp.articles,
-      start: queryParams.page * 50 - 49,
-      end: (queryParams.page * 50 > resp.totalResults) ? resp.totalResults : queryParams.page * 50
-    })
-  }
 
   return (
     <main className={styles.home}>
