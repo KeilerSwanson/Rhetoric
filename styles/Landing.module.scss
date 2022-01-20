@@ -4,55 +4,34 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	// background: white;
 }
 
 .header {
-	// width: 50%;
-	padding: 0 2.5%;
-	// padding: 0 20px;
+	padding: 0 25px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 45%;
-	display: none;
 }
 
 .title {
-	font-size: 85px;
-	font-weight: 900;
+	font-size: 5rem;
+	font-weight: 800;
 	text-align: center;
-	margin: 0;
-	// background-image: linear-gradient(to right, var(--gold), var(--golder));
-  // background-clip: text;
-  // color: transparent;
-	color: var(--dark);
-}
-
-.text {
-	font-size: 28px;
-	font-weight: 500;
-	color: var(--dark);
-	// margin: 20px 0 40px;
-	margin: 20px 0;
-	text-align: center;
-	line-height: 1.4;
-	// display: none;
+	color: black;
 }
 
 .form {
+	width: 100%;
 	display: flex;
 	align-items: flex-end;
-	width: 100%;
 	position: relative;
-	padding: 5px 10px;
-	border-bottom: solid 2px var(--dark);
+	border-bottom: solid 2px black;
+	padding: 0 10px 5px;
 }
 
 .formLoading {
 	composes: form;
-	// border-bottom: solid 2px var(--blue);
 }
 
 .formLoading::after {
@@ -63,7 +42,6 @@
 	left: 0;
 	height: 2px;
 	background: var(--gold);
-	// translate: .4s;
 	animation: loading 1s infinite;
 }
 
@@ -79,23 +57,12 @@
 	}
 }
 
-// .form::after {
-// 	content: '';
-// 	width: 25%;
-// 	position: absolute;
-// 	bottom: -2px;
-// 	left: 0;
-// 	height: 2px;
-// 	background: var(--gold);
-// }
-
 .topic {
-	font-size: var(--title);
+	font-size: 2.5rem;
 	font-weight: 800;
-	padding-top: 50px;
+	padding-top: 75px;
 	width: 100%;
-	// color: var(--blue);
-	color: var(--dark);
+	color: black;
 	background: transparent;
 }
 
@@ -104,9 +71,8 @@
 }
 
 .topic::placeholder {
-	// color: var(--blue);
-	// color: var(--dark);
-	color: #999;
+	color: var(--hoverGrey);
+	// font-style: italic;
 }
 
 .topic:valid {
@@ -119,98 +85,51 @@
 	background: transparent;
 	transition: .2s;
 	cursor: pointer;
-	// padding: 10px;
 }
 
 .submit > svg {
-	// color: var(--purple);
-	color: var(--dark);
-	font-size: var(--title);
+	color: black;
+	font-size: 3rem;
 	transition: .2s;
 	will-change: transform;
 }
 
 .submit:hover > svg {
-	transform: translate(5px, 0);
+	transform: rotate(45deg);
 }
 
 @media screen and (max-width: 1440px) {
-	.header {
-		width: 50%;
-	}
-	.title {
-		font-size: 70px;
-	}
-	.text {
-		font-size: 24px; 
-	}
-	.topic {
-		// font-size: 20px;
-	}
-	.submit > svg {
-		// font-size: 24px;
-	}
+
 }
 
 @media screen and (max-width: 1024px) {
-	.header {
-		width: 65%;
-	}
+
 }
 
 @media screen and (max-width: 768px) {
-	.header {
-		width: 100%;
-	}
 	.title {
-		// font-size: 85px;
-	}
-	.text {
-		// font-size: 24px; 
-	}
-	.topic {
-		// font-size: 18px;
-	}
-	.form { 
-		// width: 75%;
+		font-size: 4rem;
 	}
 }
 
 @media screen and (max-width: 480px) {
-	.header {
-		width: 100%;
-	}
 	.title {
-		font-size: 60px;
-	}
-	.text {
-		// font-size: 20px;
+		font-size: 3.5rem;
+		text-align: left;
 	}
 	.topic {
-		// font-size: 16px;
+		padding-top: 50px;
+		font-size: 2rem;
 	}
 	.submit > svg {
-		// font-size: 24px;
-	}
-	.form {
-		// width: 100%;
+		font-size: 2.5rem;
 	}
 }
 
 @media screen and (max-width: 375px) {
-	.title {
-		font-size: 50px;
-	}
-	.text {
-		font-size: 20px;
-	}
-	.topic {
-		// font-size: 16px;
-	}
+
 }
 
 @media screen and (max-width: 360px) {
-	.title {
-		font-size: 45px;
-	}
+
 }

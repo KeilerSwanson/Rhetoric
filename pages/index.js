@@ -4,8 +4,6 @@ import { useEffect, useState, useRef, useCallback } from 'react'
 import NavBar from '../components/NavBar'
 import Landing from '../components/Landing'
 import Articles from '../components/Articles'
-import ReadingList from '../components/ReadingList'
-import Filter from '../components/Filter'
 import Modal from '../components/Modal'
 
 export default function Home() {
@@ -30,8 +28,6 @@ export default function Home() {
     end: 0
   })
   const [readingList, setReadingList] = useState({})
-  const [filterOpen, setFilterOpen] = useState(false)
-  const [readingOpen, setReadingOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const [modalOpen, openModal] = useState(false)
 
@@ -86,22 +82,6 @@ export default function Home() {
 
   const memoToggleModal = useCallback(toggleModal, [modalOpen])
 
-  // function toggleFilter() {
-  //   setReadingOpen(false)
-  //   if (filterOpen) setFilterOpen(false)
-  //   if (!filterOpen) setFilterOpen(true)
-  // }
-
-  // const memoToggleFilter = useCallback(toggleFilter, [filterOpen])
-
-  // function toggleReading() {
-  //   setFilterOpen(false)
-  //   if (readingOpen) setReadingOpen(false)
-  //   if (!readingOpen) setReadingOpen(true)
-  // }
-
-  // const memoToggleReading = useCallback(toggleReading, [readingOpen])
-
   function nextPage() {
     if (news.end === news.count) return
     setQueryParams({
@@ -136,10 +116,6 @@ export default function Home() {
       <NavBar 
         modalOpen={modalOpen}
         toggleModal={memoToggleModal}
-        // filterOpen={filterOpen}
-        // toggleFilter={memoToggleFilter}
-        // readingOpen={readingOpen}
-        // toggleReading={memoToggleReading}
       />
       <Landing 
         queryParams={queryParams}
@@ -157,17 +133,6 @@ export default function Home() {
       <Modal 
         modalOpen={modalOpen}
       />
-      {/* <ReadingList 
-        readingOpen={readingOpen}
-        readingList={readingList}
-        setReadingList={setReadingList}
-      />
-      <Filter 
-        filterOpen={filterOpen}
-        toggleFilter={memoToggleFilter}
-        queryParams={queryParams}
-        setQueryParams={setQueryParams}
-      /> */}
     </main> 
   )
 }

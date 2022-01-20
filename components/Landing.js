@@ -1,5 +1,5 @@
 import styles from '../styles/Landing.module.scss'
-import { BsArrowRight } from 'react-icons/bs'
+import { BsArrowDownRight } from 'react-icons/bs'
 import { useRef, memo } from 'react'
 
 function Landing({ queryParams, setQueryParams, loading }) {
@@ -19,12 +19,10 @@ function Landing({ queryParams, setQueryParams, loading }) {
 	return (
 		<div className={styles.landing}>
 			<header className={styles.header}>
-				<h1 className={styles.title}>Rhetoric</h1>
-				<p className={styles.text}>
-					Find the stories you care about
+				<h1 className={styles.title}>
+					Find the stories you care about, 
 					<br />
-					from the sources you trust.
-				</p>
+					from the sources you trust.</h1>
 				<form 
 					name='search'
 					className={formClass}	
@@ -33,14 +31,14 @@ function Landing({ queryParams, setQueryParams, loading }) {
 						ref={queryRef}
 						name='search' 
 						type='text' 
-						placeholder='e.g. Bitcoin'
+						placeholder='Topic'
 						className={styles.topic}
 					/>
 					<button 
 						onClick={formHandler}
 						className={styles.submit} 
 					>
-						<BsArrowRight />
+						<BsArrowDownRight />
 					</button>
 				</form>
 			</header>
