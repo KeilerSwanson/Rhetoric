@@ -1,0 +1,44 @@
+.modal {
+	background: black;
+	position: fixed;
+	top: 60px;
+	right: 0;
+	height: calc(100vh - 60px);
+	width: 25vw;
+	transform: translate(100%, 0);
+	transition: .25s;
+	will-change: transform;
+	display: flex;
+	// flex-direction: column;
+	// padding: 20px;
+}
+
+.modalOpen {
+	composes: modal;
+	transform: translate(0, 0);
+}
+
+.menu {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	// justify-content: space-between;
+}
+
+@media screen and (max-width: 1440px) {
+	.modal {
+		width: 33vw;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.modal {
+		width: 66vw;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.modal {
+		width: 100vw;
+	}
+}

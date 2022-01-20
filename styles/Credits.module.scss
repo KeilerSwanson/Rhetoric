@@ -1,0 +1,39 @@
+.credits {
+	display: flex;
+	flex-direction: column;
+}
+
+.github {
+	font-size: 3rem;
+	color: white;
+}
+
+// .github:hover {
+// 	opacity: .75;
+// }
+
+.credit {
+	font-size: 2rem;
+	font-weight: 600;
+	color: white;
+}
+
+.credit:hover > svg {
+	// opacity: .75;
+	color: var(--hoverGrey);
+}
+
+.credit:nth-child(2) {
+	padding: 7.5px 0;
+}
+
+.credit:hover {
+	// opacity: .75;
+	color: var(--hoverGrey);
+}
+
+@media screen and (max-width: 480px) {
+	.credit {
+		font-size: 1.6rem;
+	}
+}

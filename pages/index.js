@@ -6,6 +6,7 @@ import Landing from '../components/Landing'
 import Articles from '../components/Articles'
 import ReadingList from '../components/ReadingList'
 import Filter from '../components/Filter'
+import Modal from '../components/Modal'
 
 export default function Home() {
   const initRender = useRef({
@@ -32,6 +33,7 @@ export default function Home() {
   const [filterOpen, setFilterOpen] = useState(false)
   const [readingOpen, setReadingOpen] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [modalOpen, openModal] = useState(false)
 
   const memoGetNews = useCallback(getNews, [queryParams])
 
@@ -77,21 +79,28 @@ export default function Home() {
     })
   }
 
-  function toggleFilter() {
-    setReadingOpen(false)
-    if (filterOpen) setFilterOpen(false)
-    if (!filterOpen) setFilterOpen(true)
+  function toggleModal() {
+    if (modalOpen) openModal(false)
+    if (!modalOpen) openModal(true)
   }
 
-  const memoToggleFilter = useCallback(toggleFilter, [filterOpen])
+  const memoToggleModal = useCallback(toggleModal, [modalOpen])
 
-  function toggleReading() {
-    setFilterOpen(false)
-    if (readingOpen) setReadingOpen(false)
-    if (!readingOpen) setReadingOpen(true)
-  }
+  // function toggleFilter() {
+  //   setReadingOpen(false)
+  //   if (filterOpen) setFilterOpen(false)
+  //   if (!filterOpen) setFilterOpen(true)
+  // }
 
-  const memoToggleReading = useCallback(toggleReading, [readingOpen])
+  // const memoToggleFilter = useCallback(toggleFilter, [filterOpen])
+
+  // function toggleReading() {
+  //   setFilterOpen(false)
+  //   if (readingOpen) setReadingOpen(false)
+  //   if (!readingOpen) setReadingOpen(true)
+  // }
+
+  // const memoToggleReading = useCallback(toggleReading, [readingOpen])
 
   function nextPage() {
     if (news.end === news.count) return
@@ -125,10 +134,12 @@ export default function Home() {
         <meta name='description' content='Find the stories you care about from the sources you trust.' />
       </Head>
       <NavBar 
-        filterOpen={filterOpen}
-        toggleFilter={memoToggleFilter}
-        readingOpen={readingOpen}
-        toggleReading={memoToggleReading}
+        modalOpen={modalOpen}
+        toggleModal={memoToggleModal}
+        // filterOpen={filterOpen}
+        // toggleFilter={memoToggleFilter}
+        // readingOpen={readingOpen}
+        // toggleReading={memoToggleReading}
       />
       <Landing 
         queryParams={queryParams}
@@ -143,7 +154,10 @@ export default function Home() {
         readingList={readingList}
         setReadingList={setReadingList}
       />
-      <ReadingList 
+      <Modal 
+        modalOpen={modalOpen}
+      />
+      {/* <ReadingList 
         readingOpen={readingOpen}
         readingList={readingList}
         setReadingList={setReadingList}
@@ -153,7 +167,7 @@ export default function Home() {
         toggleFilter={memoToggleFilter}
         queryParams={queryParams}
         setQueryParams={setQueryParams}
-      />
+      /> */}
     </main> 
   )
 }

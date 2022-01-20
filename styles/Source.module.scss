@@ -4,10 +4,9 @@
 	align-items: center;
 	padding: 10px 0;
 	list-style: none;
-	// border-radius: 5px;
 	cursor: pointer;
 	position: relative;
-	// border-bottom: solid 1px transparent;
+	width: 100%;
 }
 
 .source:first-child {
@@ -18,21 +17,20 @@
 	padding: 10px 0 0 0;
 }
 
-.source:hover {
-	// border-bottom: solid 1px var(--mg);
-}
-
 .source:hover > .label, .source:hover > .check {
-	color: var(--mg);
+	// opacity: .75;
+	color: var(--hoverGrey);
 }
 
 .label {
-	font-size: var(--title);
-	font-weight: 800;
+	// font-size: var(--title);
+	font-size: 2rem;
+	font-weight: 600;
 	color: white;
-	width: 100%;
+	// width: 100%;
 	cursor: pointer;
 	user-select: none;
+	transition: 0s;
 }
 
 .checkbox {
@@ -40,9 +38,10 @@
 }
 
 .checkbox + .check {
-	font-size: var(--title);
+	font-size: 3rem;
 	color: white;
 	visibility: hidden;
+	transition: 0s;
 }
 
 .checkbox:checked + .check {
@@ -50,7 +49,14 @@
 }
 
 @media screen and (max-width: 1440px) {
-	// .label {
-	// 	font-size: 20px;
-	// }
+
+}
+
+@media screen and (max-width: 480px) {
+	.label {
+		font-size: 1.6rem;
+	}
+	.checkbox + .check {
+		font-size: 2.4rem;
+	}
 }
