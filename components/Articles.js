@@ -3,7 +3,8 @@ import * as styles from '../styles/Articles.module.scss'
 import Article from './Article'
 import { memo } from 'react'
 
-function Articles({ news, nextPage, prevPage, resultsRef, readingList, setReadingList }) {
+function Articles({ news, nextPage, prevPage, resultsRef, bookmarks, setBookmarks }) {
+	// console.log('articles render')
 	const resultsClass = news.articles ? styles.results : styles.preResults
 
 	useEffect(() => {
@@ -16,25 +17,26 @@ function Articles({ news, nextPage, prevPage, resultsRef, readingList, setReadin
 		}
 	}, [news, resultsRef])
 
-	function addArticle(e) {
+	function addBookmark(e) {
+		console.log('target: ', e.target)
 		const articleData = e.target.dataset
-		const listCopy = {...readingList}
-		listCopy[articleData.title] = articleData.url
-		window.localStorage.setItem('readingList', JSON.stringify(listCopy))
-		setReadingList(listCopy)
+		bookmarks[articleData.title] = articleData.url
+		window.localStorage.setItem('bookmarks', JSON.stringify(bookmarks))
+		// setBookmarks(bookmarks)
+		setBookmarks(JSON.stringify(bookmarks))
 	}
 
-	// This is the only list using indexes for keys
+	// This is the only list using indices for keys
 	const articles = news.articles ? news.articles.map((article, i) => {
 		return (
 			<Article 
 				key={i}
 				title={article.title}
-				source={article.source.name}
-				date={article.publishedAt}
-				description={article.description}
-				content={article.content}
-				url={article.url}
+				source={article.clean_url}
+				date={article.published_date}
+				description={article.summary}
+				// content={article.content}
+				url={article.link}
 			/>
 		)
 	}) : null
@@ -45,7 +47,7 @@ function Articles({ news, nextPage, prevPage, resultsRef, readingList, setReadin
 			className={resultsClass}
 		>
 			{/* MAKE NAV COMPONENT? */}
-			<nav className={styles.nav}>
+			{/* <nav className={styles.nav}>
 				<button
 					className={styles.button}
 					onClick={prevPage}
@@ -59,14 +61,14 @@ function Articles({ news, nextPage, prevPage, resultsRef, readingList, setReadin
 				>
 					Next
 				</button>
-			</nav>
+			</nav> */}
 			<ul 
-				onClick={(e) => addArticle(e)}
+				onClick={(e) => addBookmark(e)}
 				className={styles.articles}
 			>
 				{articles}
 			</ul>
-			<nav className={styles.nav}>
+			{/* <nav className={styles.nav}>
 				<button
 					className={styles.button}
 					onClick={prevPage}
@@ -80,7 +82,7 @@ function Articles({ news, nextPage, prevPage, resultsRef, readingList, setReadin
 				>
 					Next
 				</button>
-			</nav>
+			</nav> */}
 		</div>
 	) : null
 }

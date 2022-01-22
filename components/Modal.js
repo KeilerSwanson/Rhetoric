@@ -1,21 +1,17 @@
 import { memo, useState, useRef, useEffect } from 'react'
 import * as styles from '../styles/Modal.module.scss'
 import { disableBodyScroll, enableBodyScroll } from '../lib/utils'
-import Sources from '../components/Sources'
-import Bookmarks from '../components/Bookmarks'
-import Info from '../components/Info'
+import Sources from './Sources'
+import Bookmarks from './Bookmarks'
+import Info from './Info'
 // import { BsChevronDown } from 'react-icons/bs'
 // import { BsGithub } from 'react-icons/bs'
 
 
-function Modal({ modalOpen }) {	
+function Modal({ queryParams, modalOpen, menuItemRefs, bookmarks, setBookmarks }) {	
+	// console.log('modal render')
 	const menuRef = useRef()
 	const menuItemRef = useRef()
-	const itemRefs = {
-		sources: useRef(),
-		bookmarks: useRef(),
-		info: useRef()
-	}
 	const [listHeight, setListHeight] = useState(0)
 	const modalClass = modalOpen ? styles.modalOpen : styles.modal
 
@@ -45,16 +41,19 @@ function Modal({ modalOpen }) {
 				ref={menuRef}
 			>
 				<Sources 
+					queryParams={queryParams}
 					menuItemRef={menuItemRef}
-					itemRefs={itemRefs}
+					itemRefs={menuItemRefs}
 					toggleItems={toggleItems}
 				/>
 				<Bookmarks 
-					itemRefs={itemRefs}
+					itemRefs={menuItemRefs}
 					toggleItems={toggleItems}
+					bookmarks={bookmarks}
+					setBookmarks={setBookmarks}
 				/>
 				<Info 
-					itemRefs={itemRefs}
+					itemRefs={menuItemRefs}
 					toggleItems={toggleItems}
 				/>
 			</menu>

@@ -4,20 +4,18 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding: 0 5%;
 }
 
-.header {
-	padding: 0 25px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
+// .header {
+// 	display: grid;
+// 	grid-template-columns: minmax(300px, 880px);
+// }
 
 .title {
-	font-size: 5rem;
+	font-size: 3.5rem;
 	font-weight: 800;
-	text-align: center;
+	text-align: left;
 	color: black;
 }
 
@@ -27,40 +25,13 @@
 	align-items: flex-end;
 	position: relative;
 	border-bottom: solid 2px black;
-	padding: 0 10px 5px;
-}
-
-.formLoading {
-	composes: form;
-}
-
-.formLoading::after {
-	content: '';
-	width: 25%;
-	position: absolute;
-	bottom: -2px;
-	left: 0;
-	height: 2px;
-	background: var(--gold);
-	animation: loading 1s infinite;
-}
-
-@keyframes loading {
-	0% {
-		transform: translate(0, 0);
-	} 
-	50% {
-		transform: translate(300%, 0);
-	}
-	100% {
-		transform: translate(0, 0);
-	}
+	padding: 0 0 5px;
 }
 
 .topic {
-	font-size: 2.5rem;
+	font-size: 1.6rem;
 	font-weight: 800;
-	padding-top: 75px;
+	padding-top: 50px;
 	width: 100%;
 	color: black;
 	background: transparent;
@@ -72,11 +43,6 @@
 
 .topic::placeholder {
 	color: var(--hoverGrey);
-	// font-style: italic;
-}
-
-.topic:valid {
-	// color: var(--purple);
 }
 
 .submit {
@@ -89,7 +55,7 @@
 
 .submit > svg {
 	color: black;
-	font-size: 3rem;
+	font-size: 2rem;
 	transition: .2s;
 	will-change: transform;
 }
@@ -98,38 +64,11 @@
 	transform: rotate(45deg);
 }
 
-@media screen and (max-width: 1440px) {
-
-}
-
-@media screen and (max-width: 1024px) {
-
-}
-
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
 	.title {
-		font-size: 4rem;
-	}
-}
-
-@media screen and (max-width: 480px) {
-	.title {
-		font-size: 3.5rem;
-		text-align: left;
+		text-align: center;
 	}
 	.topic {
-		padding-top: 50px;
-		font-size: 2rem;
+		padding-top: 75px;
 	}
-	.submit > svg {
-		font-size: 2.5rem;
-	}
-}
-
-@media screen and (max-width: 375px) {
-
-}
-
-@media screen and (max-width: 360px) {
-
 }

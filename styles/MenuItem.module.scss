@@ -45,11 +45,29 @@
 	font-size: 2.5rem;
 }
 
+.noBookmark {
+	font-size: 2rem;
+	font-weight: 600;
+	color: white;
+	// cursor: pointer;
+	user-select: none;
+	// width: 100%;
+	z-index: 2;
+	padding: 10px 0;
+}
+
 .icon {
 	font-size: 2.75rem;
 	color: white;
 	transition: .2s;
 }
+
+// .sourcesWrapper {
+// 	height: 0px;
+// 	overflow-y: scroll;
+// 	padding: 0 25px;
+// 	transition: .25s;
+// }
 
 .dropdown {
 	padding: 0 25px;
@@ -58,6 +76,7 @@
 	transition: .25s;
 	will-change: height;
 	// opacity: 0;
+	cursor: default;
 }
 
 .dropdown::-webkit-scrollbar {
@@ -68,6 +87,15 @@
 
 }
 
+// .submit {
+// 	height: 0px;
+// 	font-size: 1.6rem;
+//   padding: 10px;
+//   font-weight: 600;
+//   margin-top: 25px;
+//   width: 100%;
+// }
+
 @media screen and (max-width: 480px) {
 	.header {
 		padding: 25px;
@@ -77,5 +105,8 @@
 	}	
 	.icon {
 		font-size: 2.25rem;
+	}
+	.noBookmark {
+		font-size: 1.6rem;
 	}
 }

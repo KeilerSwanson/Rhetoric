@@ -3,7 +3,7 @@ import { BsArrowDownRight } from 'react-icons/bs'
 import { useRef, memo } from 'react'
 
 function Landing({ queryParams, setQueryParams, loading }) {
-	const formClass = loading ? styles.formLoading : styles.form
+	// const formClass = loading ? styles.formLoading : styles.form
 	const queryRef = useRef()
 
 	function formHandler(e) {
@@ -25,7 +25,7 @@ function Landing({ queryParams, setQueryParams, loading }) {
 					from the sources you trust.</h1>
 				<form 
 					name='search'
-					className={formClass}	
+					className={styles.form}	
 				>
 					<input 
 						ref={queryRef}

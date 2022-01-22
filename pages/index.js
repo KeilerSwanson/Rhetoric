@@ -5,20 +5,22 @@ import NavBar from '../components/NavBar'
 import Landing from '../components/Landing'
 import Articles from '../components/Articles'
 import Modal from '../components/Modal'
+import { sourceList } from '../lib/sourceList'
 
 export default function Home() {
   const initRender = useRef({
     sources: true,
-    readingList: true
+    bookmarks: true
   })
   const resultsRef = useRef()
+  const menuItemRefs = {
+		sources: useRef(),
+		bookmarks: useRef(),
+		info: useRef()
+	}
   const [queryParams, setQueryParams] = useState({
     query: '',
-    sources: ['abc-news', 'associated-press', 'axios', 'bbc-news', 'bloomberg', 'breitbart-news', 
-            'business-insider', 'buzzfeed', 'cbs-news', 'cnn', 'financial-post', 'fortune', 'fox-news', 
-            'independent', 'msnbc', 'national-review', 'nbc-news', 'new-york-magazine', 'politico', 
-            'reuters', 'the-hill', 'the-wall-street-journal', 'the-washington-post', 'time', 'usa-today', 
-            'vice-news', 'wired'],
+    sources: Object.values(sourceList),
     page: 1
   })
   const [news, setNews] = useState({
@@ -27,7 +29,7 @@ export default function Home() {
     start: 0,
     end: 0
   })
-  const [readingList, setReadingList] = useState({})
+  const [bookmarks, setBookmarks] = useState('{}')
   const [loading, setLoading] = useState(false)
   const [modalOpen, openModal] = useState(false)
 
@@ -51,36 +53,62 @@ export default function Home() {
   }, [queryParams, memoGetNews])
 
   useEffect(() => {
-    if (initRender.current.readingList) {
-      initRender.current.readingList = false
-      if (window.localStorage.getItem('readingList')) {
-        setReadingList(JSON.parse(window.localStorage.getItem('readingList')))
+    if (initRender.current.bookmarks) {
+      initRender.current.bookmarks = false
+      if (window.localStorage.getItem('bookmarks')) {
+        setBookmarks(window.localStorage.getItem('bookmarks'))
       }
     }
     return
-  }, [readingList])
+  }, [bookmarks])
 
   // Add error handling
 
   async function getNews() {
     setLoading(true)
-    const jsonResp = await fetch(`https://newsapi.org/v2/everything?qInTitle=${queryParams.query}&sources=${queryParams.sources.join(',')}&language=en&pageSize=50&page=${queryParams.page}&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWSAPI_KEY}`)
+    const jsonResp = await fetch(`https://free-news.p.rapidapi.com/v1/search?q=${queryParams.query}&lang=en&sources=${queryParams.sources.join(',')}&page=${queryParams.page}`, {
+      'method': 'GET',
+      'headers': {
+        'x-rapidapi-host': 'free-news.p.rapidapi.com',
+        'x-rapidapi-key': '2a5c538804mshf5bccd8a56569c1p113de4jsnd5ef3abf3d6c'
+        // 'x-rapidapi-key': process.env.NEXT_PUBLIC_NEWSCATCHER_KEY
+      }
+    })
     const resp = await jsonResp.json()
     setLoading(false)
     setNews({
-      count: resp.totalResults,
+      count: resp.total_hits,
       articles: resp.articles,
       start: queryParams.page * 50 - 49,
       end: (queryParams.page * 50 > resp.totalResults) ? resp.totalResults : queryParams.page * 50
     })
   }
 
-  function toggleModal() {
-    if (modalOpen) openModal(false)
-    if (!modalOpen) openModal(true)
+  function updateSources() {
+    const activeSources = Array.from(menuItemRefs.sources.current.children).map(source => {
+			return source.children.checkbox.checked ? source.dataset.source : null
+		})
+    if (activeSources.join(',') === queryParams.sources.join(',')) return
+    window.localStorage.setItem('sources', JSON.stringify(activeSources))
+		setQueryParams({
+      query: queryParams.query,
+			sources: activeSources,
+      page: 1
+    })
   }
 
-  const memoToggleModal = useCallback(toggleModal, [modalOpen])
+  const memoUpdateSources = useCallback(updateSources, [queryParams, menuItemRefs.sources])
+
+  function toggleModal() {
+    if (modalOpen) {
+      memoUpdateSources()
+      openModal(false)
+    } else {
+      openModal(true)
+    }
+  }
+
+  const memoToggleModal = useCallback(toggleModal, [modalOpen, memoUpdateSources])
 
   function nextPage() {
     if (news.end === news.count) return
@@ -127,11 +155,17 @@ export default function Home() {
         nextPage={memoNextPage}
         prevPage={memoPrevPage}
         resultsRef={resultsRef}
-        readingList={readingList}
-        setReadingList={setReadingList}
+        // bookmarks={bookmarks}
+        bookmarks={JSON.parse(bookmarks)}
+        setBookmarks={setBookmarks}
       />
       <Modal 
+        menuItemRefs={menuItemRefs}
+        queryParams={queryParams}
         modalOpen={modalOpen}
+        // bookmarks={bookmarks}
+        bookmarks={JSON.parse(bookmarks)}
+        setBookmarks={setBookmarks}
       />
     </main> 
   )

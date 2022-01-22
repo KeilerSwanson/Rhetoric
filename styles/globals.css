@@ -2,23 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Permanent+Marker&display=swap');
 
 :root {
-  /* COLORS */
-  --lg: #ccc;
-  --mg: #999;
-  --hg: #555;
-  --dark: #333333;
-  --blue: #4472CA;
-  --purple: #7d17d9;
-  --gold: #FFB30F;
-  --golder: #ff9900;
-  /* FONT SIZES */
-  --navHeight: 63px;
-  --title: 24px;
-  --meta: 20px;
-  /*  */
   --thinWhite: solid 1px rgba(255, 255, 255, 0.333);
-  --hoverGrey: rgb(119, 119, 119);
-  /* --thinWhite: solid 1px white; */
+  --hoverGrey: rgb(133, 133, 133);
 }
 
 html {
@@ -29,7 +14,6 @@ html {
 
 *, *:before, *:after {
   box-sizing: inherit;
-  /* transition: .2s; */
 }
 
 body, menu, button, h1, h2, h3, h4, h5, h6, p, ol, ul {
@@ -49,25 +33,26 @@ button, a, input {
 }
 
 body {
-  /* scrollbar-color: white var(--dark);
-  scrollbar-width: thin; */
-  /* margin: 0; */
   overflow-x: hidden;
 }
 
 body::-webkit-scrollbar {
-  /* background: transparent;
-  width: 0; */
+  width: 0px;
 }
 
 body::-webkit-scrollbar-thumb {
 
 }
 
-@media screen and (max-width: 1440px) {
-  :root {
-    --navHeight: 59px;
-    --title: 20px;
-    --meta: 16px;
+@media screen and (min-width: 768px) {
+  html {
+    font-size: 11px;
   }
 }
+
+@media screen and (min-width: 1920px) {
+  html {
+    font-size: 12px;
+  }
+}
+

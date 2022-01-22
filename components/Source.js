@@ -1,13 +1,14 @@
 import * as styles from '../styles/Source.module.scss'
 import { BsCheck2 } from 'react-icons/bs'
-import { MdCheck } from 'react-icons/md'
+// import { MdCheck } from 'react-icons/md'
 import { memo } from 'react'
 
-function Source({ title }) {
+function Source({ title, dataSource, checked }) {
 	return (
 		<li 
 			className={styles.source}
-			data-source={title}
+			// data-source={title}
+			data-source={dataSource}
 		>
 			<label 
 				className={styles.label} 
@@ -21,8 +22,8 @@ function Source({ title }) {
 				className={styles.checkbox} 
 				type='checkbox' 
 				name='checkbox'
-				// defaultChecked={checked}
-				defaultChecked={true}
+				defaultChecked={checked}
+				// checked={checked}
 			/>
 			<BsCheck2 
 				className={styles.check}

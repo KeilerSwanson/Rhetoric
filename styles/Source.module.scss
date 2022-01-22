@@ -2,35 +2,33 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px 0;
 	list-style: none;
 	cursor: pointer;
 	position: relative;
 	width: 100%;
 }
 
-.source:first-child {
+.source:first-child > .label {
 	padding: 0 0 10px 0;
 }
 
-.source:last-child {
+.source:last-child > .label {
 	padding: 10px 0 0 0;
 }
 
 .source:hover > .label, .source:hover > .check {
-	// opacity: .75;
 	color: var(--hoverGrey);
 }
 
 .label {
-	// font-size: var(--title);
 	font-size: 2rem;
 	font-weight: 600;
 	color: white;
-	// width: 100%;
 	cursor: pointer;
 	user-select: none;
-	transition: 0s;
+	width: 100%;
+	z-index: 2;
+	padding: 10px 0;
 }
 
 .checkbox {
@@ -41,7 +39,8 @@
 	font-size: 3rem;
 	color: white;
 	visibility: hidden;
-	transition: 0s;
+	position: absolute;
+	right: -2px;
 }
 
 .checkbox:checked + .check {
@@ -56,7 +55,7 @@
 	.label {
 		font-size: 1.6rem;
 	}
-	.checkbox + .check {
+	.checkbox + .check, .checkbox:checked + .check {
 		font-size: 2.4rem;
 	}
 }

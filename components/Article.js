@@ -3,8 +3,10 @@ import { BsPlus, BsArrowRightShort } from 'react-icons/bs'
 import { formatDate } from '../lib/utils'
 import { memo } from 'react'
 
-function Article({ title, source, date, description, content, url }) {
-	const formattedDescription = description ? `${description.substring(0, 200)}..` : `${content.substring(0, 200)}..`
+function Article({ title, source, date, description, url }) {
+	// console.log('article render')
+	// const formattedDescription = description ? `${description.substring(0, 200)}..` : `${content.substring(0, 200)}..`
+	const formattedDescription = `${description.substring(0, 250)}..`;
 
 	return (
 		<li 
@@ -12,16 +14,17 @@ function Article({ title, source, date, description, content, url }) {
 		>
 			<span className={styles.info}>
 				<h2 className={styles.title}>{title}</h2>
-				<h3 className={styles.meta}>{source} | {formatDate(date)}</h3>
+				<h3 className={styles.meta}>{source} / {formatDate(date)}</h3>
 				<p className={styles.description}>{formattedDescription}</p>
 			</span>
 			<span className={styles.buttons}>
 				<button 
-					className={styles.add}
+					className={styles.bookmark}
 					data-title={title}
 					data-url={url}
 				>
-					<BsPlus />
+					{/* <BsPlus /> */}
+					Bookmark
 				</button>
 				<a 
 					className={styles.read}
@@ -29,7 +32,8 @@ function Article({ title, source, date, description, content, url }) {
 					rel='noopener noreferrer'
 					target='_blank'
 				>
-					<BsArrowRightShort />
+					{/* <BsArrowRightShort /> */}
+					Read
 				</a>
 			</span>
 		</li>

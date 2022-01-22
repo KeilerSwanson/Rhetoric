@@ -2,19 +2,17 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	border-radius: 5px;
-	padding: 20px;
-	cursor: default;
 	transition: .2s;
-	will-change: transform;
-	list-style: none;
-	min-width: 0;
-	border: solid 2px var(--lg);
-	justify-content: space-between;
+	padding: 50px 0;
 }
 
-.article:hover {
-	border: solid 2px var(--dark);
+.article::after {
+	content: '';
+	height: 1px;
+	background: var(--hoverGrey);
+	width: 100%;
+	position: absolute;
+	bottom: 0;
 }
 
 .info {
@@ -23,85 +21,66 @@
 }
 
 .title {
-	color: var(--dark);
-	font-size: 24px;
+	color: black;
+	font-size: 2.5rem;
 	font-weight: 800;
 }
 
 .meta {
-	color: #999;
-	font-size: 20px;
-	font-weight: 600;
-	margin: 15px 0;
+	color: black;
+	font-size: 1.25rem;
+	font-weight: 700;
+	margin: 25px 0;
+	text-transform: uppercase;
+	border-bottom: solid 1px black;
+	width: fit-content;
 }
 
 .description {
-	color: var(--dark);
-	font-size: 20px;
-	font-weight: 500;
-	margin-bottom: 25px;
+	color: black;
+	font-size: 1.6rem;
+	font-weight: 400;
 }
 
 .buttons {
 	width: 100%;
-	// cursor: pointer;
 	display: flex;
-	// border-radius: 50px;
-	// background: var(--dark);
+	margin-top: 25px;
 }
 
 .button {
-	background: var(--dark);
 	width: 50%;
-	padding: 5px;
 	cursor: pointer;
-	transition: .2s;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	// border: solid 2px transparent;
-	background: var(--dark);
+	background: black;
+	color: white;
+	font-weight: 600;
+	font-size: 1.25rem;
+	padding: 10px;
+	position: relative;
 }
 
 .button:hover {
-	// border: solid 2px var(--dark);
-	// background: #FFB30F;
+	color: var(--hoverGrey);
 }
 
-.button:hover > svg {
-	color: var(--gold);
-}
-
-.button > svg {
-	transition: .2s;
-	color: white;
-	font-size: 24px;
-}
-
-.add {
+.bookmark, .read {
 	composes: button;
-	border-radius: 50px 0 0 50px;
-	border-right: solid 1px white;
 }
 
-.add > svg {
-	pointer-events: none;
+.bookmark::after {
+	content: '';
+	height: 100%;
+	width: 1px;
+	background: rgba(255, 255, 255, 0.333);
+	position: absolute;
+	right: 0;
 }
 
-.read {
-	composes: button;
-	border-radius: 0 50px 50px 0;
-	border-left: solid 1px white;
-}
-
-@media screen and (max-width: 1440px) {
-	.title {
-		font-size: 20px;
-	}
-	.meta, .description {
-		font-size: 16px;
-	}
-	.button > svg {
-		font-size: 20px;
+@media screen and (min-width: 768px) {
+	.article {
+		padding: 75px 0;
 	}
 }
