@@ -33,6 +33,7 @@ function Landing({ queryParams, setQueryParams, loading }) {
 						type='text' 
 						placeholder='Topic'
 						className={styles.topic}
+						autoFocus={true}
 					/>
 					<button 
 						onClick={formHandler}

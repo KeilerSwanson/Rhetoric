@@ -6,7 +6,7 @@ import { memo } from 'react'
 function Article({ title, source, date, description, url }) {
 	// console.log('article render')
 	// const formattedDescription = description ? `${description.substring(0, 200)}..` : `${content.substring(0, 200)}..`
-	const formattedDescription = `${description.substring(0, 250)}..`;
+	const formattedDescription = `${description.substring(0, 300)}..`;
 
 	return (
 		<li 

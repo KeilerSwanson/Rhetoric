@@ -1,16 +1,14 @@
 .modal {
 	background: black;
 	position: fixed;
-	top: 60px;
+	top: 50px;
 	right: 0;
-	height: calc(100vh - 60px);
-	width: 25vw;
+	height: calc(100vh - 50px);
+	width: 100vw;
 	transform: translate(100%, 0);
 	transition: .25s;
 	will-change: transform;
 	display: flex;
-	// flex-direction: column;
-	// padding: 20px;
 }
 
 .modalOpen {
@@ -22,23 +20,20 @@
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	// justify-content: space-between;
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (min-width: 768px) {
 	.modal {
-		width: 33vw;
+		top: 60px;
+		height: calc(100vh - 60px);
+		width: 60vw;
 	}
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (min-width: 1366px) {
 	.modal {
-		width: 66vw;
-	}
-}
-
-@media screen and (max-width: 480px) {
-	.modal {
-		width: 100vw;
+		top: 60px;
+		height: calc(100vh - 60px);
+		width: 25vw;
 	}
 }

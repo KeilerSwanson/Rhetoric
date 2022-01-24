@@ -22,11 +22,11 @@ function Modal({ queryParams, modalOpen, menuItemRefs, bookmarks, setBookmarks }
 	}, [listHeight])
 
 	function toggleItems(itemToOpen, itemsToClose) {
-		itemsToClose.forEach(item => item.style.cssText = 'height: 0px; padding: 0 25px;')
+		itemsToClose.forEach(item => item.style.cssText = 'height: 0px; padding: 0 2rem;')
 		if (window.getComputedStyle(itemToOpen).height === '0px') {
-			itemToOpen.style.cssText = `height: ${listHeight}px; padding: 25px; border-top: var(--thinWhite);`
+			itemToOpen.style.cssText = `height: ${listHeight}px; padding: 2rem; border-top: var(--thinWhite);`
 		} else {
-			itemToOpen.style.cssText = `height: 0px; padding: 0 25px;`
+			itemToOpen.style.cssText = `height: 0px; padding: 0 2rem;`
 		}
 	}
 

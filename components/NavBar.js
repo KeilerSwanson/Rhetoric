@@ -12,10 +12,10 @@ function NavBar({ modalOpen, toggleModal }) {
 				className={btnClass}
 				onClick={toggleModal}
 			>
-				{/* <div className={styles.barWrapper}> */}
+				<div className={styles.barWrapper}>
 					<span className={styles.barOne} />
 					<span className={styles.barTwo} />
-				{/* </div> */}
+				</div>
 			</button>
 		</nav>
 	)
