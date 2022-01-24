@@ -6,7 +6,9 @@ import Landing from '../components/Landing'
 import Articles from '../components/Articles'
 import Modal from '../components/Modal'
 import BottomNavBar from '../components/BottomNavBar'
+import Loading from '../components/Loading'
 import { sourceList } from '../lib/sourceList'
+import { disableBodyScroll, enableBodyScroll } from '../lib/utils'
 
 export default function Home() {
   const initRender = useRef({
@@ -65,6 +67,7 @@ export default function Home() {
 
   async function getNews() {
     setLoading(true)
+    disableBodyScroll()
     const jsonResp = await fetch(`https://free-news.p.rapidapi.com/v1/search?q=${queryParams.query}&lang=en&sources=${queryParams.sources.join(',')}&page=${queryParams.page}`, {
       'method': 'GET',
       'headers': {
@@ -74,6 +77,7 @@ export default function Home() {
       }
     })
     const resp = await jsonResp.json()
+    enableBodyScroll()
     setLoading(false)
     setNews({
       numPages: Math.ceil(resp.total_hits / 50),
@@ -137,7 +141,7 @@ export default function Home() {
         <meta charSet='utf-8' />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name='author' content='Keiler Swanson' />
-        <meta name='description' content='Find the stories you care about from the sources you trust.' />
+        <meta name='description' content='Find the stories you care about, from the sources you trust.' />
       </Head>
       <NavBar 
         modalOpen={modalOpen}
@@ -146,7 +150,7 @@ export default function Home() {
       <Landing 
         queryParams={queryParams}
         setQueryParams={setQueryParams}
-        loading={loading}
+        // loading={loading}
       />
       <Articles 
         news={news}
@@ -168,6 +172,9 @@ export default function Home() {
         articles={news.articles}
         nextPage={memoNextPage}
         prevPage={memoPrevPage}
+      />
+      <Loading 
+        loading={loading}
       />
     </main> 
   )
