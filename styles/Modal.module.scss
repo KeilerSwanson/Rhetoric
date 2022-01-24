@@ -9,6 +9,8 @@
 	transition: .25s;
 	will-change: transform;
 	display: flex;
+	z-index: 3;
+	// border-left: var(--thinWhite);
 }
 
 .modalOpen {
@@ -34,6 +36,6 @@
 	.modal {
 		top: 60px;
 		height: calc(100vh - 60px);
-		width: 25vw;
+		width: 30vw;
 	}
 }

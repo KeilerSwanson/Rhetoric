@@ -3,14 +3,13 @@ import * as styles from '../styles/Articles.module.scss'
 import Article from './Article'
 import { memo } from 'react'
 
-function Articles({ news, nextPage, prevPage, resultsRef, bookmarks, setBookmarks }) {
-	// console.log('articles render')
+function Articles({ news, resultsRef, bookmarks, setBookmarks }) {
 	const resultsClass = news.articles ? styles.results : styles.preResults
 
 	useEffect(() => {
 		if (news.articles) {
 			window.scrollTo({
-				top: resultsRef.current.getBoundingClientRect().top + window.pageYOffset - 120,
+				top: resultsRef.current.getBoundingClientRect().top + window.pageYOffset - 50,
 				left: 0,
 				behavior: 'smooth'
 			})
@@ -22,7 +21,6 @@ function Articles({ news, nextPage, prevPage, resultsRef, bookmarks, setBookmark
 		const articleData = e.target.dataset
 		bookmarks[articleData.title] = articleData.url
 		window.localStorage.setItem('bookmarks', JSON.stringify(bookmarks))
-		// setBookmarks(bookmarks)
 		setBookmarks(JSON.stringify(bookmarks))
 	}
 
@@ -35,7 +33,6 @@ function Articles({ news, nextPage, prevPage, resultsRef, bookmarks, setBookmark
 				source={article.clean_url}
 				date={article.published_date}
 				description={article.summary}
-				// content={article.content}
 				url={article.link}
 			/>
 		)
@@ -46,43 +43,12 @@ function Articles({ news, nextPage, prevPage, resultsRef, bookmarks, setBookmark
 			ref={resultsRef}
 			className={resultsClass}
 		>
-			{/* MAKE NAV COMPONENT? */}
-			{/* <nav className={styles.nav}>
-				<button
-					className={styles.button}
-					onClick={prevPage}
-				>
-					Prev
-				</button>
-				<h3 className={styles.count}>{`${news.start} - ${news.end} of ${news.count}`}</h3>
-				<button
-					className={styles.button}
-					onClick={nextPage}
-				>
-					Next
-				</button>
-			</nav> */}
 			<ul 
 				onClick={(e) => addBookmark(e)}
 				className={styles.articles}
 			>
 				{articles}
 			</ul>
-			{/* <nav className={styles.nav}>
-				<button
-					className={styles.button}
-					onClick={prevPage}
-				>
-					Prev
-				</button>
-				<h3 className={styles.count}>{`${news.start} - ${news.end} of ${news.count}`}</h3>
-				<button
-					className={styles.button}
-					onClick={nextPage}
-				>
-					Next
-				</button>
-			</nav> */}
 		</div>
 	) : null
 }

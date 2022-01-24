@@ -29,7 +29,7 @@
 }
 
 .topic {
-	font-size: 1.6rem;
+	font-size: 2rem;
 	font-weight: 800;
 	padding-top: 50px;
 	width: 100%;
@@ -43,6 +43,7 @@
 
 .topic::placeholder {
 	color: var(--hoverGrey);
+	font-weight: 800;
 }
 
 .submit {
@@ -55,8 +56,8 @@
 
 .submit > svg {
 	color: black;
-	font-size: 2rem;
-	transition: .2s;
+	font-size: 2.25rem;
+	transition: .25s;
 	will-change: transform;
 }
 

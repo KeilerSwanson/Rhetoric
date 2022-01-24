@@ -5,6 +5,7 @@ import NavBar from '../components/NavBar'
 import Landing from '../components/Landing'
 import Articles from '../components/Articles'
 import Modal from '../components/Modal'
+import BottomNavBar from '../components/BottomNavBar'
 import { sourceList } from '../lib/sourceList'
 
 export default function Home() {
@@ -24,15 +25,13 @@ export default function Home() {
     page: 1
   })
   const [news, setNews] = useState({
-    count: 0,
+    numPages: 0,
+    currPage: 1,
     articles: null,
-    start: 0,
-    end: 0
   })
   const [bookmarks, setBookmarks] = useState('{}')
   const [loading, setLoading] = useState(false)
   const [modalOpen, openModal] = useState(false)
-
   const memoGetNews = useCallback(getNews, [queryParams])
 
   useEffect(() => {
@@ -77,10 +76,9 @@ export default function Home() {
     const resp = await jsonResp.json()
     setLoading(false)
     setNews({
-      count: resp.total_hits,
-      articles: resp.articles,
-      start: queryParams.page * 50 - 49,
-      end: (queryParams.page * 50 > resp.totalResults) ? resp.totalResults : queryParams.page * 50
+      numPages: Math.ceil(resp.total_hits / 50),
+      currPage: queryParams.page,
+      articles: resp.articles
     })
   }
 
@@ -111,7 +109,7 @@ export default function Home() {
   const memoToggleModal = useCallback(toggleModal, [modalOpen, memoUpdateSources])
 
   function nextPage() {
-    if (news.end === news.count) return
+    if (news.numPages === queryParams.page) return
     setQueryParams({
       query: queryParams.query,
       sources: queryParams.sources,
@@ -152,10 +150,7 @@ export default function Home() {
       />
       <Articles 
         news={news}
-        nextPage={memoNextPage}
-        prevPage={memoPrevPage}
         resultsRef={resultsRef}
-        // bookmarks={bookmarks}
         bookmarks={JSON.parse(bookmarks)}
         setBookmarks={setBookmarks}
       />
@@ -163,9 +158,16 @@ export default function Home() {
         menuItemRefs={menuItemRefs}
         queryParams={queryParams}
         modalOpen={modalOpen}
-        // bookmarks={bookmarks}
         bookmarks={JSON.parse(bookmarks)}
         setBookmarks={setBookmarks}
+      />
+      <BottomNavBar 
+        // news={news}
+        currPage={news.currPage}
+        numPages={news.numPages}
+        articles={news.articles}
+        nextPage={memoNextPage}
+        prevPage={memoPrevPage}
       />
     </main> 
   )

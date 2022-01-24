@@ -34,6 +34,7 @@ function Landing({ queryParams, setQueryParams, loading }) {
 						placeholder='Topic'
 						className={styles.topic}
 						autoFocus={true}
+						autoCapitalize='on'
 					/>
 					<button 
 						onClick={formHandler}

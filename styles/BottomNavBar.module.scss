@@ -1,0 +1,72 @@
+.nav {
+	visibility: hidden;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: black;
+	height: 50px;
+	border-top: var(--thinWhite);
+	padding: 0 0 0 2rem;
+}
+
+.navShow {
+	composes: nav;
+	visibility: visible;
+}
+
+.pagination {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 100%;
+}
+
+.arrow {
+	background: transparent;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	height: 100%;
+}
+
+.arrow:hover > svg {
+	color: var(--hoverGrey);
+}
+
+.arrow > svg {
+	font-size: 2rem;
+	color: white;
+}
+
+.prev {
+	composes: arrow;
+	padding-right: 1rem;
+}
+
+.next {
+	composes: arrow;
+	padding-left: 1rem;
+}
+
+.pages {
+	font-size: 1.6rem;
+	font-weight: 400;
+	color: white;
+	// padding: .5rem;
+}
+
+.top {
+	composes: arrow;
+	padding: 0 2rem;
+	// border-left: var(--thinWhite);
+}
+
+@media screen and (min-width: 768px) {
+	.nav {
+		height: 60px;
+	}
+}
