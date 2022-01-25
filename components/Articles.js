@@ -3,18 +3,19 @@ import * as styles from '../styles/Articles.module.scss'
 import Article from './Article'
 import { memo } from 'react'
 
-function Articles({ news, resultsRef, bookmarks, setBookmarks }) {
-	const resultsClass = news.articles ? styles.results : styles.preResults
+function Articles({ articles, resultsRef, bookmarks, setBookmarks }) {
+	// const resultsClass = initRender.current.results ? styles.preResults : styles.results
+	const resultsClass = articles ? styles.results : styles.preResults
 
 	useEffect(() => {
-		if (news.articles) {
+		if (articles) {
 			window.scrollTo({
-				top: resultsRef.current.getBoundingClientRect().top + window.pageYOffset - 50,
+				top: resultsRef.current.getBoundingClientRect().top + window.pageYOffset,
 				left: 0,
 				behavior: 'smooth'
 			})
 		}
-	}, [news, resultsRef])
+	}, [articles, resultsRef])
 
 	function addBookmark(e) {
 		console.log('target: ', e.target)
@@ -25,7 +26,7 @@ function Articles({ news, resultsRef, bookmarks, setBookmarks }) {
 	}
 
 	// This is the only list using indices for keys
-	const articles = news.articles ? news.articles.map((article, i) => {
+	const articleList = articles ? articles.map((article, i) => {
 		return (
 			<Article 
 				key={i}
@@ -38,7 +39,7 @@ function Articles({ news, resultsRef, bookmarks, setBookmarks }) {
 		)
 	}) : null
 
-	return news ? (
+	return (
 		<div 
 			ref={resultsRef}
 			className={resultsClass}
@@ -47,10 +48,10 @@ function Articles({ news, resultsRef, bookmarks, setBookmarks }) {
 				onClick={(e) => addBookmark(e)}
 				className={styles.articles}
 			>
-				{articles}
+				{articleList}
 			</ul>
 		</div>
-	) : null
+	)
 }
 
 export default memo(Articles)

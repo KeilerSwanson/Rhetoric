@@ -30,8 +30,8 @@
 
 .topic {
 	font-size: 2rem;
-	font-weight: 800;
-	padding-top: 50px;
+	font-weight: 600;
+	padding-top: 3rem;
 	width: 100%;
 	color: black;
 	background: transparent;
@@ -43,7 +43,7 @@
 
 .topic::placeholder {
 	color: var(--hoverGrey);
-	font-weight: 800;
+	font-weight: 600;
 }
 
 .submit {
@@ -65,11 +65,24 @@
 	transform: rotate(45deg) translateY(-2.5px);
 }
 
+.message {
+	font-size: 1.6rem;
+	color: var(--hoverGrey);
+	font-weight: 400;
+	padding: 5px 0;
+	visibility: hidden;
+}
+
+.messageShow {
+	composes: message;
+	visibility: visible;
+}
+
 @media screen and (min-width: 768px) {
 	.title {
 		text-align: center;
 	}
 	.topic {
-		padding-top: 75px;
+		// padding-top: 75px;
 	}
 }

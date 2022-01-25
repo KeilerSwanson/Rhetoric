@@ -3,8 +3,7 @@
 	top: 0;
 	width: 100vw;
 	height: 100vh;
-	background: rgba(255, 255, 255, 0.5);
-	// opacity: .5;
+	background: rgba(255, 255, 255, 0.75);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -19,25 +18,72 @@
 }
 
 .spinner {
-  width: 50px;
   height: 50px;
-  background: black;
-  animation: sk-rotateplane 1.2s infinite ease-in-out;
+  display: flex;
+  justify-content: center;
 }
 
-@keyframes sk-rotateplane {
-  0% { 
-    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-  } 50% { 
-    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-  } 100% { 
-    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+.rect {
+  background: black;
+  height: 100%;
+  width: 6px;
+	margin: 0 1px;
+  display: inline-block;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.rect1, .rect2, .rect3, .rect4, .rect5, .rect6 {
+  composes: rect;
+}
+
+.rect1 {
+  animation-delay: -1.2s;
+}
+
+.rect2 {
+  animation-delay: -1.1s;
+}
+
+.rect3 {
+  animation-delay: -1.0s;
+}
+
+.rect4 {
+  animation-delay: -0.9s;
+}
+
+.rect5 {
+  animation-delay: -0.8s;
+}
+
+.rect6 {
+  animation-delay: -0.7s;
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% { 
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% { 
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
   }
 }
 
 @media screen and (min-width: 768px) {
-	.spinner {
-		width: 60px;
-		height: 60px;
-	}
+  .spinner {
+    height: 60px;
+  }
+  .rect {
+    width: 7px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .spinner {
+    height: 70px;
+  }
+  .rect {
+    width: 8px;
+  }
 }

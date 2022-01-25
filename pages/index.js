@@ -5,7 +5,7 @@ import NavBar from '../components/NavBar'
 import Landing from '../components/Landing'
 import Articles from '../components/Articles'
 import Modal from '../components/Modal'
-import BottomNavBar from '../components/BottomNavBar'
+import PaginationNav from '../components/PaginationNav'
 import Loading from '../components/Loading'
 import { sourceList } from '../lib/sourceList'
 import { disableBodyScroll, enableBodyScroll } from '../lib/utils'
@@ -13,7 +13,8 @@ import { disableBodyScroll, enableBodyScroll } from '../lib/utils'
 export default function Home() {
   const initRender = useRef({
     sources: true,
-    bookmarks: true
+    bookmarks: true,
+    results: true
   })
   const resultsRef = useRef()
   const menuItemRefs = {
@@ -77,6 +78,7 @@ export default function Home() {
       }
     })
     const resp = await jsonResp.json()
+    if (initRender.current.results) initRender.current.results = false
     enableBodyScroll()
     setLoading(false)
     setNews({
@@ -148,12 +150,14 @@ export default function Home() {
         toggleModal={memoToggleModal}
       />
       <Landing 
+        initRender={initRender.current.results}
+        articles={news.articles}
         queryParams={queryParams}
         setQueryParams={setQueryParams}
-        // loading={loading}
+        loading={loading}
       />
       <Articles 
-        news={news}
+        articles={news.articles}
         resultsRef={resultsRef}
         bookmarks={JSON.parse(bookmarks)}
         setBookmarks={setBookmarks}
@@ -165,11 +169,8 @@ export default function Home() {
         bookmarks={JSON.parse(bookmarks)}
         setBookmarks={setBookmarks}
       />
-      <BottomNavBar 
-        // news={news}
-        currPage={news.currPage}
-        numPages={news.numPages}
-        articles={news.articles}
+      <PaginationNav 
+        news={news}
         nextPage={memoNextPage}
         prevPage={memoPrevPage}
       />

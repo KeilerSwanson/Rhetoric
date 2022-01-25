@@ -1,9 +1,9 @@
 .modal {
 	background: black;
 	position: fixed;
-	top: 50px;
+	top: 60px;
 	right: 0;
-	height: calc(100vh - 50px);
+	height: calc(100vh - 60px);
 	width: 100vw;
 	transform: translate(100%, 0);
 	transition: .25s;
@@ -26,16 +26,16 @@
 
 @media screen and (min-width: 768px) {
 	.modal {
-		top: 60px;
-		height: calc(100vh - 60px);
+		// top: 60px;
+		// height: calc(100vh - 60px);
 		width: 60vw;
 	}
 }
 
 @media screen and (min-width: 1366px) {
 	.modal {
-		top: 60px;
-		height: calc(100vh - 60px);
+		// top: 60px;
+		// height: calc(100vh - 60px);
 		width: 30vw;
 	}
 }

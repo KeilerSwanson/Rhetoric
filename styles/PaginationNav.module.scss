@@ -1,24 +1,22 @@
 .nav {
-	// visibility: hidden;
 	width: 100%;
 	position: fixed;
-	bottom: 0;
+	top: 0;
 	z-index: 2;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	// justify-content: space-between;
+	justify-content: center;
 	background: black;
-	height: 50px;
-	border-top: var(--thinWhite);
-	padding: 0 0 0 2rem;
-	transform: translateY(100%);
+	border-bottom: var(--thinWhite);
+	padding: 10px 0;
 	transition: .25s;
+	will-change: transform;
 }
 
 .navShow {
 	composes: nav;
-	// visibility: visible;
-	transform: translateY(0);
+	transform: translateY(60px);
 }
 
 .pagination {
@@ -26,6 +24,8 @@
 	justify-content: space-between;
 	align-items: center;
 	height: 100%;
+	width: 100%;
+	max-width: 550px;
 }
 
 .arrow {
@@ -34,6 +34,8 @@
 	align-items: center;
 	cursor: pointer;
 	height: 100%;
+	padding: 0 2rem;
+	flex: 1;
 }
 
 .arrow:hover > svg {
@@ -41,35 +43,28 @@
 }
 
 .arrow > svg {
-	font-size: 2rem;
+	font-size: 1.5rem;
 	color: white;
 }
 
 .prev {
 	composes: arrow;
-	padding-right: 1rem;
+	justify-content: flex-start;
 }
 
 .next {
 	composes: arrow;
-	padding-left: 1rem;
+	justify-content: flex-end;
 }
 
 .pages {
-	font-size: 1.6rem;
-	font-weight: 400;
+	font-size: 1.25rem;
+	font-weight: 600;
 	color: white;
-	// padding: .5rem;
-}
-
-.top {
-	composes: arrow;
-	padding: 0 2rem;
-	// border-left: var(--thinWhite);
 }
 
 @media screen and (min-width: 768px) {
-	.nav {
-		height: 60px;
+	.arrow {
+		padding: 0;
 	}
 }

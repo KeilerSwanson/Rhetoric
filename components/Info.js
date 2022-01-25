@@ -13,7 +13,7 @@ function Info({ itemRefs, toggleItems }) {
 				className={styles.header}
 				onClick={() => toggleItems(itemRefs.info.current, [itemRefs.sources.current, itemRefs.bookmarks.current])}	
 			>
-			<h2 className={styles.title}>Info</h2>
+			<h2 className={styles.title}>About</h2>
 			<BsChevronDown className={styles.icon} />
 			</span>
 			<ul 

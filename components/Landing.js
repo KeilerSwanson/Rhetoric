@@ -2,8 +2,9 @@ import styles from '../styles/Landing.module.scss'
 import { BsArrowDownRight } from 'react-icons/bs'
 import { useRef, memo } from 'react'
 
-function Landing({ queryParams, setQueryParams, loading }) {
-	// const formClass = loading ? styles.formLoading : styles.form
+function Landing({ queryParams, setQueryParams, articles, initRender, loading }) {
+	const message = loading ? '' : `No results for '${queryParams.query}'`
+	const messageClass = (initRender || articles) ? styles.message : styles.messageShow
 	const queryRef = useRef()
 
 	function formHandler(e) {
@@ -20,9 +21,13 @@ function Landing({ queryParams, setQueryParams, loading }) {
 		<div className={styles.landing}>
 			<header className={styles.header}>
 				<h1 className={styles.title}>
+					{/* Find the stories you care about, 
+					<br />
+					from the sources you trust. */}
 					Find the stories you care about, 
 					<br />
-					from the sources you trust.</h1>
+					from the sources you trust.
+				</h1>
 				<form 
 					name='search'
 					className={styles.form}	
@@ -31,10 +36,10 @@ function Landing({ queryParams, setQueryParams, loading }) {
 						ref={queryRef}
 						name='search' 
 						type='text' 
-						placeholder='Topic'
+						placeholder='e.g. SpaceX'
 						className={styles.topic}
-						autoFocus={true}
-						autoCapitalize='on'
+						// autoCapitalize='on'
+						onClick={(e) => e.target.select()}
 					/>
 					<button 
 						onClick={formHandler}
@@ -43,6 +48,7 @@ function Landing({ queryParams, setQueryParams, loading }) {
 						<BsArrowDownRight />
 					</button>
 				</form>
+				<h6 className={messageClass}>{message}</h6>
 			</header>
 		</div>
 	)

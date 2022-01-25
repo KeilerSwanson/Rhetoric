@@ -1,9 +1,9 @@
-import * as styles from '../styles/BottomNavBar.module.scss'
+import * as styles from '../styles/PaginationNav.module.scss'
 import { memo } from 'react'
 import { BsChevronRight, BsChevronLeft, BsChevronUp } from 'react-icons/bs'
 
-function BottomNavBar({ articles, numPages, currPage, prevPage, nextPage }) {
-	const navClass = articles ? styles.navShow : styles.nav
+function PaginationNav({ news, prevPage, nextPage }) {
+	const navClass = news.articles ? styles.navShow : styles.nav
 
 	function toTop() {
 		window.scrollTo({
@@ -23,7 +23,7 @@ function BottomNavBar({ articles, numPages, currPage, prevPage, nextPage }) {
 					<BsChevronLeft />
 				</button>
 				<span className={styles.pages}>
-					{`Page ${currPage} of ${numPages}`}	
+					{`Page ${news.currPage} of ${news.numPages}`}	
 				</span>
 				<button 
 					className={styles.next}
@@ -32,14 +32,8 @@ function BottomNavBar({ articles, numPages, currPage, prevPage, nextPage }) {
 					<BsChevronRight />
 				</button>
 			</span>
-			<button 
-				className={styles.top}
-				onClick={toTop}
-			>
-				<BsChevronUp />
-			</button>
 		</nav>
 	)
 }
 
-export default memo(BottomNavBar)
+export default memo(PaginationNav)
