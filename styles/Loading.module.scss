@@ -8,6 +8,7 @@
 	justify-content: center;
 	align-items: center;
 	visibility: hidden;
+  // opacity: 0;
 	transition: .25s;
 	z-index: 4;
 }
@@ -15,6 +16,8 @@
 .loading {
 	composes: notLoading;
 	visibility: visible;
+  // display: flex;
+  // opacity: 1;
 }
 
 .spinner {

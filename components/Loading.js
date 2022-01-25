@@ -7,12 +7,12 @@ function Loading({ loading }) {
 	return (
 		<div className={loadingClass}>
 			<div className={styles.spinner}>
-				<span className={styles.rect1}></span>
-				<span className={styles.rect2}></span>
-				<span className={styles.rect3}></span>
-				<span className={styles.rect4}></span>
-				<span className={styles.rect5}></span>
-				<span className={styles.rect6}></span>
+				<span className={styles.rect1} />
+				<span className={styles.rect2} />
+				<span className={styles.rect3} />
+				<span className={styles.rect4} />
+				<span className={styles.rect5} />
+				<span className={styles.rect6} />
 			</div>
 		</div>
 	)
