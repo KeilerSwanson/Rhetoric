@@ -6,19 +6,17 @@
 	cursor: pointer;
 	position: relative;
 	width: 100%;
+	padding: 1rem 2rem;
 }
 
-.source:first-child > .label {
-	padding: 0 0 10px 0;
-}
+// .source:first-child {
+// 	margin-top: 1rem;
+// }
 
-.source:last-child > .label {
-	padding: 10px 0 0 0;
-}
+// .source:last-child {
+// 	margin-bottom: 1rem;
+// }
 
-.source:hover > .label, .source:hover > .check {
-	color: var(--hoverGrey);
-}
 
 .label {
 	font-size: 1.6rem;
@@ -28,7 +26,7 @@
 	user-select: none;
 	width: 100%;
 	z-index: 2;
-	padding: 10px 0;
+	// padding: 10px 0;
 }
 
 .checkbox {
@@ -39,10 +37,20 @@
 	font-size: 2.25rem;
 	color: white;
 	visibility: hidden;
-	position: absolute;
-	right: 0;
+	// position: absolute;
+	// right: 0;
 }
 
 .checkbox:checked + .check {
 	visibility: visible;
+}
+
+@media screen and (min-width: 1366px) {
+	.source:hover {
+		background: #111;
+	}
+}
+
+.source:active {
+	background: #222;
 }

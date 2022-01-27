@@ -1,10 +1,19 @@
-import { memo } from 'react'
+import { memo, useEffect } from 'react'
 import * as styles from '../styles/MenuItem.module.scss'
 import { BsChevronDown } from 'react-icons/bs'
 import Source from './Source'
 import { sourceList } from '../lib/sourceList'
 
-function Sources({ menuItemRef, itemRefs, toggleItems, queryParams }) {
+function Sources({ open, itemRef, toggleItems, setHeight, sourcesRef, queryParams }) {
+	const itemClass = open ? styles.itemOpen : styles.item
+
+	useEffect(() => {
+		if (open) {
+			setHeight.bind(sourcesRef)()
+		} else {
+			sourcesRef.current.style.cssText = 'height: 0px;'
+		}
+	})
 
 	const sources = Object.keys(sourceList).map(title => {
 		const checked = queryParams.sources.includes(sourceList[title]) ? true : false
@@ -20,19 +29,20 @@ function Sources({ menuItemRef, itemRefs, toggleItems, queryParams }) {
 
 	return (
 		<li 
-			className={styles.item}
-			ref={menuItemRef}
+			id='sources'
+			className={itemClass}
+			ref={itemRef}
 		>
 			<span 
 				className={styles.header}	
-				onClick={() => toggleItems(itemRefs.sources.current, [itemRefs.bookmarks.current, itemRefs.info.current])}
+				onClick={() => toggleItems.bind(itemRef)()}
 			>
 				<h2 className={styles.title}>Sources</h2>
 				<BsChevronDown className={styles.icon} />
 			</span>
 			<ul 
 				className={styles.dropdown}
-				ref={itemRefs.sources}	
+				ref={sourcesRef}
 			>
 				{sources}
 			</ul>

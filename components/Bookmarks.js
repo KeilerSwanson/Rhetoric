@@ -1,11 +1,19 @@
 import * as styles from '../styles/MenuItem.module.scss'
-// import { MdKeyboardArrowDown } from 'react-icons/md'
 import { BsChevronDown } from 'react-icons/bs'
-import { memo } from 'react'
+import { memo, useRef, useEffect } from 'react'
 import Bookmark from './Bookmark'
 
-function Bookmarks({ itemRefs, toggleItems, bookmarks, setBookmarks }) {
-	// console.log('bookmarks render')
+function Bookmarks({ open, itemRef, toggleItems, setHeight, bookmarks, setBookmarks }) {
+	const dropdownRef = useRef()
+	const itemClass = open ? styles.itemOpen : styles.item
+
+	useEffect(() => {
+		if (open) {
+			setHeight.bind(dropdownRef)()
+		} else {
+			dropdownRef.current.style.cssText = 'height: 0px;'
+		}
+	})
 
 	function removeBookmark(e) {
 		console.log('target: ', e.target)
@@ -27,18 +35,20 @@ function Bookmarks({ itemRefs, toggleItems, bookmarks, setBookmarks }) {
 
 	return (
 		<li 
-			className={styles.item}
+			id='bookmarks'
+			className={itemClass}
+			ref={itemRef}
 		>
 			<span 
 				className={styles.header}
-				onClick={() => toggleItems(itemRefs.bookmarks.current, [itemRefs.sources.current, itemRefs.info.current])}	
+				onClick={() => toggleItems.bind(itemRef)()}
 			>
 				<h2 className={styles.title}>Bookmarks</h2>
 				<BsChevronDown className={styles.icon} />
 			</span>
 			<ul 
 				className={styles.dropdown}
-				ref={itemRefs.bookmarks}
+				ref={dropdownRef}
 				onClick={(e) => removeBookmark(e)}
 			>
 				{articles}

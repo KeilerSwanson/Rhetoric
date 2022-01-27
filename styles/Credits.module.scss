@@ -7,12 +7,23 @@
 	font-size: 1.6rem;
 	font-weight: 400;
 	color: white;
+	padding: 1rem 2rem;
 }
 
-.credit:nth-child(2) {
-	padding: 20px 0;
+// .credit:nth-child(2) {
+// 	padding: 1rem 0;
+// }
+
+// .credit:hover {
+// 	color: var(--hoverGrey);
+// }
+
+@media screen and (min-width: 1366px) {
+	.credit:hover {
+		background: #111;
+	}
 }
 
-.credit:hover {
-	color: var(--hoverGrey);
+.credit:active {
+	background: #222;
 }

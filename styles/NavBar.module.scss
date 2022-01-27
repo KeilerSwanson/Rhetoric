@@ -38,10 +38,7 @@
 
 .btnOpen {
 	composes: btn;
-}
-
-.btn:hover .bar {
-	background: var(--hoverGrey);
+	// background: #111;
 }
 
 .bar {
@@ -49,7 +46,7 @@
 	height: 2px;
 	width: inherit;
 	background: white;
-	transition: transform .25s, background 0s;
+	transition: .25s;
 }
 
 .barOne {
@@ -74,4 +71,14 @@
 	.navBar {
 		height: 60px;
 	}
+}
+
+@media screen and (min-width: 1366px) {
+	.btn:hover {
+		background: #111;
+	}
+}
+
+.btn:active {
+	background: #222;
 }

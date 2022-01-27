@@ -4,7 +4,6 @@ import Article from './Article'
 import { memo } from 'react'
 
 function Articles({ articles, resultsRef, bookmarks, setBookmarks }) {
-	// const resultsClass = initRender.current.results ? styles.preResults : styles.results
 	const resultsClass = articles ? styles.results : styles.preResults
 
 	useEffect(() => {
@@ -18,7 +17,6 @@ function Articles({ articles, resultsRef, bookmarks, setBookmarks }) {
 	}, [articles, resultsRef])
 
 	function addBookmark(e) {
-		console.log('target: ', e.target)
 		const articleData = e.target.dataset
 		bookmarks[articleData.title] = articleData.url
 		window.localStorage.setItem('bookmarks', JSON.stringify(bookmarks))
@@ -33,7 +31,7 @@ function Articles({ articles, resultsRef, bookmarks, setBookmarks }) {
 				title={article.title}
 				source={article.clean_url}
 				date={article.published_date}
-				description={article.summary}
+				excerpt={article.summary}
 				url={article.link}
 			/>
 		)

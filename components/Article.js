@@ -1,12 +1,8 @@
 import * as styles from '../styles/Article.module.scss'
-import { BsPlus, BsArrowRightShort } from 'react-icons/bs'
-import { formatDate } from '../lib/utils'
+import { formatSource, formatDate, formatExcerpt } from '../lib/utils'
 import { memo } from 'react'
 
-function Article({ title, source, date, description, url }) {
-	// console.log('article render')
-	// const formattedDescription = description ? `${description.substring(0, 200)}..` : `${content.substring(0, 200)}..`
-	const formattedDescription = `${description.substring(0, 300)}..`;
+function Article({ title, source, date, excerpt, url }) {
 
 	return (
 		<li 
@@ -14,8 +10,12 @@ function Article({ title, source, date, description, url }) {
 		>
 			<span className={styles.info}>
 				<h2 className={styles.title}>{title}</h2>
-				<h3 className={styles.meta}>{source} / {formatDate(date)}</h3>
-				<p className={styles.description}>{formattedDescription}</p>
+				<h3 className={styles.meta}>
+					{formatSource(source)}
+					<pre className={styles.spacer}> / </pre>
+					{formatDate(date)}
+				</h3>
+				<p className={styles.excerpt}>{formatExcerpt(excerpt)}</p>
 			</span>
 			<span className={styles.buttons}>
 				<button 
@@ -23,7 +23,6 @@ function Article({ title, source, date, description, url }) {
 					data-title={title}
 					data-url={url}
 				>
-					{/* <BsPlus /> */}
 					Bookmark
 				</button>
 				<a 
@@ -32,7 +31,6 @@ function Article({ title, source, date, description, url }) {
 					rel='noopener noreferrer'
 					target='_blank'
 				>
-					{/* <BsArrowRightShort /> */}
 					Read
 				</a>
 			</span>

@@ -2,8 +2,8 @@ import styles from '../styles/Landing.module.scss'
 import { BsArrowDownRight } from 'react-icons/bs'
 import { useRef, memo } from 'react'
 
-function Landing({ queryParams, setQueryParams, articles, initRender, loading }) {
-	const messageClass = (initRender || articles || loading) ? styles.message : styles.messageShow
+function Landing({ queryParams, setQueryParams, articles, initResults, loading }) {
+	const messageClass = (initResults || articles || loading) ? styles.message : styles.messageShow
 	const queryRef = useRef()
 
 	function formHandler(e) {
@@ -34,6 +34,7 @@ function Landing({ queryParams, setQueryParams, articles, initRender, loading })
 					<input 
 						ref={queryRef}
 						name='search' 
+						// type='search'
 						type='text' 
 						placeholder='e.g. SpaceX'
 						className={styles.topic}

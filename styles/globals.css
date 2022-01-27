@@ -4,6 +4,7 @@
 :root {
   --thinWhite: solid 1px rgba(255, 255, 255, 0.333);
   --hoverGrey: rgb(133, 133, 133);
+  /* --hoverGrey: #333; */
 }
 
 html {

@@ -17,11 +17,7 @@ export default function Home() {
     results: true
   })
   const resultsRef = useRef()
-  const menuItemRefs = {
-		sources: useRef(),
-		bookmarks: useRef(),
-		info: useRef()
-	}
+  const sourcesRef = useRef()
   const [queryParams, setQueryParams] = useState({
     query: '',
     sources: Object.values(sourceList),
@@ -50,6 +46,7 @@ export default function Home() {
       return
     }
     if (queryParams.query === '') return
+    if (initRender.current.results) initRender.current.results = false
     
     memoGetNews()
   }, [queryParams, memoGetNews])
@@ -64,32 +61,32 @@ export default function Home() {
     return
   }, [bookmarks])
 
-  // Add error handling
-
   async function getNews() {
     setLoading(true)
     disableBodyScroll()
-    const jsonResp = await fetch(`https://free-news.p.rapidapi.com/v1/search?q=${queryParams.query}&lang=en&sources=${queryParams.sources.join(',')}&page=${queryParams.page}`, {
-      'method': 'GET',
-      'headers': {
-        'x-rapidapi-host': 'free-news.p.rapidapi.com',
-        'x-rapidapi-key': '2a5c538804mshf5bccd8a56569c1p113de4jsnd5ef3abf3d6c'
-        // 'x-rapidapi-key': process.env.NEXT_PUBLIC_NEWSCATCHER_KEY
-      }
-    })
-    const resp = await jsonResp.json()
-    if (initRender.current.results) initRender.current.results = false
+    try {
+      const jsonResp = await fetch(`https://free-news.p.rapidapi.com/v1/search?q=${queryParams.query}&lang=en&sources=${queryParams.sources.join(',')}&page=${queryParams.page}`, {
+        'method': 'GET',
+        'headers': {
+          'x-rapidapi-host': 'free-news.p.rapidapi.com',
+          'x-rapidapi-key': '2a5c538804mshf5bccd8a56569c1p113de4jsnd5ef3abf3d6c'
+        }
+      })
+      const resp = await jsonResp.json()
+      setNews({
+        numPages: resp.total_pages,
+        currPage: queryParams.page,
+        articles: resp.articles
+      })
+    } catch(err) {
+      alert(`Sorry, it looks like there was an error with the data we got from your search: "${err}" Try again or change the search query.`)
+    }
     enableBodyScroll()
     setLoading(false)
-    setNews({
-      numPages: Math.ceil(resp.total_hits / 50),
-      currPage: queryParams.page,
-      articles: resp.articles
-    })
   }
 
   function updateSources() {
-    const activeSources = Array.from(menuItemRefs.sources.current.children).map(source => {
+    const activeSources = Array.from(sourcesRef.current.children).map(source => {
 			return source.children.checkbox.checked ? source.dataset.source : null
 		})
     if (activeSources.join(',') === queryParams.sources.join(',')) return
@@ -101,7 +98,7 @@ export default function Home() {
     })
   }
 
-  const memoUpdateSources = useCallback(updateSources, [queryParams, menuItemRefs.sources])
+  const memoUpdateSources = useCallback(updateSources, [queryParams, sourcesRef])
 
   function toggleModal() {
     if (modalOpen) {
@@ -150,7 +147,7 @@ export default function Home() {
         toggleModal={memoToggleModal}
       />
       <Landing 
-        initRender={initRender.current.results}
+        initResults={initRender.current.results}
         articles={news.articles}
         queryParams={queryParams}
         setQueryParams={setQueryParams}
@@ -163,7 +160,7 @@ export default function Home() {
         setBookmarks={setBookmarks}
       />
       <Modal 
-        menuItemRefs={menuItemRefs}
+        sourcesRef={sourcesRef}
         queryParams={queryParams}
         modalOpen={modalOpen}
         bookmarks={JSON.parse(bookmarks)}

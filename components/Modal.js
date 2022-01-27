@@ -1,33 +1,41 @@
-import { memo, useState, useRef, useEffect } from 'react'
+import { memo, useState, useRef } from 'react'
 import * as styles from '../styles/Modal.module.scss'
 import { disableBodyScroll, enableBodyScroll } from '../lib/utils'
 import Sources from './Sources'
 import Bookmarks from './Bookmarks'
-import Info from './Info'
-// import { BsChevronDown } from 'react-icons/bs'
-// import { BsGithub } from 'react-icons/bs'
+import About from './About'
 
-
-function Modal({ queryParams, modalOpen, menuItemRefs, bookmarks, setBookmarks }) {	
-	// console.log('modal render')
+function Modal({ queryParams, modalOpen, bookmarks, setBookmarks, sourcesRef }) {	
 	const menuRef = useRef()
-	const menuItemRef = useRef()
-	const [listHeight, setListHeight] = useState(0)
+	const [itemsOpen, setItemsOpen] = useState({
+		sources: false,
+		bookmarks: false,
+		about: false
+	})
+	const itemRefs = {
+		sources: useRef(),
+		bookmarks: useRef(),
+		about: useRef()
+	}
 	const modalClass = modalOpen ? styles.modalOpen : styles.modal
 
-	useEffect(() => {
-		const menuHeight = parseInt(window.getComputedStyle(menuRef.current).height)
-		const menuItemHeight = parseInt(window.getComputedStyle(menuItemRef.current).height)
-		setListHeight(menuHeight - (menuItemHeight * 3))
-	}, [listHeight])
+	function setHeight() {
+		const availableHeight = parseInt(window.getComputedStyle(menuRef.current).height) - 180
+		this.current.style.cssText = `height: ${availableHeight}px`
+	}
 
-	function toggleItems(itemToOpen, itemsToClose) {
-		itemsToClose.forEach(item => item.style.cssText = 'height: 0px; padding: 0 2rem;')
-		if (window.getComputedStyle(itemToOpen).height === '0px') {
-			itemToOpen.style.cssText = `height: ${listHeight}px; padding: 2rem; border-top: var(--thinWhite);`
-		} else {
-			itemToOpen.style.cssText = `height: 0px; padding: 0 2rem;`
+
+	// Implement without creating objects each call?
+	function toggleItems() {
+		const newItemsOpen = {}
+		for (let item in itemsOpen) {
+			if (item === this.current.id) {
+				newItemsOpen[item] = !itemsOpen[item]
+			} else {
+				newItemsOpen[item] = false
+			}
 		}
+		setItemsOpen(newItemsOpen)
 	}
 
 	return (
@@ -40,21 +48,27 @@ function Modal({ queryParams, modalOpen, menuItemRefs, bookmarks, setBookmarks }
 				className={styles.menu}
 				ref={menuRef}
 			>
-				<Sources 
-					queryParams={queryParams}
-					menuItemRef={menuItemRef}
-					itemRefs={menuItemRefs}
+				<Sources
+					open={itemsOpen.sources}
+					itemRef={itemRefs.sources}
 					toggleItems={toggleItems}
+					setHeight={setHeight}
+					sourcesRef={sourcesRef}
+					queryParams={queryParams}
 				/>
 				<Bookmarks 
-					itemRefs={menuItemRefs}
+					open={itemsOpen.bookmarks}
+					itemRef={itemRefs.bookmarks}
 					toggleItems={toggleItems}
+					setHeight={setHeight}
 					bookmarks={bookmarks}
 					setBookmarks={setBookmarks}
 				/>
-				<Info 
-					itemRefs={menuItemRefs}
+				<About 
+					open={itemsOpen.about}
+					itemRef={itemRefs.about}
 					toggleItems={toggleItems}
+					setHeight={setHeight}
 				/>
 			</menu>
 		</nav>

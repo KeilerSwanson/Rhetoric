@@ -11,7 +11,12 @@
 	display: flex;
 	z-index: 3;
 	// border-left: var(--thinWhite);
+	// overflow-y: scroll;
 }
+
+// .modal::-webkit-scrollbar {
+//   width: 0px;
+// }
 
 .modalOpen {
 	composes: modal;
@@ -28,7 +33,7 @@
 	.modal {
 		// top: 60px;
 		// height: calc(100vh - 60px);
-		width: 60vw;
+		width: 50vw;
 	}
 }
 

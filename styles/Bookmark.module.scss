@@ -2,44 +2,34 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	// padding: 10px 0;
-	// list-style: none;
 	cursor: pointer;
 	position: relative;
 	width: 100%;
+	padding: 1rem 2rem;
 }
 
-.source:first-child > .title {
-	padding: 0 0 10px 0;
-}
+// .source:first-child > .title {
+// 	padding: 0 0 10px 0;
+// }
 
-.source:last-child > .title {
-	padding: 10px 0 0 0;
-}
+// .source:last-child > .title {
+// 	padding: 10px 0 0 0;
+// }
 
 .title {
-	// font-size: 2rem;
-	// font-weight: 600;
-	// color: white;
-	// cursor: pointer;
-	// user-select: none;
-	// width: 100%;
-	// z-index: 2;
-	// padding: 10px 0;
-
 	font-size: 1.6rem;
 	font-weight: 400;
 	color: white;
 	user-select: none;
 	z-index: 2;
-	padding: 10px 0;
+	// padding: 10px 0;
 	cursor: pointer;
 	width: 100%;
 }
 
-.title:hover {
-	color: var(--hoverGrey);
-}
+// .title:hover {
+// 	color: var(--hoverGrey);
+// }
 
 .remove {
 	background: transparent;
@@ -47,9 +37,9 @@
 	padding-left: 2rem;
 }
 
-.remove:hover > svg {
-	color: var(--hoverGrey);
-}
+// .remove:hover > svg {
+// 	color: var(--hoverGrey);
+// }
 
 .remove > svg {
 	font-size: 2.5rem;
@@ -59,14 +49,12 @@
 	left: 2px;
 }
 
-// @media screen and (max-width: 480px) {
-// 	.title {
-// 		font-size: 1.6rem;
-// 	}
-// 	.remove {
-// 		left: 3px;
-// 	}
-// 	.remove > svg {
-// 		font-size: 2.75rem;
-// 	}
-// }
+@media screen and (min-width: 1366px) {
+	.bookmark:hover {
+		background: #111;
+	}
+}
+
+.bookmark:active {
+	background: #222;
+}

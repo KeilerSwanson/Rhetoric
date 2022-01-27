@@ -3,16 +3,12 @@
 	display: flex;
 	flex-direction: column;
 	transition: .2s;
-	padding: 5.5rem 0;
+	padding: 5rem 0;
 }
 
 .article:last-child::after {
 	display: none;
 }
-
-// .article:first-child, .article:last-child {
-// 	padding: 0;
-// }
 
 .article::after {
 	content: '';
@@ -36,15 +32,19 @@
 
 .meta {
 	color: black;
-	font-size: 1.25rem;
+	font-size: 1.4rem;
 	font-weight: 700;
-	margin: 2rem 0;
-	text-transform: uppercase;
+	margin: 2.25rem 0;
+	// text-transform: uppercase;
 	border-bottom: solid 1px black;
 	width: fit-content;
 }
 
-.description {
+.spacer {
+	display: inline;
+}
+
+.excerpt {
 	color: black;
 	font-size: 1.6rem;
 	font-weight: 400;
@@ -53,7 +53,7 @@
 .buttons {
 	width: 100%;
 	display: flex;
-	margin-top: 2rem;
+	margin-top: 3rem;
 }
 
 .button {
@@ -68,27 +68,30 @@
 	font-size: 1.25rem;
 	padding: 10px;
 	position: relative;
-}
-
-.button:hover {
-	color: var(--hoverGrey);
+	overflow: hidden;
+	z-index: 1;
 }
 
 .bookmark, .read {
 	composes: button;
 }
 
-.bookmark::after {
-	content: '';
-	height: 100%;
-	width: 1px;
-	background: rgba(255, 255, 255, 0.333);
-	position: absolute;
-	right: 0;
+.bookmark {
+	border-right: var(--thinWhite);
 }
 
 @media screen and (min-width: 768px) {
 	.article {
 		padding: 75px 0;
 	}
+}
+
+@media screen and (min-width: 1366px) {
+	.button:hover {
+		background: #111;
+	}
+}
+
+.button:active {
+	background: #222;
 }
