@@ -8,13 +8,13 @@
 	padding: 1rem 2rem;
 }
 
-// .source:first-child > .title {
-// 	padding: 0 0 10px 0;
-// }
+.bookmark:first-child {
+	margin-top: 1rem;
+}
 
-// .source:last-child > .title {
-// 	padding: 10px 0 0 0;
-// }
+.bookmark:last-child {
+	margin-bottom: 1rem;
+}
 
 .title {
 	font-size: 1.6rem;

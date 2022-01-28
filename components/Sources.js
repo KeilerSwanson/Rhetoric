@@ -4,7 +4,7 @@ import { BsChevronDown } from 'react-icons/bs'
 import Source from './Source'
 import { sourceList } from '../lib/sourceList'
 
-function Sources({ open, itemRef, toggleItems, setHeight, sourcesRef, queryParams }) {
+function Sources({ open, itemRef, headerRef, toggleItems, setHeight, sourcesRef, queryParams }) {
 	const itemClass = open ? styles.itemOpen : styles.item
 
 	useEffect(() => {
@@ -35,6 +35,7 @@ function Sources({ open, itemRef, toggleItems, setHeight, sourcesRef, queryParam
 		>
 			<span 
 				className={styles.header}	
+				ref={headerRef}
 				onClick={() => toggleItems.bind(itemRef)()}
 			>
 				<h2 className={styles.title}>Sources</h2>

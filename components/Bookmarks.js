@@ -9,8 +9,10 @@ function Bookmarks({ open, itemRef, toggleItems, setHeight, bookmarks, setBookma
 
 	useEffect(() => {
 		if (open) {
+			console.log('bookmarks open')
 			setHeight.bind(dropdownRef)()
 		} else {
+			console.log('bookmarks close')
 			dropdownRef.current.style.cssText = 'height: 0px;'
 		}
 	})

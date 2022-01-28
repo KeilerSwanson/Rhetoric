@@ -11,9 +11,7 @@ function Article({ title, source, date, excerpt, url }) {
 			<span className={styles.info}>
 				<h2 className={styles.title}>{title}</h2>
 				<h3 className={styles.meta}>
-					{formatSource(source)}
-					<pre className={styles.spacer}> / </pre>
-					{formatDate(date)}
+					{formatSource(source)}  /  {formatDate(date)}
 				</h3>
 				<p className={styles.excerpt}>{formatExcerpt(excerpt)}</p>
 			</span>

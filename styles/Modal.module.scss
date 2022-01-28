@@ -33,7 +33,10 @@
 	.modal {
 		// top: 60px;
 		// height: calc(100vh - 60px);
-		width: 50vw;
+		width: 70vw;
+	}
+	.modalOpen {
+		border-left: var(--thinWhite);
 	}
 }
 

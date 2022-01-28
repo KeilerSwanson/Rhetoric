@@ -17,10 +17,12 @@ function Modal({ queryParams, modalOpen, bookmarks, setBookmarks, sourcesRef }) 
 		bookmarks: useRef(),
 		about: useRef()
 	}
+	const headerRef = useRef()
 	const modalClass = modalOpen ? styles.modalOpen : styles.modal
 
 	function setHeight() {
-		const availableHeight = parseInt(window.getComputedStyle(menuRef.current).height) - 180
+		const headerHeight = parseInt(window.getComputedStyle(headerRef.current).height)
+		const availableHeight = parseInt(window.getComputedStyle(menuRef.current).height) - (headerHeight * 3)
 		this.current.style.cssText = `height: ${availableHeight}px`
 	}
 
@@ -51,6 +53,7 @@ function Modal({ queryParams, modalOpen, bookmarks, setBookmarks, sourcesRef }) 
 				<Sources
 					open={itemsOpen.sources}
 					itemRef={itemRefs.sources}
+					headerRef={headerRef}
 					toggleItems={toggleItems}
 					setHeight={setHeight}
 					sourcesRef={sourcesRef}

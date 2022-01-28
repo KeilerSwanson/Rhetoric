@@ -29,8 +29,8 @@
 
 .topic {
 	font-size: 2rem;
-	font-weight: 600;
-	padding-top: 4rem;
+	font-weight: 400;
+	padding-top: 3rem;
 	width: 100%;
 	color: black;
 	background: transparent;
@@ -40,9 +40,13 @@
 	outline: none;
 }
 
+.topic:valid + .submit > svg {
+	color: black;
+}
+
 .topic::placeholder {
 	color: var(--hoverGrey);
-	font-weight: 600;
+	font-weight: 400;
 }
 
 .submit {
@@ -51,17 +55,19 @@
 	background: transparent;
 	transition: .2s;
 	cursor: pointer;
+	padding: 3rem 0 0 2rem;
 }
 
 .submit > svg {
-	color: black;
-	font-size: 2.25rem;
+	color: var(--hoverGrey);
+	font-size: 2rem;
 	transition: .25s;
 	will-change: transform;
 }
 
 .submit:hover > svg {
-	transform: rotate(45deg) translateY(-2.5px);
+	// transform: rotate(45deg) translateY(-2.5px);
+	transform: translateX(5px);
 }
 
 .message {

@@ -1,5 +1,5 @@
 import styles from '../styles/Landing.module.scss'
-import { BsArrowDownRight } from 'react-icons/bs'
+import { BsArrowDownRight, BsChevronRight } from 'react-icons/bs'
 import { useRef, memo } from 'react'
 
 function Landing({ queryParams, setQueryParams, articles, initResults, loading }) {
@@ -34,18 +34,17 @@ function Landing({ queryParams, setQueryParams, articles, initResults, loading }
 					<input 
 						ref={queryRef}
 						name='search' 
-						// type='search'
 						type='text' 
-						placeholder='e.g. SpaceX'
+						placeholder='e.g. Elon Musk'
 						className={styles.topic}
-						// autoCapitalize='on'
 						onClick={(e) => e.target.select()}
+						required={true}
 					/>
 					<button 
 						onClick={formHandler}
 						className={styles.submit} 
 					>
-						<BsArrowDownRight />
+						<BsChevronRight />
 					</button>
 				</form>
 				<h6 className={messageClass}>{`No results for '${queryParams.query}'`}</h6>
