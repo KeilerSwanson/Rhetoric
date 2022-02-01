@@ -4,7 +4,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 0 5%;
+	padding: 0 1.5rem;
 }
 
 .header {
@@ -12,7 +12,7 @@
 }
 
 .title {
-	font-size: 3.5rem;
+	font-size: 3.75rem;
 	font-weight: 800;
 	text-align: left;
 	color: black;
@@ -20,28 +20,27 @@
 
 .form {
 	width: 100%;
-	display: flex;
-	align-items: flex-end;
-	position: relative;
-	border-bottom: solid 2px black;
-	padding-bottom: .25rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 3rem;
+  // border: solid 2px rgba(0, 0, 0, 0.5);
+  // border-radius: 5px;
 }
 
 .topic {
-	font-size: 2rem;
-	font-weight: 400;
-	padding-top: 3rem;
-	width: 100%;
-	color: black;
-	background: transparent;
+	font-size: 1.5rem;
+  font-weight: 400;
+  width: 100%;
+  color: black;
+  background: transparent;
+  padding: 1rem;
+	border: solid 2px black;
+	border-radius: 10px 0 0 10px;
 }
 
 .topic:focus  {
 	outline: none;
-}
-
-.topic:valid + .submit > svg {
-	color: black;
 }
 
 .topic::placeholder {
@@ -50,28 +49,28 @@
 }
 
 .submit {
+  cursor: pointer;
+	font-size: 1.5rem;
+	font-weight: 400;
+  background: black;
+  padding: 1rem 2rem;
+	border-radius: 0 10px 10px 0;
+	border: solid 2px black;
+	color: transparent;
+	position: relative;
+	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: transparent;
-	transition: .2s;
-	cursor: pointer;
-	padding: 3rem 0 0 2rem;
 }
 
 .submit > svg {
-	color: var(--hoverGrey);
+	color: white;
 	font-size: 2rem;
-	transition: .25s;
-	will-change: transform;
-}
-
-.submit:hover > svg {
-	// transform: rotate(45deg) translateY(-2.5px);
-	transform: translateX(5px);
+	position: absolute;
 }
 
 .message {
-	font-size: 1.6rem;
+	font-size: 1.5rem;
 	color: var(--hoverGrey);
 	font-weight: 400;
 	padding: 5px 0;
@@ -87,4 +86,19 @@
 	.title {
 		text-align: center;
 	}
+	.topic {
+		top: 0;
+	}
+}
+
+@media screen and (min-width: 1366px) {
+	.submit:hover {
+		background: #111;
+		border: solid 2px #111;
+	}
+}
+
+.submit:active {
+	background: #222;
+	border: solid 2px #222;
 }

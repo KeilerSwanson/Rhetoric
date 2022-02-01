@@ -5,7 +5,7 @@
 	cursor: pointer;
 	position: relative;
 	width: 100%;
-	padding: 1rem 2rem;
+	padding: 1rem 1.5rem;
 }
 
 .bookmark:first-child {
@@ -17,7 +17,7 @@
 }
 
 .title {
-	font-size: 1.6rem;
+	font-size: 1.5rem;
 	font-weight: 400;
 	color: white;
 	user-select: none;
@@ -32,6 +32,8 @@
 // }
 
 .remove {
+	display: flex;
+	align-items: center;
 	background: transparent;
 	cursor: pointer;
 	padding-left: 2rem;

@@ -7,9 +7,9 @@
 	align-items: center;
 	justify-content: space-between;
 	background: black;
-	height: 60px;
+	// height: 60px;
 	border-bottom: var(--thinWhite);
-	padding-left: 2rem;
+	padding-left: 1.5rem;
 }
 
 .logo {
@@ -19,12 +19,14 @@
 }
 
 .btn {
+	display: flex;
+	align-items: center;
 	position: relative;
 	height: 100%;
-	padding: 0 2rem;
+	padding: 1.5rem;
 	background: transparent;
 	cursor: pointer;
-	border-left: var(--thinWhite);
+	// border-left: var(--thinWhite);
 }
 
 
@@ -34,6 +36,7 @@
 	justify-content: center;
 	align-items: center;
 	width: 2rem;
+	height: 2rem;
 }
 
 .btnOpen {
@@ -69,7 +72,7 @@
 
 @media screen and (min-width: 768px) {
 	.navBar {
-		height: 60px;
+		// height: 60px;
 	}
 }
 

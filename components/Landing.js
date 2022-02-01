@@ -1,5 +1,5 @@
 import styles from '../styles/Landing.module.scss'
-import { BsArrowDownRight, BsChevronRight } from 'react-icons/bs'
+import { BsSearch, BsChevronRight } from 'react-icons/bs'
 import { useRef, memo } from 'react'
 
 function Landing({ queryParams, setQueryParams, articles, initResults, loading }) {
@@ -23,9 +23,9 @@ function Landing({ queryParams, setQueryParams, articles, initResults, loading }
 					{/* Find the stories you care about, 
 					<br />
 					from the sources you trust. */}
-					Find the stories you care about, 
+					Compare news coverage
 					<br />
-					from the sources you trust.
+					across the media landscape.
 				</h1>
 				<form 
 					name='search'
@@ -35,7 +35,7 @@ function Landing({ queryParams, setQueryParams, articles, initResults, loading }
 						ref={queryRef}
 						name='search' 
 						type='text' 
-						placeholder='e.g. Elon Musk'
+						placeholder='e.g. Taiwan'
 						className={styles.topic}
 						onClick={(e) => e.target.select()}
 						required={true}
@@ -44,7 +44,9 @@ function Landing({ queryParams, setQueryParams, articles, initResults, loading }
 						onClick={formHandler}
 						className={styles.submit} 
 					>
-						<BsChevronRight />
+						<BsSearch />
+						T
+						{/* Search */}
 					</button>
 				</form>
 				<h6 className={messageClass}>{`No results for '${queryParams.query}'`}</h6>

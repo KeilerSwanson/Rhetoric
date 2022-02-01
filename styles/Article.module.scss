@@ -13,7 +13,7 @@
 .article::after {
 	content: '';
 	height: 1px;
-	background: var(--hoverGrey);
+	background: rgb(133, 133, 133, .66);
 	width: 100%;
 	position: absolute;
 	bottom: 0;
@@ -26,7 +26,7 @@
 
 .title {
 	color: black;
-	font-size: 2.5rem;
+	font-size: 2.25rem;
 	font-weight: 800;
 }
 
@@ -34,9 +34,9 @@
 	color: black;
 	font-size: 1.4rem;
 	font-weight: 700;
-	margin: 2.25rem 0;
+	margin: 2rem 0;
 	// text-transform: uppercase;
-	border-bottom: solid 1px black;
+	// border-bottom: solid 1px black;
 	width: fit-content;
 }
 
@@ -46,14 +46,14 @@
 
 .excerpt {
 	color: black;
-	font-size: 1.6rem;
+	font-size: 1.5rem;
 	font-weight: 400;
 }
 
 .buttons {
 	width: 100%;
 	display: flex;
-	margin-top: 3rem;
+	margin-top: 2rem;
 }
 
 .button {
@@ -66,7 +66,8 @@
 	color: white;
 	font-weight: 600;
 	font-size: 1.25rem;
-	padding: 10px;
+	// padding: 10px;
+	padding: 1rem 0;
 	position: relative;
 	overflow: hidden;
 	z-index: 1;
@@ -78,6 +79,11 @@
 
 .bookmark {
 	border-right: var(--thinWhite);
+	border-radius: 10px 0 0 10px;
+}
+
+.read {
+	border-radius: 0 10px 10px 0;
 }
 
 @media screen and (min-width: 768px) {

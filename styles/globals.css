@@ -4,7 +4,6 @@
 :root {
   --thinWhite: solid 1px rgba(255, 255, 255, 0.333);
   --hoverGrey: rgb(133, 133, 133);
-  /* --hoverGrey: #333; */
 }
 
 html {
@@ -45,15 +44,21 @@ body::-webkit-scrollbar-thumb {
 
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 414px) {
   html {
     font-size: 11px;
   }
 }
 
-@media screen and (min-width: 1920px) {
+@media screen and (min-width: 768px) {
   html {
     font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  html {
+    /* font-size: 13px; */
   }
 }
 

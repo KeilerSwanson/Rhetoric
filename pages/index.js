@@ -16,6 +16,7 @@ export default function Home() {
     bookmarks: true,
     results: true
   })
+  const navRef = useRef()
   const resultsRef = useRef()
   const sourcesRef = useRef()
   const [queryParams, setQueryParams] = useState({
@@ -32,6 +33,19 @@ export default function Home() {
   const [loading, setLoading] = useState(false)
   const [modalOpen, openModal] = useState(false)
   const memoGetNews = useCallback(getNews, [queryParams])
+
+  useEffect(() => {
+    const vh = window.innerHeight * 0.01
+    const navHeight = window.innerHeight - parseInt(window.getComputedStyle(navRef.current).height)
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    document.documentElement.style.setProperty('--navHeight', `${navHeight}px`)
+    window.addEventListener('resize', () => {
+      const vh = window.innerHeight * 0.01
+      const navHeight = window.innerHeight - parseInt(window.getComputedStyle(navRef.current).height)
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+      document.documentElement.style.setProperty('--navHeight', `${navHeight}px`)
+    })
+  })
 
   useEffect(() => {
     if (initRender.current.sources) {
@@ -143,6 +157,7 @@ export default function Home() {
         <meta name='description' content='Find the stories you care about, from the sources you trust.' />
       </Head>
       <NavBar 
+        navRef={navRef}
         modalOpen={modalOpen}
         toggleModal={memoToggleModal}
       />
