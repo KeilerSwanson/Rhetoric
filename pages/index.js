@@ -34,7 +34,7 @@ export default function Home() {
   const memoGetNews = useCallback(getNews, [queryParams])
 
   useEffect(() => {
-    screen.orientation.lock('portrait')
+    // screen.orientation.lock('portrait')
     const vh = window.innerHeight * 0.01
     const navHeight = window.innerHeight - parseInt(window.getComputedStyle(navRef.current).height)
     document.documentElement.style.setProperty('--vh', `${vh}px`);
