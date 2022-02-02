@@ -1,11 +1,9 @@
 .modal {
 	background: black;
 	position: fixed;
-	// top: 60px;
 	bottom: 0;
 	right: 0;
-	height: calc(100vh - 60px);
-	// height: calc(var(--vh) * 100 - 60px);
+	height: calc(var(--vh) * 100 - 60px);
 	height: var(--navHeight);
 	width: 100vw;
 	transform: translate(100%, 0);
@@ -13,13 +11,7 @@
 	will-change: transform;
 	display: flex;
 	z-index: 3;
-	// border-left: var(--thinWhite);
-	// overflow-y: scroll;
 }
-
-// .modal::-webkit-scrollbar {
-//   width: 0px;
-// }
 
 .modalOpen {
 	composes: modal;
@@ -34,8 +26,6 @@
 
 @media screen and (min-width: 768px) {
 	.modal {
-		// top: 60px;
-		// height: calc(100vh - 60px);
 		width: 70vw;
 	}
 	.modalOpen {
@@ -45,8 +35,6 @@
 
 @media screen and (min-width: 1366px) {
 	.modal {
-		// top: 60px;
-		// height: calc(100vh - 60px);
 		width: 30vw;
 	}
 }

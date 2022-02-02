@@ -1,14 +1,11 @@
-import * as styles from '../styles/Bookmark.module.scss'
-import { BsPlus, BsTrash2 } from 'react-icons/bs'
-import { VscClose } from 'react-icons/vsc'
 import { memo } from 'react'
+import { VscClose } from 'react-icons/vsc'
+import * as styles from '../styles/Bookmark.module.scss'
 
 function Bookmark({ title, url }) {
-	// console.log('bookmark render')
 
 	return (
 		<li
-			// key={readingList[title]}
 			className={styles.bookmark}
 			title={title}
 		>
@@ -20,7 +17,6 @@ function Bookmark({ title, url }) {
 			>
 				{`${title.substring(0, 30)}..`}
 			</a>
-			{/* Wrap the X */}
 			<button 
 				className={styles.remove}
 				data-title={title}

@@ -1,4 +1,4 @@
-.navBar {
+.nav {
 	width: 100%;
 	position: fixed;
 	top: 0;
@@ -7,15 +7,47 @@
 	align-items: center;
 	justify-content: space-between;
 	background: black;
-	// height: 60px;
-	border-bottom: var(--thinWhite);
-	padding-left: 1.5rem;
+	// border-bottom: var(--thinWhite);
+}
+
+.navLoading {
+	composes: nav;
+}
+
+.nav::after {
+	content: '';
+	position: absolute;
+	bottom: -2px;
+	left: -100vw;
+	height: 3px;
+	width: 300vw;
+	background: linear-gradient(to left, #D00000, #8c1eb8, #1E91D6);
+}
+
+.navLoading::after {
+	animation: loading 1.25s infinite ease-in-out;
+}
+
+@keyframes loading {
+	0% {
+		transform: translateX(0);
+	} 
+	33% {
+		transform: translateX(100vw);
+	}
+	66% {
+		transform: translateX(-100vw);
+	}
+	100% {
+		transform: translateX(0);
+	}
 }
 
 .logo {
 	font-family: 'Permanent Marker';
 	font-size: 2rem;
 	color: white;
+	padding-left: 1.5rem;
 }
 
 .btn {
@@ -41,7 +73,6 @@
 
 .btnOpen {
 	composes: btn;
-	// background: #111;
 }
 
 .bar {
@@ -68,12 +99,6 @@
 
 .btnOpen .barTwo {
 	transform: rotate(-45deg);
-}
-
-@media screen and (min-width: 768px) {
-	.navBar {
-		// height: 60px;
-	}
 }
 
 @media screen and (min-width: 1366px) {

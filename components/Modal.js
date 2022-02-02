@@ -1,12 +1,11 @@
 import { memo, useState, useRef } from 'react'
-import * as styles from '../styles/Modal.module.scss'
-import { disableBodyScroll, enableBodyScroll } from '../lib/utils'
 import Sources from './Sources'
 import Bookmarks from './Bookmarks'
 import About from './About'
+import { disableBodyScroll, enableBodyScroll } from '../lib/utils'
+import * as styles from '../styles/Modal.module.scss'
 
 function Modal({ queryParams, modalOpen, bookmarks, setBookmarks, sourcesRef }) {	
-	const menuRef = useRef()
 	const [itemsOpen, setItemsOpen] = useState({
 		sources: false,
 		bookmarks: false,
@@ -17,6 +16,7 @@ function Modal({ queryParams, modalOpen, bookmarks, setBookmarks, sourcesRef }) 
 		bookmarks: useRef(),
 		about: useRef()
 	}
+	const menuRef = useRef()
 	const headerRef = useRef()
 	const modalClass = modalOpen ? styles.modalOpen : styles.modal
 
@@ -25,7 +25,6 @@ function Modal({ queryParams, modalOpen, bookmarks, setBookmarks, sourcesRef }) 
 		const availableHeight = parseInt(window.getComputedStyle(menuRef.current).height) - (headerHeight * 3)
 		this.current.style.cssText = `height: ${availableHeight}px`
 	}
-
 
 	// Implement without creating objects each call?
 	function toggleItems() {

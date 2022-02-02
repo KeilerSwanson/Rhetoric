@@ -1,8 +1,8 @@
 import { memo, useEffect } from 'react'
-import * as styles from '../styles/MenuItem.module.scss'
 import { BsChevronDown } from 'react-icons/bs'
 import Source from './Source'
 import { sourceList } from '../lib/sourceList'
+import * as styles from '../styles/MenuItem.module.scss'
 
 function Sources({ open, itemRef, headerRef, toggleItems, setHeight, sourcesRef, queryParams }) {
 	const itemClass = open ? styles.itemOpen : styles.item

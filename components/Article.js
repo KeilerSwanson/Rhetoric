@@ -1,6 +1,6 @@
-import * as styles from '../styles/Article.module.scss'
-import { formatSource, formatDate, formatExcerpt } from '../lib/utils'
 import { memo } from 'react'
+import { formatSource, formatDate, formatExcerpt } from '../lib/utils'
+import * as styles from '../styles/Article.module.scss'
 
 function Article({ title, source, date, excerpt, url }) {
 

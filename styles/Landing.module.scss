@@ -1,14 +1,10 @@
 .landing {
-	height: 100vh;
+	height: calc(var(--vh) * 100);
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	padding: 0 1.5rem;
-}
-
-.header {
-	// max-width: 550px;
 }
 
 .title {
@@ -24,8 +20,6 @@
   align-items: center;
   position: relative;
   margin-top: 3rem;
-  // border: solid 2px rgba(0, 0, 0, 0.5);
-  // border-radius: 5px;
 }
 
 .topic {
@@ -36,7 +30,7 @@
   background: transparent;
   padding: 1rem;
 	border: solid 2px black;
-	border-radius: 10px 0 0 10px;
+	border-radius: 5px 0 0 5px;
 }
 
 .topic:focus  {
@@ -54,7 +48,7 @@
 	font-weight: 400;
   background: black;
   padding: 1rem 2rem;
-	border-radius: 0 10px 10px 0;
+	border-radius: 0 5px 5px 0;
 	border: solid 2px black;
 	color: transparent;
 	position: relative;
@@ -73,7 +67,7 @@
 	font-size: 1.5rem;
 	color: var(--hoverGrey);
 	font-weight: 400;
-	padding: 5px 0;
+	padding: 1rem;
 	visibility: hidden;
 }
 

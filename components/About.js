@@ -1,7 +1,7 @@
-import * as styles from '../styles/MenuItem.module.scss'
-import { BsChevronDown, BsGithub } from 'react-icons/bs'
 import { memo, useRef, useEffect } from 'react'
+import { BsChevronDown } from 'react-icons/bs'
 import { Credits } from './Credits'
+import * as styles from '../styles/MenuItem.module.scss'
 
 function About({ open, itemRef, toggleItems, setHeight }) {
 	const dropdownRef = useRef()

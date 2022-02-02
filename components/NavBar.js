@@ -1,14 +1,14 @@
+import { memo } from 'react'
 import styles from '../styles/NavBar.module.scss'
-import { BsBookmarks, BsSliders, BsArrowUp, BsInfoCircle } from 'react-icons/bs'
-import { memo, useState } from 'react'
 
-function NavBar({ navRef, modalOpen, toggleModal }) {
+function NavBar({ navRef, modalOpen, toggleModal, loading }) {
 	const btnClass = modalOpen ? styles.btnOpen : styles.btn
+	const navClass = loading ? styles.navLoading : styles.nav
 
 	return (
 		<nav 
 			ref={navRef}
-			className={styles.navBar}	
+			className={navClass}	
 		>
 			<h1 className={styles.logo}>Rhetoric</h1>
 			<button 

@@ -26,7 +26,6 @@
 	user-select: none;
 	width: 100%;
 	z-index: 2;
-	// padding: 10px 0;
 }
 
 .checkbox {
@@ -37,8 +36,6 @@
 	font-size: 2.25rem;
 	color: white;
 	visibility: hidden;
-	// position: absolute;
-	// right: 0;
 }
 
 .checkbox:checked + .check {

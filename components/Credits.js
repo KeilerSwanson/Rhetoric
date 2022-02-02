@@ -1,5 +1,4 @@
 import * as styles from '../styles/Credits.module.scss'
-import { BsGithub } from 'react-icons/bs'
 
 function Credits() {
 	return (
@@ -10,9 +9,6 @@ function Credits() {
 				target='_blank'
 				rel='noopener noreferrer'
 			>
-				{/* <BsGithub 
-					className={styles.github}
-				/> */}
 				Github
 			</a>
 			<a

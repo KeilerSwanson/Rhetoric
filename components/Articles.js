@@ -1,7 +1,6 @@
-import { useEffect } from 'react'
-import * as styles from '../styles/Articles.module.scss'
+import { useEffect, memo } from 'react'
 import Article from './Article'
-import { memo } from 'react'
+import * as styles from '../styles/Articles.module.scss'
 
 function Articles({ articles, resultsRef, bookmarks, setBookmarks }) {
 	const resultsClass = articles ? styles.results : styles.preResults

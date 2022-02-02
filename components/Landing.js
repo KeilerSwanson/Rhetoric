@@ -1,10 +1,10 @@
-import styles from '../styles/Landing.module.scss'
-import { BsSearch, BsChevronRight } from 'react-icons/bs'
 import { useRef, memo } from 'react'
+import { BsSearch } from 'react-icons/bs'
+import styles from '../styles/Landing.module.scss'
 
 function Landing({ queryParams, setQueryParams, articles, initResults, loading }) {
-	const messageClass = (initResults || articles || loading) ? styles.message : styles.messageShow
 	const queryRef = useRef()
+	const messageClass = (initResults || articles || loading) ? styles.message : styles.messageShow
 
 	function formHandler(e) {
 		e.preventDefault()
@@ -20,9 +20,6 @@ function Landing({ queryParams, setQueryParams, articles, initResults, loading }
 		<div className={styles.landing}>
 			<header className={styles.header}>
 				<h1 className={styles.title}>
-					{/* Find the stories you care about, 
-					<br />
-					from the sources you trust. */}
 					Compare news coverage
 					<br />
 					across the media landscape.
@@ -46,7 +43,6 @@ function Landing({ queryParams, setQueryParams, articles, initResults, loading }
 					>
 						<BsSearch />
 						T
-						{/* Search */}
 					</button>
 				</form>
 				<h6 className={messageClass}>{`No results for '${queryParams.query}'`}</h6>

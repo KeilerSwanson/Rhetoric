@@ -1,7 +1,7 @@
-import * as styles from '../styles/MenuItem.module.scss'
-import { BsChevronDown } from 'react-icons/bs'
 import { memo, useRef, useEffect } from 'react'
+import { BsChevronDown } from 'react-icons/bs'
 import Bookmark from './Bookmark'
+import * as styles from '../styles/MenuItem.module.scss'
 
 function Bookmarks({ open, itemRef, toggleItems, setHeight, bookmarks, setBookmarks }) {
 	const dropdownRef = useRef()

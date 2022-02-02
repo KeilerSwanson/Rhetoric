@@ -1,4 +1,3 @@
-import * as styles from '../styles/Home.module.scss'
 import Head from 'next/head'
 import { useEffect, useState, useRef, useCallback } from 'react'
 import NavBar from '../components/NavBar'
@@ -6,19 +5,11 @@ import Landing from '../components/Landing'
 import Articles from '../components/Articles'
 import Modal from '../components/Modal'
 import PaginationNav from '../components/PaginationNav'
-import Loading from '../components/Loading'
 import { sourceList } from '../lib/sourceList'
 import { disableBodyScroll, enableBodyScroll } from '../lib/utils'
+import * as styles from '../styles/Home.module.scss'
 
 export default function Home() {
-  const initRender = useRef({
-    sources: true,
-    bookmarks: true,
-    results: true
-  })
-  const navRef = useRef()
-  const resultsRef = useRef()
-  const sourcesRef = useRef()
   const [queryParams, setQueryParams] = useState({
     query: '',
     sources: Object.values(sourceList),
@@ -32,6 +23,14 @@ export default function Home() {
   const [bookmarks, setBookmarks] = useState('{}')
   const [loading, setLoading] = useState(false)
   const [modalOpen, openModal] = useState(false)
+  const initRender = useRef({
+    sources: true,
+    bookmarks: true,
+    results: true
+  })
+  const navRef = useRef()
+  const resultsRef = useRef()
+  const sourcesRef = useRef()
   const memoGetNews = useCallback(getNews, [queryParams])
 
   useEffect(() => {
@@ -154,12 +153,13 @@ export default function Home() {
         <meta charSet='utf-8' />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name='author' content='Keiler Swanson' />
-        <meta name='description' content='Find the stories you care about, from the sources you trust.' />
+        <meta name='description' content='Compare news coverage across the media landscape.' />
       </Head>
       <NavBar 
         navRef={navRef}
         modalOpen={modalOpen}
         toggleModal={memoToggleModal}
+        loading={loading}
       />
       <Landing 
         initResults={initRender.current.results}
@@ -185,8 +185,6 @@ export default function Home() {
         news={news}
         nextPage={memoNextPage}
         prevPage={memoPrevPage}
-      />
-      <Loading 
         loading={loading}
       />
     </main> 
