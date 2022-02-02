@@ -15,11 +15,7 @@
 }
 
 @media screen and (min-width: 1366px) {
-	.credit:hover {
-		background: #111;
+	.credit:first-child {
+		margin: 0;
 	}
-}
-
-.credit:active {
-	background: #222;
-}
+}	

@@ -2,7 +2,8 @@ import { memo, useEffect } from 'react'
 import { BsChevronDown } from 'react-icons/bs'
 import Source from './Source'
 import { sourceList } from '../lib/sourceList'
-import * as styles from '../styles/MenuItem.module.scss'
+import styles from '../styles/MenuItem.module.scss'
+import effects from '../styles/Effects.module.scss'
 
 function Sources({ open, itemRef, headerRef, toggleItems, setHeight, sourcesRef, queryParams }) {
 	const itemClass = open ? styles.itemOpen : styles.item
@@ -34,11 +35,11 @@ function Sources({ open, itemRef, headerRef, toggleItems, setHeight, sourcesRef,
 			ref={itemRef}
 		>
 			<span 
-				className={styles.header}	
+				className={`${styles.header} ${effects.hover}`}	
 				ref={headerRef}
 				onClick={() => toggleItems.bind(itemRef)()}
 			>
-				<h2 className={styles.title}>Sources</h2>
+				<h2 className={styles.heading}>Sources</h2>
 				<BsChevronDown className={styles.icon} />
 			</span>
 			<ul 

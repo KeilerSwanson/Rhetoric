@@ -1,7 +1,8 @@
 import { memo, useRef, useEffect } from 'react'
 import { BsChevronDown } from 'react-icons/bs'
 import Bookmark from './Bookmark'
-import * as styles from '../styles/MenuItem.module.scss'
+import styles from '../styles/MenuItem.module.scss'
+import effects from '../styles/Effects.module.scss'
 
 function Bookmarks({ open, itemRef, toggleItems, setHeight, bookmarks, setBookmarks }) {
 	const dropdownRef = useRef()
@@ -31,7 +32,7 @@ function Bookmarks({ open, itemRef, toggleItems, setHeight, bookmarks, setBookma
 				url={bookmarks[title]}
 			/>
 		)
-	}) : <li className={styles.noBookmark}>No bookmarks</li>
+	}) : <Bookmark title='No bookmarks' />
 
 	return (
 		<li 
@@ -40,10 +41,10 @@ function Bookmarks({ open, itemRef, toggleItems, setHeight, bookmarks, setBookma
 			ref={itemRef}
 		>
 			<span 
-				className={styles.header}
+				className={`${styles.header} ${effects.hover}`}
 				onClick={() => toggleItems.bind(itemRef)()}
 			>
-				<h2 className={styles.title}>Bookmarks</h2>
+				<h2 className={styles.heading}>Bookmarks</h2>
 				<BsChevronDown className={styles.icon} />
 			</span>
 			<ul 

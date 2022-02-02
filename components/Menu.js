@@ -3,9 +3,9 @@ import Sources from './Sources'
 import Bookmarks from './Bookmarks'
 import About from './About'
 import { disableBodyScroll, enableBodyScroll } from '../lib/utils'
-import * as styles from '../styles/Modal.module.scss'
+import styles from '../styles/Menu.module.scss'
 
-function Modal({ queryParams, modalOpen, bookmarks, setBookmarks, sourcesRef }) {	
+function Menu({ queryParams, menuOpen, bookmarks, setBookmarks, sourcesRef }) {	
 	const [itemsOpen, setItemsOpen] = useState({
 		sources: false,
 		bookmarks: false,
@@ -18,7 +18,7 @@ function Modal({ queryParams, modalOpen, bookmarks, setBookmarks, sourcesRef }) 
 	}
 	const menuRef = useRef()
 	const headerRef = useRef()
-	const modalClass = modalOpen ? styles.modalOpen : styles.modal
+	const menuClass = menuOpen ? styles.menuOpen : styles.menu
 
 	function setHeight() {
 		const headerHeight = parseInt(window.getComputedStyle(headerRef.current).height)
@@ -41,12 +41,12 @@ function Modal({ queryParams, modalOpen, bookmarks, setBookmarks, sourcesRef }) 
 
 	return (
 		<nav 
-			className={modalClass}
+			className={menuClass}
 			onMouseOver={disableBodyScroll}
 			onMouseOut={enableBodyScroll}	
 		>
 			<menu 
-				className={styles.menu}
+				className={styles.menuItems}
 				ref={menuRef}
 			>
 				<Sources
@@ -77,4 +77,4 @@ function Modal({ queryParams, modalOpen, bookmarks, setBookmarks, sourcesRef }) 
 	)
 }
 
-export default memo(Modal)
+export default memo(Menu)

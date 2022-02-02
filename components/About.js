@@ -1,7 +1,8 @@
 import { memo, useRef, useEffect } from 'react'
 import { BsChevronDown } from 'react-icons/bs'
 import { Credits } from './Credits'
-import * as styles from '../styles/MenuItem.module.scss'
+import styles from '../styles/MenuItem.module.scss'
+import effects from '../styles/Effects.module.scss'
 
 function About({ open, itemRef, toggleItems, setHeight }) {
 	const dropdownRef = useRef()
@@ -22,11 +23,11 @@ function About({ open, itemRef, toggleItems, setHeight }) {
 			ref={itemRef}
 		>
 			<span 
-				className={styles.header}
+				className={`${styles.header} ${effects.hover}`}
 				onClick={() => toggleItems.bind(itemRef)()}
 			>
-			<h2 className={styles.title}>About</h2>
-			<BsChevronDown className={styles.icon} />
+				<h2 className={styles.heading}>About</h2>
+				<BsChevronDown className={styles.icon} />
 			</span>
 			<ul 
 				className={styles.dropdown}

@@ -1,12 +1,13 @@
 import Link from 'next/link'
-import * as styles from '../styles/Error.module.scss'
+import styles from '../styles/Error.module.scss'
 
 function Error({ message }) {
+
 	return (
-		<div className={styles.notFound}>
+		<div className={styles.error}>
 			<h1 className={styles.message}>{message}</h1>
 			<Link href='/'>
-				<a className={styles.home}>Home</a>
+				<a className={styles.btn}>Home</a>
 			</Link>
 		</div>
 	)

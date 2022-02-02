@@ -13,15 +13,10 @@
 .article::after {
 	content: '';
 	height: 1px;
-	background: rgb(133, 133, 133, .66);
+	background: rgba(119, 119, 119, 0.66);
 	width: 100%;
 	position: absolute;
 	bottom: 0;
-}
-
-.info {
-	display: flex;
-	flex-direction: column;
 }
 
 .title {
@@ -48,13 +43,13 @@
 	font-weight: 400;
 }
 
-.buttons {
+.btns {
 	width: 100%;
 	display: flex;
 	margin-top: 2rem;
 }
 
-.button {
+.btn {
 	width: 50%;
 	cursor: pointer;
 	display: flex;
@@ -71,7 +66,7 @@
 }
 
 .bookmark, .read {
-	composes: button;
+	composes: btn;
 }
 
 .bookmark {
@@ -87,14 +82,4 @@
 	.article {
 		padding: 75px 0;
 	}
-}
-
-@media screen and (min-width: 1366px) {
-	.button:hover {
-		background: #111;
-	}
-}
-
-.button:active {
-	background: #222;
 }

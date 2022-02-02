@@ -1,8 +1,8 @@
 import { useEffect, memo } from 'react'
 import Article from './Article'
-import * as styles from '../styles/Articles.module.scss'
+import styles from '../styles/Results.module.scss'
 
-function Articles({ articles, resultsRef, bookmarks, setBookmarks }) {
+function Results({ articles, resultsRef, bookmarks, setBookmarks }) {
 	const resultsClass = articles ? styles.results : styles.preResults
 
 	useEffect(() => {
@@ -37,7 +37,7 @@ function Articles({ articles, resultsRef, bookmarks, setBookmarks }) {
 	}) : null
 
 	return (
-		<div 
+		<section 
 			ref={resultsRef}
 			className={resultsClass}
 		>
@@ -47,8 +47,8 @@ function Articles({ articles, resultsRef, bookmarks, setBookmarks }) {
 			>
 				{articleList}
 			</ul>
-		</div>
+		</section>
 	)
 }
 
-export default memo(Articles)
+export default memo(Results)

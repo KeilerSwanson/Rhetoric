@@ -7,7 +7,7 @@
 	padding: 0 1.5rem;
 }
 
-.title {
+.heading {
 	font-size: 3.75rem;
 	font-weight: 800;
 	text-align: left;
@@ -22,8 +22,8 @@
   margin-top: 3rem;
 }
 
-.topic {
-	font-size: 1.5rem;
+.query {
+	font-size: 1.6rem;
   font-weight: 400;
   width: 100%;
   color: black;
@@ -33,18 +33,18 @@
 	border-radius: 5px 0 0 5px;
 }
 
-.topic:focus  {
+.query:focus  {
 	outline: none;
 }
 
-.topic::placeholder {
-	color: var(--hoverGrey);
+.query::placeholder {
+	color: #777;
 	font-weight: 400;
 }
 
-.submit {
+.btn {
   cursor: pointer;
-	font-size: 1.5rem;
+	font-size: 1.6rem;
 	font-weight: 400;
   background: black;
   padding: 1rem 2rem;
@@ -57,7 +57,7 @@
 	align-items: center;
 }
 
-.submit > svg {
+.btn > svg {
 	color: white;
 	font-size: 2rem;
 	position: absolute;
@@ -65,7 +65,7 @@
 
 .message {
 	font-size: 1.5rem;
-	color: var(--hoverGrey);
+	color: #777;
 	font-weight: 400;
 	padding: 1rem;
 	visibility: hidden;
@@ -77,22 +77,22 @@
 }
 
 @media screen and (min-width: 768px) {
-	.title {
+	.heading {
 		text-align: center;
 	}
-	.topic {
+	.query {
 		top: 0;
 	}
 }
 
 @media screen and (min-width: 1366px) {
-	.submit:hover {
+	.btn:hover {
 		background: #111;
 		border: solid 2px #111;
 	}
 }
 
-.submit:active {
+.btn:active {
 	background: #222;
 	border: solid 2px #222;
 }

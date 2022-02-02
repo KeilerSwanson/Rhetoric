@@ -1,0 +1,9 @@
+@media screen and (min-width: 1366px) {
+  .hover:hover {
+    background: var(--hover1);
+  }
+}
+
+.hover:active {
+  background: var(--hover2);
+}

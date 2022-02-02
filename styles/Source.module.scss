@@ -17,7 +17,6 @@
 	margin-bottom: 1rem;
 }
 
-
 .label {
 	font-size: 1.5rem;
 	font-weight: 400;
@@ -32,22 +31,22 @@
 	appearance: none;
 }
 
-.checkbox + .check {
+.checkbox + .icon {
 	font-size: 2.25rem;
 	color: white;
 	visibility: hidden;
 }
 
-.checkbox:checked + .check {
+.checkbox:checked + .icon {
 	visibility: visible;
 }
 
 @media screen and (min-width: 1366px) {
-	.source:hover {
-		background: #111;
+	.source:first-child {
+		margin: 0;
 	}
-}
-
-.source:active {
-	background: #222;
-}
+	
+	.source:last-child {
+		margin: 0;
+	}
+}	

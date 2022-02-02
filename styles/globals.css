@@ -1,9 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Permanent+Marker&display=swap');
 
+@keyframes loading {
+	0% {
+		transform: translateX(0);
+	} 33% {
+		transform: translateX(100vw);
+	} 66% {
+		transform: translateX(-100vw);
+	} 100% {
+		transform: translateX(0);
+	}
+}
+
 :root {
   --thinWhite: solid 1px rgba(255, 255, 255, 0.333);
-  --hoverGrey: rgb(133, 133, 133);
+  /* --thinWhite: solid 1px rgba(119, 119, 119, 0.33); */
+  --hover1: #111;
+  --hover2: #222;
+  --blue: #1E91D6;
+  --purp: #8c1eb8;
+  --red: #D00000;
+  --loading: loading;
 }
 
 html {
@@ -40,10 +58,6 @@ body::-webkit-scrollbar {
   width: 0px;
 }
 
-body::-webkit-scrollbar-thumb {
-
-}
-
 @media screen and (min-width: 414px) {
   html {
     font-size: 11px;
@@ -55,10 +69,3 @@ body::-webkit-scrollbar-thumb {
     font-size: 12px;
   }
 }
-
-@media screen and (min-width: 1920px) {
-  html {
-    /* font-size: 13px; */
-  }
-}
-

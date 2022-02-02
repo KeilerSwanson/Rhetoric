@@ -1,11 +1,12 @@
 import { memo } from 'react'
 import { BsCheck2 } from 'react-icons/bs'
-import * as styles from '../styles/Source.module.scss'
+import styles from '../styles/Source.module.scss'
+import effects from '../styles/Effects.module.scss'
 
 function Source({ title, dataSource, checked }) {
 	return (
 		<li 
-			className={styles.source}
+			className={`${styles.source} ${effects.hover}`}
 			data-source={dataSource}
 		>
 			<label 
@@ -23,7 +24,7 @@ function Source({ title, dataSource, checked }) {
 				defaultChecked={checked}
 			/>
 			<BsCheck2 
-				className={styles.check}
+				className={styles.icon}
 			/>
 		</li>
 	)

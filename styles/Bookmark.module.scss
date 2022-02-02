@@ -34,7 +34,7 @@
 	padding-left: 2rem;
 }
 
-.remove > svg {
+.icon {
 	font-size: 2.5rem;
 	color: white;
 	pointer-events: none;
@@ -43,11 +43,11 @@
 }
 
 @media screen and (min-width: 1366px) {
-	.bookmark:hover {
-		background: #111;
+	.bookmark:first-child {
+		margin: 0;
 	}
-}
-
-.bookmark:active {
-	background: #222;
-}
+	
+	.bookmark:last-child {
+		margin: 0;
+	}
+}	

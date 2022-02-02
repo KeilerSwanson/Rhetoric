@@ -27,20 +27,10 @@
 	transition: border .25s;
 }
 
-.title {
+.heading {
 	color: white;
 	font-weight: 600;
 	font-size: 2rem;
-}
-
-.noBookmark {
-	font-size: 1.5rem;
-	font-weight: 400;
-	color: white;
-	user-select: none;
-	z-index: 2;
-	padding: 1rem 1.5rem;
-	margin-top: 1rem;
 }
 
 .icon {
@@ -62,14 +52,4 @@
 
 .dropdown::-webkit-scrollbar {
 	width: 0px;
-}
-
-@media screen and (min-width: 1366px) {
-	.header:hover {
-		background: #111;
-	}
-}
-
-.header:active {
-	background: #222;
 }

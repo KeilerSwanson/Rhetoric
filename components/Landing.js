@@ -6,7 +6,7 @@ function Landing({ queryParams, setQueryParams, articles, initResults, loading }
 	const queryRef = useRef()
 	const messageClass = (initResults || articles || loading) ? styles.message : styles.messageShow
 
-	function formHandler(e) {
+	function handleForm(e) {
 		e.preventDefault()
 		if (queryRef.current.value === queryParams.query) return
 		setQueryParams({
@@ -17,9 +17,9 @@ function Landing({ queryParams, setQueryParams, articles, initResults, loading }
 	}
 
 	return (
-		<div className={styles.landing}>
+		<section className={styles.landing}>
 			<header className={styles.header}>
-				<h1 className={styles.title}>
+				<h1 className={styles.heading}>
 					Compare news coverage
 					<br />
 					across the media landscape.
@@ -33,13 +33,13 @@ function Landing({ queryParams, setQueryParams, articles, initResults, loading }
 						name='search' 
 						type='text' 
 						placeholder='e.g. Taiwan'
-						className={styles.topic}
+						className={styles.query}
 						onClick={(e) => e.target.select()}
 						required={true}
 					/>
 					<button 
-						onClick={formHandler}
-						className={styles.submit} 
+						onClick={handleForm}
+						className={styles.btn} 
 					>
 						<BsSearch />
 						T
@@ -47,7 +47,7 @@ function Landing({ queryParams, setQueryParams, articles, initResults, loading }
 				</form>
 				<h6 className={messageClass}>{`No results for '${queryParams.query}'`}</h6>
 			</header>
-		</div>
+		</section>
 	)
 }
 

@@ -1,6 +1,7 @@
 import { memo } from 'react'
 import { formatSource, formatDate, formatExcerpt } from '../lib/utils'
-import * as styles from '../styles/Article.module.scss'
+import styles from '../styles/Article.module.scss'
+import effects from '../styles/Effects.module.scss'
 
 function Article({ title, source, date, excerpt, url }) {
 
@@ -8,23 +9,21 @@ function Article({ title, source, date, excerpt, url }) {
 		<li 
 			className={styles.article}
 		>
-			<span className={styles.info}>
-				<h2 className={styles.title}>{title}</h2>
-				<h3 className={styles.meta}>
-					{formatSource(source)} / {formatDate(date)}
-				</h3>
-				<p className={styles.excerpt}>{formatExcerpt(excerpt)}</p>
-			</span>
-			<span className={styles.buttons}>
+			<h1 className={styles.title}>{title}</h1>
+			<h2 className={styles.meta}>
+				{formatSource(source)} / {formatDate(date)}
+			</h2>
+			<p className={styles.excerpt}>{formatExcerpt(excerpt)}</p>
+			<span className={styles.btns}>
 				<button 
-					className={styles.bookmark}
+					className={`${styles.bookmark} ${effects.hover}`}
 					data-title={title}
 					data-url={url}
 				>
 					Bookmark
 				</button>
 				<a 
-					className={styles.read}
+					className={`${styles.read} ${effects.hover}`}
 					href={url}
 					rel='noopener noreferrer'
 					target='_blank'

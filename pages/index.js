@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import { useEffect, useState, useRef, useCallback } from 'react'
-import NavBar from '../components/NavBar'
+import TopNav from '../components/TopNav'
 import Landing from '../components/Landing'
-import Articles from '../components/Articles'
-import Modal from '../components/Modal'
-import PaginationNav from '../components/PaginationNav'
+import Results from '../components/Results'
+import Menu from '../components/Menu'
+import BottomNav from '../components/BottomNav'
 import { sourceList } from '../lib/sourceList'
 import { disableBodyScroll, enableBodyScroll } from '../lib/utils'
 import * as styles from '../styles/Home.module.scss'
@@ -22,7 +22,7 @@ export default function Home() {
   })
   const [bookmarks, setBookmarks] = useState('{}')
   const [loading, setLoading] = useState(false)
-  const [modalOpen, openModal] = useState(false)
+  const [menuOpen, openMenu] = useState(false)
   const initRender = useRef({
     sources: true,
     bookmarks: true,
@@ -34,6 +34,7 @@ export default function Home() {
   const memoGetNews = useCallback(getNews, [queryParams])
 
   useEffect(() => {
+    screen.orientation.lock('portrait')
     const vh = window.innerHeight * 0.01
     const navHeight = window.innerHeight - parseInt(window.getComputedStyle(navRef.current).height)
     document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -92,7 +93,7 @@ export default function Home() {
         articles: resp.articles
       })
     } catch(err) {
-      alert(`Sorry, it looks like there was an error with the data we got from your search: "${err}" Try again or change the search query.`)
+      alert(`Sorry, it looks like there was an error with the data returned from your search: '${err}'. Try again or change the search query.`)
     }
     enableBodyScroll()
     setLoading(false)
@@ -113,16 +114,16 @@ export default function Home() {
 
   const memoUpdateSources = useCallback(updateSources, [queryParams, sourcesRef])
 
-  function toggleModal() {
-    if (modalOpen) {
+  function toggleMenu() {
+    if (menuOpen) {
       memoUpdateSources()
-      openModal(false)
+      openMenu(false)
     } else {
-      openModal(true)
+      openMenu(true)
     }
   }
 
-  const memoToggleModal = useCallback(toggleModal, [modalOpen, memoUpdateSources])
+  const memoToggleMenu = useCallback(toggleMenu, [menuOpen, memoUpdateSources])
 
   function nextPage() {
     if (news.numPages === queryParams.page) return
@@ -155,10 +156,10 @@ export default function Home() {
         <meta name='author' content='Keiler Swanson' />
         <meta name='description' content='Compare news coverage across the media landscape.' />
       </Head>
-      <NavBar 
+      <TopNav 
         navRef={navRef}
-        modalOpen={modalOpen}
-        toggleModal={memoToggleModal}
+        menuOpen={menuOpen}
+        toggleMenu={memoToggleMenu}
         loading={loading}
       />
       <Landing 
@@ -168,20 +169,20 @@ export default function Home() {
         setQueryParams={setQueryParams}
         loading={loading}
       />
-      <Articles 
+      <Results
         articles={news.articles}
         resultsRef={resultsRef}
         bookmarks={JSON.parse(bookmarks)}
         setBookmarks={setBookmarks}
       />
-      <Modal 
+      <Menu 
         sourcesRef={sourcesRef}
         queryParams={queryParams}
-        modalOpen={modalOpen}
+        menuOpen={menuOpen}
         bookmarks={JSON.parse(bookmarks)}
         setBookmarks={setBookmarks}
       />
-      <PaginationNav 
+      <BottomNav 
         news={news}
         nextPage={memoNextPage}
         prevPage={memoPrevPage}

@@ -1,4 +1,4 @@
-.modal {
+.menu {
 	background: black;
 	position: fixed;
 	bottom: 0;
@@ -13,28 +13,35 @@
 	z-index: 3;
 }
 
-.modalOpen {
-	composes: modal;
+
+.menuOpen {
+	composes: menu;
 	transform: translate(0, 0);
 }
 
-.menu {
+.menuItems {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 }
 
-@media screen and (min-width: 768px) {
-	.modal {
+@media screen and (min-width: 415px) {
+	.menu {
 		width: 70vw;
 	}
-	.modalOpen {
+}
+
+@media screen and (min-width: 769px) {
+	.menu {
+		width: 50vw;
+	}
+	.menuOpen {
 		border-left: var(--thinWhite);
 	}
 }
 
-@media screen and (min-width: 1366px) {
-	.modal {
+@media screen and (min-width: 1025px) {
+	.menu {
 		width: 30vw;
 	}
 }
