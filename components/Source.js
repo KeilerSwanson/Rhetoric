@@ -4,6 +4,7 @@ import styles from '../styles/Source.module.scss'
 import effects from '../styles/Effects.module.scss'
 
 function Source({ title, dataSource, checked }) {
+
 	return (
 		<li 
 			className={`${styles.source} ${effects.hover}`}

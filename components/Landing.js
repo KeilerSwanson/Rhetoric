@@ -2,9 +2,9 @@ import { useRef, memo } from 'react'
 import { BsSearch } from 'react-icons/bs'
 import styles from '../styles/Landing.module.scss'
 
-function Landing({ queryParams, setQueryParams, articles, initResults, loading }) {
+function Landing({ queryParams, setQueryParams, articles, initResults }) {
 	const queryRef = useRef()
-	const messageClass = (initResults || articles || loading) ? styles.message : styles.messageShow
+	const messageClass = (initResults || articles) ? styles.message : styles.messageShow
 
 	function handleForm(e) {
 		e.preventDefault()

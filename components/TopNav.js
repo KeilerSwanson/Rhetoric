@@ -2,8 +2,7 @@ import { memo } from 'react'
 import styles from '../styles/TopNav.module.scss'
 import effects from '../styles/Effects.module.scss'
 
-function TopNav({ navRef, menuOpen, toggleMenu, loading }) {
-	const navClass = loading ? styles.navLoading : styles.nav
+function TopNav({ navRef, menuOpen, toggleMenu }) {
 	const btnClass = menuOpen ? styles.btnOpen : styles.btn
 
 	function toTop() {
@@ -17,7 +16,7 @@ function TopNav({ navRef, menuOpen, toggleMenu, loading }) {
 	return (
 		<nav 
 			ref={navRef}
-			className={navClass}	
+			className={styles.nav}	
 		>
 			<h1 
 				className={styles.logo}

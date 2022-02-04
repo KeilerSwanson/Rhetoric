@@ -1,11 +1,11 @@
-import { memo, useState, useRef } from 'react'
+import { memo, useState, useRef, useCallback } from 'react'
 import Sources from './Sources'
 import Bookmarks from './Bookmarks'
 import About from './About'
 import { disableBodyScroll, enableBodyScroll } from '../lib/utils'
 import styles from '../styles/Menu.module.scss'
 
-function Menu({ queryParams, menuOpen, bookmarks, setBookmarks, sourcesRef }) {	
+function Menu({ sources, open, bookmarks, setBookmarks, sourcesRef }) {	
 	const [itemsOpen, setItemsOpen] = useState({
 		sources: false,
 		bookmarks: false,
@@ -18,7 +18,7 @@ function Menu({ queryParams, menuOpen, bookmarks, setBookmarks, sourcesRef }) {
 	}
 	const menuRef = useRef()
 	const headerRef = useRef()
-	const menuClass = menuOpen ? styles.menuOpen : styles.menu
+	const menuClass = open ? styles.menuOpen : styles.menu
 
 	function setHeight() {
 		const headerHeight = parseInt(window.getComputedStyle(headerRef.current).height)
@@ -26,7 +26,8 @@ function Menu({ queryParams, menuOpen, bookmarks, setBookmarks, sourcesRef }) {
 		this.current.style.cssText = `height: ${availableHeight}px`
 	}
 
-	// Implement without creating objects each call?
+	const memoSetHeight = useCallback(setHeight, [])
+
 	function toggleItems() {
 		const newItemsOpen = {}
 		for (let item in itemsOpen) {
@@ -38,6 +39,8 @@ function Menu({ queryParams, menuOpen, bookmarks, setBookmarks, sourcesRef }) {
 		}
 		setItemsOpen(newItemsOpen)
 	}
+
+	const memoToggleItems = useCallback(toggleItems, [itemsOpen])
 
 	return (
 		<nav 
@@ -53,24 +56,24 @@ function Menu({ queryParams, menuOpen, bookmarks, setBookmarks, sourcesRef }) {
 					open={itemsOpen.sources}
 					itemRef={itemRefs.sources}
 					headerRef={headerRef}
-					toggleItems={toggleItems}
-					setHeight={setHeight}
+					toggleItems={memoToggleItems}
+					setHeight={memoSetHeight}
 					sourcesRef={sourcesRef}
-					queryParams={queryParams}
+					querySources={sources}
 				/>
 				<Bookmarks 
 					open={itemsOpen.bookmarks}
 					itemRef={itemRefs.bookmarks}
-					toggleItems={toggleItems}
-					setHeight={setHeight}
+					toggleItems={memoToggleItems}
+					setHeight={memoSetHeight}
 					bookmarks={bookmarks}
 					setBookmarks={setBookmarks}
 				/>
 				<About 
 					open={itemsOpen.about}
 					itemRef={itemRefs.about}
-					toggleItems={toggleItems}
-					setHeight={setHeight}
+					toggleItems={memoToggleItems}
+					setHeight={memoSetHeight}
 				/>
 			</menu>
 		</nav>

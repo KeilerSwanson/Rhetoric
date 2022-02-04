@@ -1,7 +1,9 @@
+import { memo } from 'react'
 import styles from '../styles/Credits.module.scss'
 import effects from '../styles/Effects.module.scss'
 
 function Credits() {
+
 	return (
 		<li className={styles.credits}>
 			<a
@@ -32,4 +34,4 @@ function Credits() {
 	)
 }
 
-export { Credits }
+export default memo(Credits)

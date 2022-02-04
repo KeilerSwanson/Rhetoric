@@ -7,6 +7,7 @@ import effects from '../styles/Effects.module.scss'
 function Bookmarks({ open, itemRef, toggleItems, setHeight, bookmarks, setBookmarks }) {
 	const dropdownRef = useRef()
 	const itemClass = open ? styles.itemOpen : styles.item
+	const bookmarksObj = JSON.parse(bookmarks)
 
 	useEffect(() => {
 		if (open) {
@@ -17,19 +18,20 @@ function Bookmarks({ open, itemRef, toggleItems, setHeight, bookmarks, setBookma
 	})
 
 	function removeBookmark(e) {
-		console.log('target: ', e.target)
+		const newBookmarks = {...bookmarksObj}
 		const title = e.target.dataset.title
-		delete bookmarks[title]
-		window.localStorage.setItem('bookmarks', JSON.stringify(bookmarks))
-		setBookmarks(JSON.stringify(bookmarks))
+		delete newBookmarks[title]
+		const newBookmarksStr = JSON.stringify(newBookmarks)
+		window.localStorage.setItem('bookmarks', newBookmarksStr)
+		setBookmarks(newBookmarksStr)
 	}
 
-	const articles = (Object.keys(bookmarks).length > 0) ? Object.keys(bookmarks).map(title => {
+	const articles = (Object.keys(bookmarksObj).length > 0) ? Object.keys(bookmarksObj).map(title => {
 		return (
 			<Bookmark 
-				key={bookmarks[title]}
+				key={bookmarksObj[title]}
 				title={title}
-				url={bookmarks[title]}
+				url={bookmarksObj[title]}
 			/>
 		)
 	}) : <Bookmark title='No bookmarks' />

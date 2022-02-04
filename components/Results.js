@@ -4,6 +4,7 @@ import styles from '../styles/Results.module.scss'
 
 function Results({ articles, resultsRef, bookmarks, setBookmarks }) {
 	const resultsClass = articles ? styles.results : styles.preResults
+	const bookmarksObj = JSON.parse(bookmarks)
 
 	useEffect(() => {
 		if (articles) {
@@ -16,10 +17,12 @@ function Results({ articles, resultsRef, bookmarks, setBookmarks }) {
 	}, [articles, resultsRef])
 
 	function addBookmark(e) {
+		const newBookmarks = {...bookmarksObj}
 		const articleData = e.target.dataset
-		bookmarks[articleData.title] = articleData.url
-		window.localStorage.setItem('bookmarks', JSON.stringify(bookmarks))
-		setBookmarks(JSON.stringify(bookmarks))
+		newBookmarks[articleData.title] = articleData.url
+		const newBookmarksStr = JSON.stringify(newBookmarks)
+		window.localStorage.setItem('bookmarks', newBookmarksStr)
+		setBookmarks(newBookmarksStr)
 	}
 
 	// This is the only list using indices for keys

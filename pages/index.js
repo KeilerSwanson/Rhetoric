@@ -5,6 +5,7 @@ import Landing from '../components/Landing'
 import Results from '../components/Results'
 import Menu from '../components/Menu'
 import BottomNav from '../components/BottomNav'
+import { Loading } from '../components/Loading'
 import { sourceList } from '../lib/sourceList'
 import { disableBodyScroll, enableBodyScroll } from '../lib/utils'
 import * as styles from '../styles/Home.module.scss'
@@ -21,7 +22,6 @@ export default function Home() {
     articles: null,
   })
   const [bookmarks, setBookmarks] = useState('{}')
-  const [loading, setLoading] = useState(false)
   const [menuOpen, openMenu] = useState(false)
   const initRender = useRef({
     sources: true,
@@ -31,10 +31,10 @@ export default function Home() {
   const navRef = useRef()
   const resultsRef = useRef()
   const sourcesRef = useRef()
+  const loadingRef = useRef()
   const memoGetNews = useCallback(getNews, [queryParams])
 
   useEffect(() => {
-    // screen.orientation.lock('portrait')
     const vh = window.innerHeight * 0.01
     const navHeight = window.innerHeight - parseInt(window.getComputedStyle(navRef.current).height)
     document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -57,13 +57,8 @@ export default function Home() {
           page: queryParams.page
         })
       }
-      return
     }
-    if (queryParams.query === '') return
-    if (initRender.current.results) initRender.current.results = false
-    
-    memoGetNews()
-  }, [queryParams, memoGetNews])
+  }, [queryParams])
 
   useEffect(() => {
     if (initRender.current.bookmarks) {
@@ -72,11 +67,16 @@ export default function Home() {
         setBookmarks(window.localStorage.getItem('bookmarks'))
       }
     }
-    return
   }, [bookmarks])
 
+  useEffect(() => {
+    if (queryParams.query === '') return
+    if (initRender.current.results) initRender.current.results = false
+    memoGetNews()
+  }, [queryParams, memoGetNews])
+
   async function getNews() {
-    setLoading(true)
+    loadingRef.current.style.cssText = `visibility: visible;`
     disableBodyScroll()
     try {
       const jsonResp = await fetch(`https://free-news.p.rapidapi.com/v1/search?q=${queryParams.query}&lang=en&sources=${queryParams.sources.join(',')}&page=${queryParams.page}`, {
@@ -96,7 +96,7 @@ export default function Home() {
       alert(`Sorry, it looks like there was an error with the data returned from your search: '${err}'. Try again or change the search query.`)
     }
     enableBodyScroll()
-    setLoading(false)
+    loadingRef.current.style.cssText = `visibility: hidden;`
   }
 
   function updateSources() {
@@ -115,12 +115,8 @@ export default function Home() {
   const memoUpdateSources = useCallback(updateSources, [queryParams, sourcesRef])
 
   function toggleMenu() {
-    if (menuOpen) {
-      memoUpdateSources()
-      openMenu(false)
-    } else {
-      openMenu(true)
-    }
+    if (menuOpen) memoUpdateSources()
+    openMenu(!menuOpen)
   }
 
   const memoToggleMenu = useCallback(toggleMenu, [menuOpen, memoUpdateSources])
@@ -160,33 +156,33 @@ export default function Home() {
         navRef={navRef}
         menuOpen={menuOpen}
         toggleMenu={memoToggleMenu}
-        loading={loading}
       />
       <Landing 
         initResults={initRender.current.results}
         articles={news.articles}
         queryParams={queryParams}
         setQueryParams={setQueryParams}
-        loading={loading}
       />
       <Results
         articles={news.articles}
         resultsRef={resultsRef}
-        bookmarks={JSON.parse(bookmarks)}
+        bookmarks={bookmarks}
         setBookmarks={setBookmarks}
       />
       <Menu 
         sourcesRef={sourcesRef}
-        queryParams={queryParams}
-        menuOpen={menuOpen}
-        bookmarks={JSON.parse(bookmarks)}
+        sources={queryParams.sources}
+        open={menuOpen}
+        bookmarks={bookmarks}
         setBookmarks={setBookmarks}
       />
       <BottomNav 
         news={news}
         nextPage={memoNextPage}
         prevPage={memoPrevPage}
-        loading={loading}
+      />
+      <Loading 
+        loadingRef={loadingRef}  
       />
     </main> 
   )

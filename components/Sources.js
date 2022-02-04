@@ -5,7 +5,7 @@ import { sourceList } from '../lib/sourceList'
 import styles from '../styles/MenuItem.module.scss'
 import effects from '../styles/Effects.module.scss'
 
-function Sources({ open, itemRef, headerRef, toggleItems, setHeight, sourcesRef, queryParams }) {
+function Sources({ open, itemRef, headerRef, toggleItems, setHeight, sourcesRef, querySources }) {
 	const itemClass = open ? styles.itemOpen : styles.item
 
 	useEffect(() => {
@@ -17,7 +17,7 @@ function Sources({ open, itemRef, headerRef, toggleItems, setHeight, sourcesRef,
 	})
 
 	const sources = Object.keys(sourceList).map(title => {
-		const checked = queryParams.sources.includes(sourceList[title]) ? true : false
+		const checked = querySources.includes(sourceList[title]) ? true : false
 		return (
 			<Source 
 				key={title}

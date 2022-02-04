@@ -1,6 +1,6 @@
 import { memo, useRef, useEffect } from 'react'
 import { BsChevronDown } from 'react-icons/bs'
-import { Credits } from './Credits'
+import Credits from './Credits'
 import styles from '../styles/MenuItem.module.scss'
 import effects from '../styles/Effects.module.scss'
 

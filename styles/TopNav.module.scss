@@ -10,22 +10,13 @@
 	// border-bottom: var(--thinWhite);
 }
 
-.navLoading {
-	composes: nav;
-}
-
 .nav::after {
 	content: '';
 	position: absolute;
 	bottom: -2px;
-	left: -100vw;
 	height: 3px;
-	width: 300vw;
+	width: 100%;
 	background: linear-gradient(to right, var(--blue), var(--purp), var(--red));
-}
-
-.navLoading::after {
-	animation: var(--loading) 1.25s infinite ease-in-out;
 }
 
 .logo {
