@@ -83,7 +83,7 @@ export default function Home() {
         'method': 'GET',
         'headers': {
           'x-rapidapi-host': 'free-news.p.rapidapi.com',
-          'x-rapidapi-key': '2a5c538804mshf5bccd8a56569c1p113de4jsnd5ef3abf3d6c'
+          'x-rapidapi-key': process.env.NEXT_PUBLIC_NEWSCATCHER_KEY
         }
       })
       const resp = await jsonResp.json()
