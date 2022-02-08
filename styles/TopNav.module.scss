@@ -13,10 +13,10 @@
 .nav::after {
 	content: '';
 	position: absolute;
-	bottom: -2px;
-	height: 3px;
+	bottom: 0;
+	height: 1px;
 	width: 100%;
-	background: linear-gradient(to right, var(--blue), var(--purp), var(--red));
+	background: linear-gradient(to right, var(--purp1), var(--purp2));
 }
 
 .logo {
@@ -57,7 +57,7 @@
 	height: 2px;
 	width: inherit;
 	background: white;
-	transition: .25s;
+	transition: .4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .barOne {

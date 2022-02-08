@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Permanent+Marker&display=swap');
 
 :root {
   --thinWhite: solid 1px rgba(255, 255, 255, 0.333);
   --hover1: #111;
   --hover2: #222;
   --blue: #1E91D6;
-  --purp: #8c1eb8;
+  --purp1: #9e00ff;
+  --purp2: #5e28ff;
   --red: #D00000;
 }
 

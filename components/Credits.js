@@ -28,7 +28,7 @@ function Credits() {
 				target='_blank'
 				rel='noopener noreferrer'
 			>
-				Data from Newscatcher API
+				Data from Newscatcher
 			</a>
 		</li>
 	)

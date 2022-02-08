@@ -1,11 +1,9 @@
 .loading {
-	display: flex;
-	visibility: hidden;
+	display: none;
 	justify-content: center;
 	align-items: center;
 	position: fixed;
 	height: 100vh;
-	// height: calc(var(--vh) * 100);
 	width: 100vw;
 	top: 0;
 	left: 0;
@@ -29,15 +27,14 @@
 	top: 0;
 	left: 0;
 	will-change: transform;
+	background: radial-gradient(var(--purp2), var(--purp1));
 }
 
 .cube1 {
-	background: linear-gradient(45deg, var(--blue), var(--purp), var(--red));
 	animation: cubemove 1.5s ease-in-out infinite;
 }
 
 .cube2 {
-	background: linear-gradient(-45deg, var(--blue), var(--purp), var(--red));
 	animation: cubemove 1.5s ease-in-out -0.75s infinite;
 }
 

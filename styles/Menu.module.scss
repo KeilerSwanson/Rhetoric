@@ -7,16 +7,18 @@
 	height: var(--navHeight);
 	width: 100vw;
 	transform: translate(100%, 0);
-	transition: .25s;
+	transition: .35s cubic-bezier(0.4, 0, 0.2, 1);
 	will-change: transform;
 	display: flex;
 	z-index: 3;
+	// opacity: 0;
 }
 
 
 .menuOpen {
 	composes: menu;
 	transform: translate(0, 0);
+	// opacity: 1;
 }
 
 .menuItems {
@@ -29,15 +31,18 @@
 	.menu {
 		width: 70vw;
 	}
+	.menuOpen {
+		border-left: var(--thinWhite);
+	}
 }
 
 @media screen and (min-width: 769px) {
 	.menu {
 		width: 50vw;
 	}
-	.menuOpen {
-		border-left: var(--thinWhite);
-	}
+	// .menuOpen {
+	// 	border-left: var(--thinWhite);
+	// }
 }
 
 @media screen and (min-width: 1025px) {

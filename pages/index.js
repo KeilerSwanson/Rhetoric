@@ -11,9 +11,20 @@ import { disableBodyScroll, enableBodyScroll } from '../lib/utils'
 import * as styles from '../styles/Home.module.scss'
 
 export default function Home() {
+  const date = useRef(new Date())
+  const navRef = useRef()
+  const resultsRef = useRef()
+  const sourcesRef = useRef()
+  const loadingRef = useRef()
+  const initRender = useRef({
+    sources: true,
+    bookmarks: true,
+    results: true
+  })
   const [queryParams, setQueryParams] = useState({
     query: '',
     sources: Object.values(sourceList),
+    fromDate: date.current.setDate(date.current.getDate() - 5),
     page: 1
   })
   const [news, setNews] = useState({
@@ -23,15 +34,6 @@ export default function Home() {
   })
   const [bookmarks, setBookmarks] = useState('{}')
   const [menuOpen, openMenu] = useState(false)
-  const initRender = useRef({
-    sources: true,
-    bookmarks: true,
-    results: true
-  })
-  const navRef = useRef()
-  const resultsRef = useRef()
-  const sourcesRef = useRef()
-  const loadingRef = useRef()
   const memoGetNews = useCallback(getNews, [queryParams])
 
   useEffect(() => {
@@ -54,6 +56,7 @@ export default function Home() {
         setQueryParams({
           query: queryParams.query,
           sources: JSON.parse(window.localStorage.getItem('sources')),
+          fromDate: queryParams.fromDate,
           page: queryParams.page
         })
       }
@@ -76,10 +79,10 @@ export default function Home() {
   }, [queryParams, memoGetNews])
 
   async function getNews() {
-    loadingRef.current.style.cssText = `visibility: visible;`
+    loadingRef.current.style.cssText = `display: flex;`
     disableBodyScroll()
     try {
-      const jsonResp = await fetch(`https://free-news.p.rapidapi.com/v1/search?q=${queryParams.query}&lang=en&sources=${queryParams.sources.join(',')}&page=${queryParams.page}`, {
+      const jsonResp = await fetch(`https://free-news.p.rapidapi.com/v1/search?lang=en&search_in=title&from=${queryParams.fromDate}&q='${queryParams.query}'&sources=${queryParams.sources.join(',')}&page=${queryParams.page}`, {
         'method': 'GET',
         'headers': {
           'x-rapidapi-host': 'free-news.p.rapidapi.com',
@@ -96,7 +99,7 @@ export default function Home() {
       alert(`Sorry, it looks like there was an error with the data returned from your search: '${err}'. Try again or change the search query.`)
     }
     enableBodyScroll()
-    loadingRef.current.style.cssText = `visibility: hidden;`
+    loadingRef.current.style.cssText = `display: none;`
   }
 
   function updateSources() {
@@ -108,6 +111,7 @@ export default function Home() {
 		setQueryParams({
       query: queryParams.query,
 			sources: activeSources,
+      fromDate: queryParams.fromDate,
       page: 1
     })
   }
@@ -126,6 +130,7 @@ export default function Home() {
     setQueryParams({
       query: queryParams.query,
       sources: queryParams.sources,
+      fromDate: queryParams.fromDate,
       page: queryParams.page + 1
     })
   }
@@ -137,6 +142,7 @@ export default function Home() {
     setQueryParams({
       query: queryParams.query,
       sources: queryParams.sources,
+      fromDate: queryParams.fromDate,
       page: queryParams.page - 1
     })
   }

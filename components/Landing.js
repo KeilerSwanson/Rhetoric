@@ -1,10 +1,15 @@
-import { useRef, memo } from 'react'
+import { useRef, memo, useEffect } from 'react'
 import { BsSearch } from 'react-icons/bs'
 import styles from '../styles/Landing.module.scss'
 
 function Landing({ queryParams, setQueryParams, articles, initResults }) {
 	const queryRef = useRef()
+	const landingRef = useRef()
 	const messageClass = (initResults || articles) ? styles.message : styles.messageShow
+
+	useEffect(() => {
+		landingRef.current.style.cssText = `height: calc(var(--vh) * 100);`
+	})
 
 	function handleForm(e) {
 		e.preventDefault()
@@ -12,12 +17,16 @@ function Landing({ queryParams, setQueryParams, articles, initResults }) {
 		setQueryParams({
       query: queryRef.current.value,
       sources: queryParams.sources,
+			fromDate: queryParams.fromDate,
       page: 1
     })
 	}
 
 	return (
-		<section className={styles.landing}>
+		<section 
+			ref={landingRef}
+			className={styles.landing}
+		>
 			<header className={styles.header}>
 				<h1 className={styles.heading}>
 					Compare news coverage
