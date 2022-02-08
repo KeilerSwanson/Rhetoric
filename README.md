@@ -7,13 +7,13 @@
 <img
   src='/demo/articles.png'
   alt='Rhetoric landing'
-  style='display: inline; max-width: 300px;'
+  style='display: inline-block; max-width: 300px;'
 />
 
 <img
   src='/demo/menu.png'
   alt='Rhetoric landing'
-  style='display: inline; max-width: 300px;'
+  style='display: inline-block; max-width: 300px;'
 />
 
 ## Source Selection
