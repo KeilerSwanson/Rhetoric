@@ -4,17 +4,19 @@
 
 ## Demo
 
-<img
-  src='/demo/articles.png'
-  alt='Rhetoric landing'
-  style='display: inline-block; max-width: 300px;'
-/>
+<div style='display: flex;'>
+  <img
+    src='/demo/articles.png'
+    alt='Rhetoric articles'
+    style='width: 49%;'
+  />
 
-<img
-  src='/demo/menu.png'
-  alt='Rhetoric landing'
-  style='display: inline-block; max-width: 300px;'
-/>
+  <img
+    src='/demo/menu.png'
+    alt='Rhetoric menu'
+    style='width: 49%;'
+  />
+ </div>
 
 ## Source Selection
 
