@@ -2,9 +2,13 @@
 
 [Rhetoric](https://happy-sinoussi-d8a6c3.netlify.app/) is a simple tool for comparing news coverage across the media landscape. Search for articles by topic, select which media sources you want results from, and bookmark articles for later.
 
-## Screenshot
+## Demo
 
-![Rhetoric landing page](/demo/landing.png)
+<img
+  src='/demo/landing.png'
+  alt='Rhetoric landing'
+  style='display: inline-block; max-width: 360px;'
+/>
 
 ## Source Selection
 
