@@ -9,6 +9,7 @@
   alt='Rhetoric landing'
   style='display: inline; max-width: 300px;'
 />
+
 <img
   src='/demo/menu.png'
   alt='Rhetoric landing'
