@@ -10,6 +10,18 @@
   style='display: inline-block; max-width: 360px;'
 />
 
+<img
+  src='/demo/articles.png'
+  alt='Rhetoric landing'
+  style='display: inline-block; max-width: 360px;'
+/>
+
+<img
+  src='/demo/menu.png'
+  alt='Rhetoric landing'
+  style='display: inline-block; max-width: 360px;'
+/>
+
 ## Source Selection
 
 Media sources were selected based on:
