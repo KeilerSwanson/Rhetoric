@@ -4,7 +4,9 @@
 
 ## Demo
 
-  <img src='/demo/articles.png' style='max-width: 300px;' />  <img src='/demo/menu.png' style='max-width: 300px;' />
+  <img src='/demo/articles.png' style='display: inline; max-width: 300px;' />  
+  
+  <img src='/demo/menu.png' style='display: inline; max-width: 300px;' />
 
 ## Source Selection
 
