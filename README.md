@@ -8,13 +8,13 @@
   <img
     src='/demo/articles.png'
     alt='Rhetoric articles'
-    style='width: 49%;'
+    style='max-width: 250px;'
   />
 
   <img
     src='/demo/menu.png'
     alt='Rhetoric menu'
-    style='width: 49%;'
+    style='max-width: 250px;'
   />
  </div>
 
