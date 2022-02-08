@@ -4,19 +4,7 @@
 
 ## Demo
 
-<div style='display: flex;'>
-  <img
-    src='/demo/articles.png'
-    alt='Rhetoric articles'
-    style='max-width: 250px;'
-  />
-
-  <img
-    src='/demo/menu.png'
-    alt='Rhetoric menu'
-    style='max-width: 250px;'
-  />
- </div>
+  <img src='/demo/articles.png' style='max-width: 300px;' />  <img src='/demo/menu.png' style='max-width: 300px;' />
 
 ## Source Selection
 
