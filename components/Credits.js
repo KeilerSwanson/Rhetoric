@@ -8,14 +8,6 @@ function Credits() {
 		<li className={styles.credits}>
 			<a
 				className={`${styles.credit} ${effects.hover}`}
-				href='https://github.com/KeilerSwanson/Rhetoric'
-				target='_blank'
-				rel='noopener noreferrer'
-			>
-				Github
-			</a>
-			<a
-				className={`${styles.credit} ${effects.hover}`}
 				href='https://keiler.me/'
 				target='_blank'
 				rel='noopener noreferrer'
@@ -29,6 +21,14 @@ function Credits() {
 				rel='noopener noreferrer'
 			>
 				Data from Newscatcher
+			</a>
+			<a
+				className={`${styles.credit} ${effects.hover}`}
+				href='https://github.com/KeilerSwanson/Rhetoric'
+				target='_blank'
+				rel='noopener noreferrer'
+			>
+				Github
 			</a>
 		</li>
 	)

@@ -11,14 +11,12 @@
 	will-change: transform;
 	display: flex;
 	z-index: 3;
-	// opacity: 0;
 }
 
 
 .menuOpen {
 	composes: menu;
 	transform: translate(0, 0);
-	// opacity: 1;
 }
 
 .menuItems {
@@ -40,9 +38,6 @@
 	.menu {
 		width: 50vw;
 	}
-	// .menuOpen {
-	// 	border-left: var(--thinWhite);
-	// }
 }
 
 @media screen and (min-width: 1025px) {

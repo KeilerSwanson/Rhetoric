@@ -1,16 +1,21 @@
 # Rhetoric
 
-Rhetoric is a simple tool for comparing news coverage across the media landscape. Search for articles by topic, select which media sources you want results from, and manage a reading list.
+[Rhetoric](https://happy-sinoussi-d8a6c3.netlify.app/) is a simple tool for comparing news coverage across the media landscape. Search for articles by topic, select which media sources you want results from, and bookmark articles for later.
+
+## Screenshot
+
+![Rhetoric landing page](/demo/landing.png)
 
 ## Source Selection
 
 Media sources were selected based on:
 - Bias, reliability, and audience size ratings from the [Ad Fontes Media Bias Chart](https://adfontesmedia.com/interactive-media-bias-chart/)
-- Availability via the [Newscatcher API](https://newscatcherapi.com)
-- My personal judgement of a source's utility (e.g. Pew Research)
-- Avoiding a bloated source list
+- Availability via [Newscatcher](https://newscatcherapi.com)
+- Breadth of topics they cover
+- My personal judgement of their utility (e.g. Pew Research)
+- Keeping the list a reasonable length
 
-Inclusion of a source does not imply an endorsement.
+The source selection will undoubtedly evolve over time. Inclusion of a source does not imply endorsement.
 
 ## Technologies Used
 - [NextJS](https://nextjs.org/) - 12.0.7
@@ -21,7 +26,8 @@ Inclusion of a source does not imply an endorsement.
 
 ## Future Versions
 
-I plan to make Rhetoric full-stack and add more features in the future. Some ideas include:
+I plan to make Rhetoric full-stack and implement more features in the future. Some ideas include:
+- Advanced sorting and filtering
 - Custom media source presets
 - News feeds for saved queries
 - Email notifications
