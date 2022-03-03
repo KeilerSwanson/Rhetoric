@@ -1,10 +1,10 @@
 # Rhetoric
 
-[Rhetoric](https://happy-sinoussi-d8a6c3.netlify.app/) is a simple tool for comparing news coverage across the media landscape. Search for articles by topic, select which media sources you want results from, and bookmark articles for later.
+[Rhetoric](https://happy-sinoussi-d8a6c3.netlify.app/) is a tool for comparing news coverage across the media landscape. Search for articles by topic, select from more than 50 media sources, and bookmark articles for later.
 
 ## Demo
 
-<img src='/demo/landing.png' style='max-width: 250px;'/> <img src='/demo/articles.png' style='max-width: 250px;'/> <img src='/demo/menu.png' style='max-width: 250px;'/>
+<img src='/demo/rhetoric-min.jpeg' style='max-width: 768px;' />
 
 ## Source Selection
 

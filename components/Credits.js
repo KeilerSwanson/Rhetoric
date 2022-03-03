@@ -12,7 +12,7 @@ function Credits() {
 				target='_blank'
 				rel='noopener noreferrer'
 			>
-				Built by Keiler
+				Designed and built by Keiler
 			</a>
 			<a
 				className={`${styles.credit} ${effects.hover}`}
