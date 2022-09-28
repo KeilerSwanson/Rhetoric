@@ -14,20 +14,11 @@ function TopNav({ navRef, menuOpen, toggleMenu }) {
 	}
 
 	return (
-		<nav 
-			ref={navRef}
-			className={styles.nav}	
-		>
-			<h1 
-				className={styles.logo}
-				onClick={toTop}
-			>
+		<nav ref={navRef} className={styles.nav}>
+			<h1 className={styles.logo} onClick={toTop}>
 				Rhetoric
 			</h1>
-			<button 
-				className={`${btnClass} ${effects.hover}`}
-				onClick={toggleMenu}
-			>
+			<button className={`${btnClass} ${effects.hover}`} onClick={toggleMenu}>
 				<span className={styles.barWrap}>
 					<span className={styles.barOne} />
 					<span className={styles.barTwo} />

@@ -1,14 +1,16 @@
 import Landing from '../components/Landing'
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
-describe('true is truthy and false is falsy', () => {
+// suite / component: thing that has multiple features to test
+	// tests / features: the thing should do x
+		// assertions: expect y result from x
 
-	test('true should be true', () => {
+// Should render with no props
+// Should update the query on search
+// Should display 'no results' message if no results
+
+describe('Landing Component', () => {
+	test('True should be true', () => {
 		expect(true).toBe(true)
 	})
-
-	test('false should be false', () => {
-		expect(false).toBe(false)
-	})
 })
-
