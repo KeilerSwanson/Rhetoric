@@ -1,26 +1,39 @@
+// Libraries
 import Head from 'next/head'
 import { useEffect, useState, useRef, useCallback } from 'react'
+
+// Components
 import TopNav from '../components/TopNav'
 import Landing from '../components/Landing'
 import Results from '../components/Results'
 import Menu from '../components/Menu'
 import BottomNav from '../components/BottomNav'
-import { Loading } from '../components/Loading'
+import Loading from '../components/Loading'
+
+// Utilities
 import { sourceList } from '../lib/sourceList'
 import { disableBodyScroll, enableBodyScroll } from '../lib/utils'
+
+// Styles
 import * as styles from '../styles/Home.module.scss'
+
 
 export default function Home() {
   const date = useRef(new Date())
+
+  // Refs for imperatively interacting with the DOM (dynamic styling, getting information, scrolling)
   const navRef = useRef()
   const resultsRef = useRef()
   const sourcesRef = useRef()
   const loadingRef = useRef()
+
+  // Flags to indicate whether a component has been interacted with yet (invert these)
   const initRender = useRef({
     sources: true,
     bookmarks: true,
     results: true
   })
+
   const [queryParams, setQueryParams] = useState({
     query: '',
     sources: Object.values(sourceList),
@@ -36,18 +49,16 @@ export default function Home() {
   const [menuOpen, openMenu] = useState(false)
   const memoGetNews = useCallback(getNews, [queryParams])
 
+
+  // Calculate height for the Menu component so it stays flush with the navbar through window resizing
   useEffect(() => {
-    const vh = window.innerHeight * 0.01
-    const navHeight = window.innerHeight - parseInt(window.getComputedStyle(navRef.current).height)
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-    document.documentElement.style.setProperty('--navHeight', `${navHeight}px`)
+    const initMenuHeight = window.innerHeight - parseInt(window.getComputedStyle(navRef.current).height)
+    document.documentElement.style.setProperty('--menuHeight', `${initMenuHeight}px`)
     window.addEventListener('resize', () => {
-      const vh = window.innerHeight * 0.01
-      const navHeight = window.innerHeight - parseInt(window.getComputedStyle(navRef.current).height)
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-      document.documentElement.style.setProperty('--navHeight', `${navHeight}px`)
+      const newMenuHeight = window.innerHeight - parseInt(window.getComputedStyle(navRef.current).height)
+      document.documentElement.style.setProperty('--menuHeight', `${newMenuHeight}px`)
     })
-  })
+  }, [])
 
   useEffect(() => {
     if (initRender.current.sources) {
@@ -77,6 +88,7 @@ export default function Home() {
     if (initRender.current.results) initRender.current.results = false
     memoGetNews()
   }, [queryParams, memoGetNews])
+
 
   async function getNews() {
     loadingRef.current.style.cssText = `display: flex;`
@@ -164,10 +176,10 @@ export default function Home() {
         toggleMenu={memoToggleMenu}
       />
       <Landing 
-        initResults={initRender.current.results}
-        articles={news.articles}
         queryParams={queryParams}
         setQueryParams={setQueryParams}
+        initResults={initRender.current.results}
+        articles={news.articles}
       />
       <Results
         articles={news.articles}

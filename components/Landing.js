@@ -7,9 +7,9 @@ function Landing({ queryParams, setQueryParams, articles, initResults }) {
 	const landingRef = useRef()
 	const messageClass = (initResults || articles) ? styles.message : styles.messageShow
 
-	useEffect(() => {
-		landingRef.current.style.cssText = `height: calc(var(--vh) * 100);`
-	})
+	// useEffect(() => {
+	// 	landingRef.current.style.cssText = `height: calc(var(--vh) * 100);`
+	// })
 
 	function handleForm(e) {
 		e.preventDefault()
@@ -54,7 +54,7 @@ function Landing({ queryParams, setQueryParams, articles, initResults }) {
 						T
 					</button>
 				</form>
-				<h6 className={messageClass}>{`No results for '${queryParams.query}'`}</h6>
+				<p className={messageClass}>{`No results for '${queryParams.query}'`}</p>
 			</header>
 		</section>
 	)

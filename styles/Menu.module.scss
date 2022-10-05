@@ -3,8 +3,7 @@
 	position: fixed;
 	bottom: 0;
 	right: 0;
-	height: calc(var(--vh) * 100 - 60px);
-	height: var(--navHeight);
+	height: var(--menuHeight);
 	width: 100vw;
 	transform: translate(100%, 0);
 	transition: .35s cubic-bezier(0.4, 0, 0.2, 1);

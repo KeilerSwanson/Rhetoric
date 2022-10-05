@@ -15,4 +15,4 @@ function Loading({ loadingRef }) {
 	)
 }
 
-export { Loading }
+export default Loading
