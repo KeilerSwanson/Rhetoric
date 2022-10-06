@@ -7,13 +7,11 @@ function Landing({ queryParams, setQueryParams, articles, initSearch }) {
 	const landingRef = useRef()
 	const messageClass = (articles || initSearch) ? styles.message : styles.messageShow
 
-	// useEffect(() => {
-	// 	landingRef.current.style.cssText = `height: calc(var(--vh) * 100);`
-	// })
-
 	function handleForm(e) {
 		e.preventDefault()
+
 		if (queryRef.current.value === queryParams.query) return
+
 		setQueryParams({
       query: queryRef.current.value,
       sources: queryParams.sources,
@@ -23,20 +21,14 @@ function Landing({ queryParams, setQueryParams, articles, initSearch }) {
 	}
 
 	return (
-		<section 
-			ref={landingRef}
-			className={styles.landing}
-		>
+		<section ref={landingRef} className={styles.landing}>
 			<header className={styles.header}>
 				<h1 className={styles.heading}>
 					Compare news coverage
 					<br />
 					across the media landscape.
 				</h1>
-				<form 
-					name='search'
-					className={styles.form}	
-				>
+				<form name='search' className={styles.form}>
 					<input 
 						ref={queryRef}
 						name='search' 
@@ -46,12 +38,8 @@ function Landing({ queryParams, setQueryParams, articles, initSearch }) {
 						onClick={(e) => e.target.select()}
 						required={true}
 					/>
-					<button 
-						onClick={handleForm}
-						className={styles.btn} 
-					>
+					<button onClick={handleForm} className={styles.btn}>
 						<BsSearch />
-						T
 					</button>
 				</form>
 				<p className={messageClass}>{`No results for '${queryParams.query}'`}</p>

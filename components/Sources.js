@@ -1,7 +1,7 @@
 import { memo, useEffect } from 'react'
 import { BsChevronDown } from 'react-icons/bs'
 import Source from './Source'
-import { sourceList } from '../lib/sourceList'
+import sourceList from '../lib/sourceList'
 import styles from '../styles/MenuItem.module.scss'
 import effects from '../styles/Effects.module.scss'
 

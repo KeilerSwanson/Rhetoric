@@ -11,14 +11,15 @@ import BottomNav from '../components/BottomNav'
 import Loading from '../components/Loading'
 
 // Utilities
-import { sourceList } from '../lib/sourceList'
+import sourceList from '../lib/sourceList'
 import { disableBodyScroll, enableBodyScroll } from '../lib/utils'
 
 // Styles
 import * as styles from '../styles/Home.module.scss'
 
 
-export default function Home() {
+export default function Home(props) {
+	console.log('index page props: ', props)
   const date = useRef(new Date())
 
   // Refs for imperatively interacting with the DOM (dynamic styling, getting information, scrolling)
@@ -47,7 +48,7 @@ export default function Home() {
   })
   const [bookmarks, setBookmarks] = useState('{}')
 	// change function to setMenuOpen
-  const [menuOpen, openMenu] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const memoGetNews = useCallback(getNews, [queryParams])
 
@@ -89,7 +90,6 @@ export default function Home() {
     }
   }, [bookmarks])
 
-
   // Re-fetch news if any query parameters change
   useEffect(() => {
     if (queryParams.query === '') return
@@ -97,8 +97,12 @@ export default function Home() {
     memoGetNews()
   }, [queryParams, memoGetNews])
 
+
   async function getNews() {
     setIsLoading(true)
+		// Imperatively disable scrolling while loading articles
+			// No straightforward declarative way to access the 'body' element in Next
+			// Not manipulating anything React cares about
     disableBodyScroll()
 
     try {
@@ -132,7 +136,6 @@ export default function Home() {
     if (activeSources.join(',') === queryParams.sources.join(',')) return
 
     window.localStorage.setItem('sources', JSON.stringify(activeSources))
-    
 		setQueryParams({
       query: queryParams.query,
 			sources: activeSources,
@@ -145,13 +148,13 @@ export default function Home() {
 
   function toggleMenu() {
     if (menuOpen) memoUpdateSources()
-    openMenu(!menuOpen)
-  }
 
-  const memoToggleMenu = useCallback(toggleMenu, [menuOpen, memoUpdateSources])
+    setMenuOpen(!menuOpen)
+  }
 
   function nextPage() {
     if (news.numPages === queryParams.page) return
+
     setQueryParams({
       query: queryParams.query,
       sources: queryParams.sources,
@@ -164,6 +167,7 @@ export default function Home() {
 
   function prevPage() {
     if (queryParams.page === 1) return
+
     setQueryParams({
       query: queryParams.query,
       sources: queryParams.sources,
@@ -174,6 +178,7 @@ export default function Home() {
 
   const memoPrevPage = useCallback(prevPage, [queryParams])
 
+	
   return (
     <main className={styles.home}>
       <Head>
@@ -186,12 +191,11 @@ export default function Home() {
       <TopNav 
         navRef={navRef}
         menuOpen={menuOpen}
-        toggleMenu={memoToggleMenu}
+        toggleMenu={toggleMenu}
       />
       <Landing 
         queryParams={queryParams}
         setQueryParams={setQueryParams}
-        // initResults={initRender.current.results}
         initSearch={init.current.search}
         articles={news.articles}
       />
@@ -213,10 +217,7 @@ export default function Home() {
         nextPage={memoNextPage}
         prevPage={memoPrevPage}
       />
-      <Loading 
-        loadingRef={loadingRef} 
-        isLoading={isLoading} 
-      />
+      <Loading loadingRef={loadingRef} isLoading={isLoading}/>
     </main> 
   )
 }

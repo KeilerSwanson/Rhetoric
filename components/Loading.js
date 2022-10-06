@@ -4,11 +4,7 @@ function Loading({ loadingRef, isLoading }) {
 	const loadingClass = isLoading ? styles.loadingShow : styles.loading
 
 	return (
-		<div 
-			ref={loadingRef}
-			// className={styles.loading}	
-			className={loadingClass}
-		>
+		<div ref={loadingRef} className={loadingClass}>
 			<div className={styles.spinner}>
 				<span className={styles.cube1} />
 				<span className={styles.cube2} />

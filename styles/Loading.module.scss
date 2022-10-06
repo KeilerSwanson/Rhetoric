@@ -25,21 +25,21 @@
 
 .cube1, .cube2 {
   background: var(--purp2);
-	border-radius: 2.5px;
+  border-radius: 2.5px;
   width: 1.5rem;
   height: 1.5rem;
   position: absolute;
-	top: 0;
-	left: 0;
-	will-change: transform;
+  top: 0;
+  left: 0;
+  will-change: transform;
 }
 
 .cube1 {
-	animation: cubemove 1.5s ease-in-out infinite;
+  animation: cubemove 1.5s ease-in-out infinite;
 }
 
 .cube2 {
-	animation: cubemove 1.5s ease-in-out -0.75s infinite;
+  animation: cubemove 1.5s ease-in-out -0.75s infinite;
 }
 
 @keyframes cubemove {
