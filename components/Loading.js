@@ -1,11 +1,13 @@
 import styles from '../styles/Loading.module.scss'
 
-function Loading({ loadingRef }) {
+function Loading({ loadingRef, isLoading }) {
+	const loadingClass = isLoading ? styles.loadingShow : styles.loading
 
 	return (
 		<div 
 			ref={loadingRef}
-			className={styles.loading}	
+			// className={styles.loading}	
+			className={loadingClass}
 		>
 			<div className={styles.spinner}>
 				<span className={styles.cube1} />

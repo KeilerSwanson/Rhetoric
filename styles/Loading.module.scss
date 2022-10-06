@@ -12,6 +12,11 @@
 	transition: .25s;
 }
 
+.loadingShow {
+	composes: loading;
+	display: flex;
+}
+
 .spinner {
   width: 6rem;
   height: 6rem;

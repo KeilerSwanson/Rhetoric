@@ -1,11 +1,11 @@
-import { useRef, memo, useEffect } from 'react'
+import { useRef, memo } from 'react'
 import { BsSearch } from 'react-icons/bs'
 import styles from '../styles/Landing.module.scss'
 
-function Landing({ queryParams, setQueryParams, articles, initResults }) {
+function Landing({ queryParams, setQueryParams, articles, initSearch }) {
 	const queryRef = useRef()
 	const landingRef = useRef()
-	const messageClass = (initResults || articles) ? styles.message : styles.messageShow
+	const messageClass = (articles || initSearch) ? styles.message : styles.messageShow
 
 	// useEffect(() => {
 	// 	landingRef.current.style.cssText = `height: calc(var(--vh) * 100);`

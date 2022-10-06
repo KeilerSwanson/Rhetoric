@@ -27,11 +27,11 @@ export default function Home() {
   const sourcesRef = useRef()
   const loadingRef = useRef()
 
-  // Flags to indicate whether a component has been interacted with yet (invert these)
-  const initRender = useRef({
+  // Flags for getting local storage on initial render only
+  const init = useRef({
     sources: true,
     bookmarks: true,
-    results: true
+    search: true
   })
 
   const [queryParams, setQueryParams] = useState({
@@ -46,11 +46,13 @@ export default function Home() {
     articles: null,
   })
   const [bookmarks, setBookmarks] = useState('{}')
+	// change function to setMenuOpen
   const [menuOpen, openMenu] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const memoGetNews = useCallback(getNews, [queryParams])
 
 
-  // Calculate height for the Menu component so it stays flush with the navbar through window resizing
+  // Calculate height for Menu component so it stays flush with TopNav through window resizing
   useEffect(() => {
     const initMenuHeight = window.innerHeight - parseInt(window.getComputedStyle(navRef.current).height)
     document.documentElement.style.setProperty('--menuHeight', `${initMenuHeight}px`)
@@ -60,9 +62,11 @@ export default function Home() {
     })
   }, [])
 
+  // Get source preferences from local storage 
   useEffect(() => {
-    if (initRender.current.sources) {
-      initRender.current.sources = false
+    if (init.current.sources) {
+      init.current.sources = false
+
       if (window.localStorage.getItem('sources')) {
         setQueryParams({
           query: queryParams.query,
@@ -74,25 +78,29 @@ export default function Home() {
     }
   }, [queryParams])
 
+  // Get bookmarks from local storage 
   useEffect(() => {
-    if (initRender.current.bookmarks) {
-      initRender.current.bookmarks = false
+    if (init.current.bookmarks) {
+      init.current.bookmarks = false
+
       if (window.localStorage.getItem('bookmarks')) {
         setBookmarks(window.localStorage.getItem('bookmarks'))
       }
     }
   }, [bookmarks])
 
+
+  // Re-fetch news if any query parameters change
   useEffect(() => {
     if (queryParams.query === '') return
-    if (initRender.current.results) initRender.current.results = false
+    if (init.current.search) init.current.search = false
     memoGetNews()
   }, [queryParams, memoGetNews])
 
-
   async function getNews() {
-    loadingRef.current.style.cssText = `display: flex;`
+    setIsLoading(true)
     disableBodyScroll()
+
     try {
       const jsonResp = await fetch(`https://free-news.p.rapidapi.com/v1/search?lang=en&search_in=title&from=${queryParams.fromDate}&q='${queryParams.query}'&sources=${queryParams.sources.join(',')}&page=${queryParams.page}`, {
         'method': 'GET',
@@ -102,6 +110,7 @@ export default function Home() {
         }
       })
       const resp = await jsonResp.json()
+
       setNews({
         numPages: resp.total_pages,
         currPage: queryParams.page,
@@ -110,16 +119,20 @@ export default function Home() {
     } catch(err) {
       alert(`Sorry, it looks like there was an error with the data returned from your search: '${err}'. Try again or change the search query.`)
     }
+
     enableBodyScroll()
-    loadingRef.current.style.cssText = `display: none;`
+    setIsLoading(false)
   }
 
   function updateSources() {
     const activeSources = Array.from(sourcesRef.current.children).map(source => {
 			return source.children.checkbox.checked ? source.dataset.source : null
 		})
+
     if (activeSources.join(',') === queryParams.sources.join(',')) return
+
     window.localStorage.setItem('sources', JSON.stringify(activeSources))
+    
 		setQueryParams({
       query: queryParams.query,
 			sources: activeSources,
@@ -178,7 +191,8 @@ export default function Home() {
       <Landing 
         queryParams={queryParams}
         setQueryParams={setQueryParams}
-        initResults={initRender.current.results}
+        // initResults={initRender.current.results}
+        initSearch={init.current.search}
         articles={news.articles}
       />
       <Results
@@ -200,7 +214,8 @@ export default function Home() {
         prevPage={memoPrevPage}
       />
       <Loading 
-        loadingRef={loadingRef}  
+        loadingRef={loadingRef} 
+        isLoading={isLoading} 
       />
     </main> 
   )
