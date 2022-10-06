@@ -19,7 +19,6 @@ import * as styles from '../styles/Home.module.scss'
 
 
 export default function Home(props) {
-	console.log('index page props: ', props)
   const date = useRef(new Date())
 
   // Refs for imperatively interacting with the DOM (dynamic styling, getting information, scrolling)

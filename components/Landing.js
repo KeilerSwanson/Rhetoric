@@ -2,10 +2,12 @@ import { useRef, memo } from 'react'
 import { BsSearch } from 'react-icons/bs'
 import styles from '../styles/Landing.module.scss'
 
+
 function Landing({ queryParams, setQueryParams, articles, initSearch }) {
 	const queryRef = useRef()
 	const landingRef = useRef()
 	const messageClass = (articles || initSearch) ? styles.message : styles.messageShow
+
 
 	function handleForm(e) {
 		e.preventDefault()
@@ -19,6 +21,7 @@ function Landing({ queryParams, setQueryParams, articles, initSearch }) {
       page: 1
     })
 	}
+
 
 	return (
 		<section ref={landingRef} className={styles.landing}>
@@ -47,5 +50,6 @@ function Landing({ queryParams, setQueryParams, articles, initSearch }) {
 		</section>
 	)
 }
+
 
 export default memo(Landing)

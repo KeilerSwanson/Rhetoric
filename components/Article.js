@@ -3,12 +3,11 @@ import { formatSource, formatDate, formatExcerpt } from '../lib/utils'
 import styles from '../styles/Article.module.scss'
 import effects from '../styles/Effects.module.scss'
 
+
 function Article({ title, source, date, excerpt, url }) {
 
 	return (
-		<li 
-			className={styles.article}
-		>
+		<li className={styles.article}>
 			<h1 className={styles.title}>{title}</h1>
 			<h2 className={styles.meta}>
 				{formatSource(source)} / {formatDate(date)}
@@ -34,5 +33,6 @@ function Article({ title, source, date, excerpt, url }) {
 		</li>
 	)
 }
+
 
 export default memo(Article)

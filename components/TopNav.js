@@ -2,8 +2,10 @@ import { memo } from 'react'
 import styles from '../styles/TopNav.module.scss'
 import effects from '../styles/Effects.module.scss'
 
+
 function TopNav({ navRef, menuOpen, toggleMenu }) {
 	const btnClass = menuOpen ? styles.btnOpen : styles.btn
+
 
 	function toTop() {
 		window.scrollTo({
@@ -12,6 +14,7 @@ function TopNav({ navRef, menuOpen, toggleMenu }) {
 			behavior: 'smooth'
 		})
 	}
+
 
 	return (
 		<nav ref={navRef} className={styles.nav}>
@@ -28,5 +31,5 @@ function TopNav({ navRef, menuOpen, toggleMenu }) {
 	)
 }
 
-export default memo(TopNav)
 
+export default memo(TopNav)
