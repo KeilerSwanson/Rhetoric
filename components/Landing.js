@@ -1,4 +1,5 @@
 import { useRef, memo } from 'react'
+
 import { BsSearch } from 'react-icons/bs'
 import styles from '../styles/Landing.module.scss'
 

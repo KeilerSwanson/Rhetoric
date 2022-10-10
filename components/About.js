@@ -1,42 +1,38 @@
 import { memo, useRef, useEffect } from 'react'
-import { BsChevronDown } from 'react-icons/bs'
+
 import Credits from './Credits'
+
 import styles from '../styles/MenuItem.module.scss'
 import effects from '../styles/Effects.module.scss'
+import { BsChevronDown } from 'react-icons/bs'
 
-function About({ open, itemRef, toggleItems, setHeight }) {
+
+function About({ isOpen, toggleItems, setHeight }) {
 	const dropdownRef = useRef()
-	const itemClass = open ? styles.itemOpen : styles.item
+	const itemClass = isOpen ? styles.itemOpen : styles.item
+
 
 	useEffect(() => {
-		if (open) {
-			setHeight.bind(dropdownRef)()
+		if (isOpen) {
+			setHeight.call(dropdownRef)
 		} else {
 			dropdownRef.current.style.cssText = 'height: 0px;'
 		}
 	})
 
+
 	return (
-		<li 
-			id='about'
-			className={itemClass}
-			ref={itemRef}
-		>
-			<span 
-				className={`${styles.header} ${effects.hover}`}
-				onClick={() => toggleItems.bind(itemRef)()}
-			>
+		<li className={itemClass}>
+			<span className={`${styles.header} ${effects.hover}`} onClick={() => toggleItems('about')}>
 				<h2 className={styles.heading}>About</h2>
 				<BsChevronDown className={styles.icon} />
 			</span>
-			<ul 
-				className={styles.dropdown}
-				ref={dropdownRef}
-			>
+			<ul className={styles.dropdown} ref={dropdownRef}>
 				<Credits />
 			</ul>
 		</li>
 	)
 }
+
 
 export default memo(About)

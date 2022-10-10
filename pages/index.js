@@ -1,8 +1,6 @@
-// Libraries
 import Head from 'next/head'
 import { useEffect, useState, useRef, useCallback } from 'react'
 
-// Components
 import TopNav from '../components/TopNav'
 import Landing from '../components/Landing'
 import Results from '../components/Results'
@@ -10,23 +8,19 @@ import Menu from '../components/Menu'
 import BottomNav from '../components/BottomNav'
 import Loading from '../components/Loading'
 
-// Utilities
 import sourceList from '../lib/sourceList'
 import { disableBodyScroll, enableBodyScroll } from '../lib/utils'
 
-// Styles
 import * as styles from '../styles/Home.module.scss'
 
 
 export default function Home(props) {
   const date = useRef(new Date())
-
   // Refs for imperatively interacting with the DOM (dynamic styling, getting information, scrolling)
   const navRef = useRef()
   const resultsRef = useRef()
-  const sourcesRef = useRef()
+  const sourceListRef = useRef()
   const loadingRef = useRef()
-
   // Flags for getting local storage on initial render only
   const init = useRef({
     sources: true,
@@ -46,9 +40,9 @@ export default function Home(props) {
     articles: null,
   })
   const [bookmarks, setBookmarks] = useState('{}')
-	// change function to setMenuOpen
   const [menuOpen, setMenuOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+
   const memoGetNews = useCallback(getNews, [queryParams])
 
 
@@ -62,7 +56,7 @@ export default function Home(props) {
     })
   }, [])
 
-  // Get source preferences from local storage 
+  // Get source preferences from local storage on initial render only
   useEffect(() => {
     if (init.current.sources) {
       init.current.sources = false
@@ -78,7 +72,7 @@ export default function Home(props) {
     }
   }, [queryParams])
 
-  // Get bookmarks from local storage 
+  // Get bookmarks from local storage on initial render only
   useEffect(() => {
     if (init.current.bookmarks) {
       init.current.bookmarks = false
@@ -128,8 +122,8 @@ export default function Home(props) {
   }
 
   function updateSources() {
-    const activeSources = Array.from(sourcesRef.current.children).map(source => {
-			return source.children.checkbox.checked ? source.dataset.source : null
+    const activeSources = Array.from(sourceListRef.current.children).map(source => {
+			return source.children.checkbox.checked ? source.dataset.url : null
 		})
 
     if (activeSources.join(',') === queryParams.sources.join(',')) return
@@ -143,7 +137,7 @@ export default function Home(props) {
     })
   }
 
-  const memoUpdateSources = useCallback(updateSources, [queryParams, sourcesRef])
+  const memoUpdateSources = useCallback(updateSources, [queryParams, sourceListRef])
 
   function toggleMenu() {
     if (menuOpen) memoUpdateSources()
@@ -183,7 +177,7 @@ export default function Home(props) {
       <Head>
         <title>Rhetoric</title>
         <meta charSet='utf-8' />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
         <meta name='author' content='Keiler Swanson' />
         <meta name='description' content='Compare news coverage across the media landscape.' />
       </Head>
@@ -205,9 +199,9 @@ export default function Home(props) {
         setBookmarks={setBookmarks}
       />
       <Menu 
-        sourcesRef={sourcesRef}
-        sources={queryParams.sources}
-        open={menuOpen}
+        isOpen={menuOpen}
+        currentSources={queryParams.sources}
+        sourceListRef={sourceListRef}
         bookmarks={bookmarks}
         setBookmarks={setBookmarks}
       />

@@ -1,34 +1,32 @@
 import { memo } from 'react'
-import { BsCheck2 } from 'react-icons/bs'
+
 import styles from '../styles/Source.module.scss'
 import effects from '../styles/Effects.module.scss'
+import { BsCheck2 } from 'react-icons/bs'
 
-function Source({ title, dataSource, checked }) {
+
+function Source({ name, url, checked }) {
 
 	return (
-		<li 
-			className={`${styles.source} ${effects.hover}`}
-			data-source={dataSource}
-		>
+		<li className={`${styles.source} ${effects.hover}`} data-url={url}>
 			<label 
 				className={styles.label} 
 				name='label'
-				htmlFor={title}
+				htmlFor={name}
 			>
-				{title}
+				{name}
 			</label>
 			<input 
-				id={title}
+				id={name}
 				className={styles.checkbox} 
 				type='checkbox' 
 				name='checkbox'
 				defaultChecked={checked}
 			/>
-			<BsCheck2 
-				className={styles.icon}
-			/>
+			<BsCheck2 className={styles.icon} />
 		</li>
 	)
 }
+
 
 export default memo(Source)

@@ -1,6 +1,8 @@
 import { memo } from 'react'
+
 import styles from '../styles/Credits.module.scss'
 import effects from '../styles/Effects.module.scss'
+
 
 function Credits() {
 
@@ -12,7 +14,7 @@ function Credits() {
 				target='_blank'
 				rel='noopener noreferrer'
 			>
-				Designed and built by Keiler
+				Designed and Built by Keiler
 			</a>
 			<a
 				className={`${styles.credit} ${effects.hover}`}
@@ -28,10 +30,11 @@ function Credits() {
 				target='_blank'
 				rel='noopener noreferrer'
 			>
-				Github
+				GitHub
 			</a>
 		</li>
 	)
 }
+
 
 export default memo(Credits)

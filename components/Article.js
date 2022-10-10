@@ -1,5 +1,7 @@
 import { memo } from 'react'
+
 import { formatSource, formatDate, formatExcerpt } from '../lib/utils'
+
 import styles from '../styles/Article.module.scss'
 import effects from '../styles/Effects.module.scss'
 

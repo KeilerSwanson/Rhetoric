@@ -1,5 +1,7 @@
 import { useEffect, memo } from 'react'
+
 import Article from './Article'
+
 import styles from '../styles/Results.module.scss'
 
 

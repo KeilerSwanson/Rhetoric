@@ -1,21 +1,26 @@
 import { memo, useRef, useEffect } from 'react'
-import { BsChevronDown } from 'react-icons/bs'
+
 import Bookmark from './Bookmark'
+
 import styles from '../styles/MenuItem.module.scss'
 import effects from '../styles/Effects.module.scss'
+import { BsChevronDown } from 'react-icons/bs'
 
-function Bookmarks({ open, itemRef, toggleItems, setHeight, bookmarks, setBookmarks }) {
+
+function Bookmarks({ isOpen, bookmarks, setBookmarks, toggleItems, setHeight }) {
 	const dropdownRef = useRef()
-	const itemClass = open ? styles.itemOpen : styles.item
 	const bookmarksObj = JSON.parse(bookmarks)
+	const itemClass = isOpen ? styles.itemOpen : styles.item
+
 
 	useEffect(() => {
-		if (open) {
-			setHeight.bind(dropdownRef)()
+		if (isOpen) {
+			setHeight.call(dropdownRef)
 		} else {
 			dropdownRef.current.style.cssText = 'height: 0px;'
 		}
 	})
+
 
 	function removeBookmark(e) {
 		const newBookmarks = {...bookmarksObj}
@@ -26,26 +31,10 @@ function Bookmarks({ open, itemRef, toggleItems, setHeight, bookmarks, setBookma
 		setBookmarks(newBookmarksStr)
 	}
 
-	const articles = (Object.keys(bookmarksObj).length > 0) ? Object.keys(bookmarksObj).map(title => {
-		return (
-			<Bookmark 
-				key={bookmarksObj[title]}
-				title={title}
-				url={bookmarksObj[title]}
-			/>
-		)
-	}) : <Bookmark title='No bookmarks' />
 
 	return (
-		<li 
-			id='bookmarks'
-			className={itemClass}
-			ref={itemRef}
-		>
-			<span 
-				className={`${styles.header} ${effects.hover}`}
-				onClick={() => toggleItems.bind(itemRef)()}
-			>
+		<li className={itemClass}>
+			<span className={`${styles.header} ${effects.hover}`} onClick={() => toggleItems('bookmarks')}>
 				<h2 className={styles.heading}>Bookmarks</h2>
 				<BsChevronDown className={styles.icon} />
 			</span>
@@ -54,10 +43,21 @@ function Bookmarks({ open, itemRef, toggleItems, setHeight, bookmarks, setBookma
 				ref={dropdownRef}
 				onClick={(e) => removeBookmark(e)}
 			>
-				{articles}
+				{
+					(Object.keys(bookmarksObj).length > 0) ? Object.keys(bookmarksObj).map(title => {
+						return (
+							<Bookmark 
+								key={bookmarksObj[title]}
+								title={title}
+								url={bookmarksObj[title]}
+							/>
+						)
+					}) : <Bookmark title='No bookmarks' />
+				}
 			</ul>
 		</li>
 	)
 }
+
 
 export default memo(Bookmarks)

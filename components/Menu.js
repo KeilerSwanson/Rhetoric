@@ -1,25 +1,29 @@
 import { memo, useState, useRef, useCallback } from 'react'
+
 import Sources from './Sources'
 import Bookmarks from './Bookmarks'
 import About from './About'
+
 import { disableBodyScroll, enableBodyScroll } from '../lib/utils'
+
 import styles from '../styles/Menu.module.scss'
 
-function Menu({ sources, open, bookmarks, setBookmarks, sourcesRef }) {	
-	const [itemsOpen, setItemsOpen] = useState({
+
+function Menu({ isOpen, currentSources, sourceListRef, bookmarks, setBookmarks }) {	
+	const [itemOpen, setItemOpen] = useState({
 		sources: false,
 		bookmarks: false,
 		about: false
 	})
-	const itemRefs = {
-		sources: useRef(),
-		bookmarks: useRef(),
-		about: useRef()
-	}
+	
 	const menuRef = useRef()
 	const headerRef = useRef()
-	const menuClass = open ? styles.menuOpen : styles.menu
 
+	const menuClass = isOpen ? styles.menuOpen : styles.menu
+
+
+	// Calculate available height for open menu item without overflowing the viewport
+	// Setting height imperatively is the only way I could get the 'scroll open' effect I wanted
 	function setHeight() {
 		const headerHeight = parseInt(window.getComputedStyle(headerRef.current).height)
 		const availableHeight = parseInt(window.getComputedStyle(menuRef.current).height) - (headerHeight * 3)
@@ -28,19 +32,23 @@ function Menu({ sources, open, bookmarks, setBookmarks, sourcesRef }) {
 
 	const memoSetHeight = useCallback(setHeight, [])
 
-	function toggleItems() {
-		const newItemsOpen = {}
-		for (let item in itemsOpen) {
-			if (item === this.current.id) {
-				newItemsOpen[item] = !itemsOpen[item]
+	// Open only one menu item at a time
+	function toggleItems(itemId) {
+		const items = {}
+
+		for (let item in itemOpen) {
+			if (item === itemId) {
+				items[item] = !itemOpen[item]
 			} else {
-				newItemsOpen[item] = false
+				items[item] = false
 			}
 		}
-		setItemsOpen(newItemsOpen)
+
+		setItemOpen(items)
 	}
 
-	const memoToggleItems = useCallback(toggleItems, [itemsOpen])
+	const memoToggleItems = useCallback(toggleItems, [itemOpen])
+
 
 	return (
 		<nav 
@@ -48,30 +56,24 @@ function Menu({ sources, open, bookmarks, setBookmarks, sourcesRef }) {
 			onMouseOver={disableBodyScroll}
 			onMouseOut={enableBodyScroll}	
 		>
-			<menu 
-				className={styles.menuItems}
-				ref={menuRef}
-			>
+			<menu className={styles.menuItems} ref={menuRef}>
 				<Sources
-					open={itemsOpen.sources}
-					itemRef={itemRefs.sources}
+					isOpen={itemOpen.sources}
 					headerRef={headerRef}
+					sourceListRef={sourceListRef}
+					currentSources={currentSources}
 					toggleItems={memoToggleItems}
 					setHeight={memoSetHeight}
-					sourcesRef={sourcesRef}
-					querySources={sources}
 				/>
 				<Bookmarks 
-					open={itemsOpen.bookmarks}
-					itemRef={itemRefs.bookmarks}
-					toggleItems={memoToggleItems}
-					setHeight={memoSetHeight}
+					isOpen={itemOpen.bookmarks}
 					bookmarks={bookmarks}
 					setBookmarks={setBookmarks}
+					toggleItems={memoToggleItems}
+					setHeight={memoSetHeight}
 				/>
 				<About 
-					open={itemsOpen.about}
-					itemRef={itemRefs.about}
+					isOpen={itemOpen.about}
 					toggleItems={memoToggleItems}
 					setHeight={memoSetHeight}
 				/>
@@ -79,5 +81,6 @@ function Menu({ sources, open, bookmarks, setBookmarks, sourcesRef }) {
 		</nav>
 	)
 }
+
 
 export default memo(Menu)
