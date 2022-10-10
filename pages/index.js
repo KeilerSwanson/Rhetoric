@@ -14,13 +14,12 @@ import { disableBodyScroll, enableBodyScroll } from '../lib/utils'
 import * as styles from '../styles/Home.module.scss'
 
 
-export default function Home(props) {
+export default function Home() {
   const date = useRef(new Date())
   // Refs for imperatively interacting with the DOM (dynamic styling, getting information, scrolling)
   const navRef = useRef()
   const resultsRef = useRef()
   const sourceListRef = useRef()
-  const loadingRef = useRef()
   // Flags for getting local storage on initial render only
   const init = useRef({
     sources: true,
@@ -210,7 +209,7 @@ export default function Home(props) {
         nextPage={memoNextPage}
         prevPage={memoPrevPage}
       />
-      <Loading loadingRef={loadingRef} isLoading={isLoading}/>
+      <Loading isLoading={isLoading}/>
     </main> 
   )
 }

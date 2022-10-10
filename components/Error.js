@@ -1,5 +1,7 @@
 import Link from 'next/link'
+
 import styles from '../styles/Error.module.scss'
+
 
 function Error({ message }) {
 
@@ -12,5 +14,6 @@ function Error({ message }) {
 		</div>
 	)
 }
+
 
 export { Error }

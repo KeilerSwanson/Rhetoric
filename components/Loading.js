@@ -1,10 +1,11 @@
 import styles from '../styles/Loading.module.scss'
 
-function Loading({ loadingRef, isLoading }) {
+
+function Loading({ isLoading }) {
 	const loadingClass = isLoading ? styles.loadingShow : styles.loading
 
 	return (
-		<div ref={loadingRef} className={loadingClass}>
+		<div className={loadingClass}>
 			<div className={styles.spinner}>
 				<span className={styles.cube1} />
 				<span className={styles.cube2} />
@@ -12,5 +13,6 @@ function Loading({ loadingRef, isLoading }) {
 		</div>
 	)
 }
+
 
 export default Loading
