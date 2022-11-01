@@ -2,66 +2,59 @@
 import Landing from '../components/Landing'
 import { render, screen, cleanup } from '@testing-library/react'
 import { toBeVisible } from '@testing-library/jest-dom'
-import { sourceList } from '../lib/sourceList'
+import sourceList from '../lib/sourceList'
 
-let articles, results, queryParams, setQueryParams	
+// Suite (describe) = Under this condition...
+// Test (test) = I expect this result...
+// Assert (expect) = And I'll know from these outputs.
 
 // afterEach(cleanup)
 
-test('renders with initial props', () => {
-	// Arrange
-	articles = null
-	results = true
+let queryParams, setQueryParams, articles	
+
+describe('if initial props', () => {
 	queryParams = {
 		query: '',
 		sources: Object.values(sourceList),
 		fromDate: new Date(),
 		page: 1
 	}
-	setQueryParams = () => console.log('mock state function')
+	setQueryParams = () => console.log('mock setState function')
+	articles = null
 
-	// Act
-	render(<Landing 
-		articles
-		results
-		queryParams
-		setQueryParams
-	/>)
-
-	// Assert
-	expect(screen.getByRole('heading')).toBeVisible()
-	expect(screen.getByPlaceholderText('e.g. Taiwan')).toBeVisible()
-})
-
-describe('if there are no results', () => {
-	test(`display 'no results' message`, () => {
+	test('renders', () => {
 		render(<Landing 
-
+			queryParams={queryParams}
+			setQueryParams={setQueryParams}
+			articles={articles}
 		/>)
 
-		expect(screen.getByText('No results for ')).toBeVisible()
+		expect(screen.getByRole('heading')).toBeVisible()
+		expect(screen.getByPlaceholderText('e.g. Taiwan')).toBeVisible()
+		expect(screen.getByText(`No results for ''`)).not.toBeVisible()
 	})
-
-	test(`doesn't display articles`, () => {
-		
-	}) 
 })
 
-// describe('if there are results', () => {
 
-// 	test('display articles', () => {
+describe('if there are no results', () => {
+	queryParams = {
+		query: 'alskdfjiwlkdflsjd',
+		sources: Object.values(sourceList),
+		fromDate: new Date(),
+		page: 1
+	}
+	setQueryParams = () => console.log('mock setState function')
+	articles = null
 
-// 	})
+	test(`displays 'no results' message`, () => {
+		render(<Landing 
+			queryParams={queryParams}
+			setQueryParams={setQueryParams}
+			articles={articles}
+		/>)
 
-// 	test(`don't display 'no results' message`, () => {
-
-// 	})
-
-// 	test(`update search bar value`, () => {
-
-// 	})
-
-// })
-
+		expect(screen.getByText(`No results for 'alskdfjiwlkdflsjd'`)).toBeVisible()
+	})
+})
 
 

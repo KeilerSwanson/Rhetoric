@@ -188,7 +188,7 @@ export default function Home() {
       <Landing 
         queryParams={queryParams}
         setQueryParams={setQueryParams}
-        initSearch={init.current.search}
+        // initSearch={init.current.search}
         articles={news.articles}
       />
       <Results

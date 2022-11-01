@@ -1,13 +1,13 @@
 import { useRef, memo } from 'react'
 
-import { BsSearch } from 'react-icons/bs'
 import styles from '../styles/Landing.module.scss'
+import { BsSearch } from 'react-icons/bs'
 
 
-function Landing({ queryParams, setQueryParams, articles, initSearch }) {
+function Landing({ queryParams, setQueryParams, articles }) {
 	const queryRef = useRef()
 	const landingRef = useRef()
-	const messageClass = (articles || initSearch) ? styles.message : styles.messageShow
+	const messageClass = (articles) ? styles.message : styles.messageShow
 
 
 	function handleForm(e) {
